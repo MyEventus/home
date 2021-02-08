@@ -1,6 +1,11 @@
 const getBtn = document.getElementById('get-btn')
 const postBtn = document.getElementById('post-btn')
 
+const userBtn = document.getElementById('newuserbtn')
+const alias = document.getElementById('alias').value;
+const first_name = document.getElementById('first_name').value;
+
+
 let axiosConfig = {
     headers: {
         'Authorization': 'Bearer keysXtWsXZz4g68dA',
@@ -17,6 +22,9 @@ const getData = () => {
         console.log("ERROR: ",err);
     });
 }
+
+
+
 
 // const postData = () => {
 //     axios.post('https://reqres.in/api/register', {
@@ -77,6 +85,13 @@ data = {
     }
 }
 
+nUserData = {
+    alias: alias,
+    first_name: first_name
+}
+
+
+
 //POST TO AIRTABLE.
 const postData = () => {
     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
@@ -86,7 +101,23 @@ const postData = () => {
     .catch(err => {
         console.log("ERROR: ",err.response);
     });
+    console.log("New User: ", alias, first_name);
 }
+
+
+const newUserData = () => {
+    // axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
+    // .then(response => {
+    //     console.log("POST RESPONSE: ", response)
+   // })
+    //.catch(err => {
+    //    console.log("ERROR: ",err.response);
+   // });
+    console.log("New User: ", alias, first_name);
+}
+
+
 
 getBtn.addEventListener('click', getData)
 postBtn.addEventListener('click', postData)
+userBtn.addEventListener('click', newUserData)

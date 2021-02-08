@@ -18,7 +18,7 @@ layout: home
 
 Hello
 
-<div>
+<!-- <div>
     <iframe class="airtable-embed" 
     src="https://airtable.com/embed/shrBSmLOgJHQrQrD0?backgroundColor=cyan&viewControls=on" 
     frameborder="0" 
@@ -27,9 +27,9 @@ Hello
     height="533" 
     style="background: transparent; border: 1px solid #ccc;">
     </iframe>
-</div>
+</div> -->
 
-<div>
+<!-- <div>
     <div>
     <h2>Create a new EVENT</h2>
         <iframe class="airtable-embed" 
@@ -42,6 +42,22 @@ Hello
     </div>
 
   
+</div> -->
+
+<div>
+<h2>Create a new user</h2>
+
+<label for="name">Alias/Nickname (4 to 8 characters):</label>
+
+<input type="text" id="alias" name="alias" required
+       minlength="4" maxlength="8" size="10">
+
+
+<label for="name">First Name (4 to 8 characters):</label>
+
+<input type="text" id="first_name" name="first_name" required
+       minlength="4" maxlength="8" size="10">
+
 </div>
 
 <div>
@@ -51,4 +67,5 @@ Hello
 <section id="control-center">
     <button id="get-btn">GET Data</button>
     <button id="post-btn">POST Data</button>
+    <button id="newuserbtn">New User</button>
   </section>

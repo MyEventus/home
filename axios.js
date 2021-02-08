@@ -1,9 +1,10 @@
 const getBtn = document.getElementById('get-btn')
 const postBtn = document.getElementById('post-btn')
 
-const userBtn = document.getElementById('newuserbtn')
-const alias = document.getElementById('alias').value;
-const first_name = document.getElementById('first_name').value;
+// function fn1(){
+//     var str = document.getElementById("alias").value;
+//     alert(str)
+// }
 
 
 let axiosConfig = {
@@ -85,13 +86,6 @@ data = {
     }
 }
 
-nUserData = {
-    alias: alias,
-    first_name: first_name
-}
-
-
-
 //POST TO AIRTABLE.
 const postData = () => {
     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
@@ -105,19 +99,26 @@ const postData = () => {
 }
 
 
-const newUserData = () => {
-    // axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
-    // .then(response => {
-    //     console.log("POST RESPONSE: ", response)
-   // })
-    //.catch(err => {
-    //    console.log("ERROR: ",err.response);
-   // });
-    console.log("New User: ", alias, first_name);
+const newUserData = (alias1, first_name1, email_main1) => {
+    nUserData = {
+        fields: {
+            Alias: alias1,
+            First_Name: first_name1,
+            Email_Main: email_main1
+        }
+    }
+    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
+    .then(response => {
+        console.log("POST RESPONSE: ", response)
+   })
+    .catch(err => {
+       console.log("ERROR: ",err.response);
+   });
+    console.log("New User: ", alias1, first_name1, email_main1);
 }
 
 
 
 getBtn.addEventListener('click', getData)
 postBtn.addEventListener('click', postData)
-userBtn.addEventListener('click', newUserData)
+

@@ -1,0 +1,132 @@
+---
+layout: default
+title: Events
+permalink: /events/
+---
+
+
+<div>
+    <button onclick='eventsListAll()' id="btn2">List all events</button>
+</div>
+
+
+<div class="container">
+
+<div id="results">
+
+</div>
+
+
+<hr>
+
+<div>
+<h2>Create a new EVENT</h2>
+<div class="btn btn-primary">Button</div>
+
+    <div>
+        <label for="eventtitle">Title (4 to 8 characters):</label>
+
+        <input type="text" id="eventtitle" name="eventtitle" required
+            minlength="4" maxlength="8" size="10">
+    <div>
+
+
+
+    <div>
+        <label for="eventdatestart">Date Start:</label>
+
+        <input type="datetime-local" id="eventdatestart" name="eventdatestart"
+            minlength="4" maxlength="50" size="40">
+    </div>
+
+    <!-- <div>
+        <label for="emailmain">Email:</label>
+
+        <input type="text" id="emailmain" name="emailmain" required
+            minlength="4" maxlength="120" size="40">
+    </div> -->
+
+
+    <div>
+        <button onclick='eventNew()' id="btn4">Create New EVENT</button>
+    </div>
+</div>
+
+<hr>
+
+
+
+
+
+<hr>
+
+<div>
+<h2>Create a new user</h2>
+
+    <div>
+        <label for="name">Alias/Nickname (4 to 8 characters):</label>
+
+        <input type="text" id="alias" name="alias" required
+            minlength="4" maxlength="8" size="10">
+    <div>
+
+
+
+    <div>
+        <label for="name">First Name (4 to 8 characters):</label>
+
+        <input type="text" id="first_name" name="first_name" required
+            minlength="4" maxlength="8" size="10">
+    </div>
+
+    <div>
+        <label for="emailmain">Email:</label>
+
+        <input type="text" id="emailmain" name="emailmain" required
+            minlength="4" maxlength="120" size="40">
+    </div>
+
+
+    <div>
+        <button onclick='fn1()' id="btn1">Create New User Now</button>
+    </div>
+</div>
+
+<hr>
+
+
+
+<hr>
+
+
+<div>
+    <button onclick='updateEvents()' id="btn3">Update Events on GitHub</button>
+</div>
+
+<hr>
+
+<div>
+    <a href="https://airtable.com/shrEHeEsIbilPyjwI">Click to confirm your attendence.</a>
+</div>
+
+<!-- <section id="control-center">
+    <button id="get-btn">GET Data</button>
+    <button id="post-btn">POST Data</button>
+  </section> -->
+
+        <h3>Test of JSON file from _data sub directory, static data</h3>
+        <ul>
+        {% for page in site.data.events.pages %}
+        <li>
+            <h3>Title: {{ page.title}}</h3>
+            <p>Name: {{ page.name }}</p>
+            <p>URL: {{ page.url}}</p>
+        </li>
+
+        {% endfor %}
+            </ul>
+
+
+
+
+</div>

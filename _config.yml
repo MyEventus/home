@@ -2,18 +2,18 @@
 
 # url is the full website URL
 # baseurl is the website's URL without the hostname
-url: "https://vsoch.github.io"
-baseurl: "/sb-admin-jekyll"
+url: "https://myeventus.github.io"
+baseurl: "/"
 
 # Name of website
-title: SBA Jekyll
+title: MyEventus
 version: 1
 
 # Short description of your site
-description: Startbootstrap Theme (Sb admin) for Jekyll
-github_user: vsoch
-github_repo: sb-admin-jekyll
-repo: https://www.github.com/vsoch/sb-admin-jekyll
+description: Members Only Event Management For Small Group Of Friends e.g. Mountain Bike Riding.
+github_user: 
+github_repo: 
+repo: 
 
 # --- Navigation bar options --- #
 

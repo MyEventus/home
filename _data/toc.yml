@@ -6,6 +6,18 @@
   url: docs/getting-started/
 - title: Interface
   links:
+    - title: Services
+      icon: fa-cog
+      children:
+        - title: Events
+          subtitle: "Event Managment:"
+          url: "docs/services/events/"
+        - title: New Event
+          url: "docs/services/events-new/"
+        - title: New Member
+          url: "docs/services/member-new/" 
+- title: Interface
+  links:
     - title: Components
       icon: fa-cog
       children:

@@ -154,18 +154,34 @@ const getEventsAll = () => {
             });
             //console.log("Users: ", users);
 
-            html += `<div>
-                <p><strong>Status: ${event.fields.Status}</strong></p>
-                <p><b>Title: ${event.fields.Title}</b></p>
-                <p>Date / Time To Meet (Start): ${event.fields.Date_Start}</p>
-                <p>Meeting Places: ${event.fields.Title_From_Places_LU}</p>
-                <p>Meeting Place (Details): ${event.fields.Meeting_From_Places_LU}</p>
-                <p>Meeting Place (Notes): ${event.fields.Notes_From_Places_LU}</p>
-                <br>
-                <p><b>Team Invited: ${event.fields.Team_Invited_Text_LU}</b></p>
-                <p>Invited Members: ${event.fields.Team_Members_Invited_Text_FO}</p>
-                <p>Member Id: ${event.fields.Team_Members_Invited_LU}</p>
-
+            html += `<br><div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Title: ${event.fields.Title}</h6>
+                </div>
+                <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+                    <thead><th>Title</th><th>Details</th></thead>               
+                
+                <tbody>
+                <tr><td>Status<td>${event.fields.Status}</td></tr>
+                <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+                <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+                <tr><td>Place (Details)</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+                <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+                <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+                <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+                </tbody>
+                
+                <tfoot>
+                <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
+                <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
+                <tr><td>ID</td><td>${event.id}</td></tr>
+                </tfoot>
+                </table>
+                
+                
                 <select style="width: 280px" id="Mobility" name="Mobility">
                     <option selected="">Please Select</option>
                     <option>K</option>
@@ -174,9 +190,7 @@ const getEventsAll = () => {
                 <p>Attendence Confirmed: ${event.fields.Confirmed_Text_LU}</p>
                 <p>Attendence Confirmed Id: ${event.fields.Confirmed}</p>
                 <br>
-                <p>Created By: ${event.fields.Author_Text_LU}</p>
-                <p>Created On: ${event.fields.Created_Time}</p>
-                <p><small>AirTable ID: ${event.id}</small></p>
+
             </div>
             <hr>
             `; 

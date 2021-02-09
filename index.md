@@ -19,6 +19,11 @@ layout: home
     newUserData(alias, first_name, email_main)
     
   }
+
+  function eventsListAll(){
+        let results = getEventsAll();
+        console.log("Returned : ", results)
+  }
 </script>
 
   <link rel="stylesheet" href="app.css">
@@ -27,7 +32,6 @@ layout: home
     <script src="axios.js" defer></script>
 </head>
 
-Hello
 
 <!-- <div>
     <iframe class="airtable-embed" 
@@ -91,12 +95,32 @@ Hello
 
 <hr>
 
+<div>
+    <button onclick='eventsListAll()' id="btn2">List all events</button>
+</div>
+
+<hr>
+
 
 <div>
     <a href="https://airtable.com/shrEHeEsIbilPyjwI">Click to confirm your attendence.</a>
 </div>
 
-<section id="control-center">
+<!-- <section id="control-center">
     <button id="get-btn">GET Data</button>
     <button id="post-btn">POST Data</button>
-  </section>
+  </section> -->
+
+  <h3>Test of JSON file from _data sub directory, static data</h3>
+  <ul>
+  {% for page in site.data.events.pages %}
+  <li>
+      <h3>Title: {{ page.title}}</h3>
+      <p>Name: {{ page.name }}</p>
+      <p>URL: {{ page.url}}</p>
+  </li>
+
+  {% endfor %}
+    </ul>
+
+

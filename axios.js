@@ -1,11 +1,11 @@
-const getBtn = document.getElementById('get-btn')
-const postBtn = document.getElementById('post-btn')
+// const getBtn = document.getElementById('get-btn')
+// const postBtn = document.getElementById('post-btn')
 
 // function fn1(){
 //     var str = document.getElementById("alias").value;
 //     alert(str)
 // }
-
+let events =    [];
 
 let axiosConfig = {
     headers: {
@@ -14,15 +14,15 @@ let axiosConfig = {
     }
   };
 
-const getData = () => {
-    axios.get('https://reqres.in/api/users', axiosConfig)
-    .then(response => {
-        console.log("GET RESPONSE: ", response)
-    })
-    .catch(err => {
-        console.log("ERROR: ",err);
-    });
-}
+// const getData = () => {
+//     axios.get('https://reqres.in/api/users', axiosConfig)
+//     .then(response => {
+//         console.log("GET RESPONSE: ", response)
+//     })
+//     .catch(err => {
+//         console.log("ERROR: ",err);
+//     });
+// }
 
 
 
@@ -99,6 +99,7 @@ const postData = () => {
 }
 
 
+//AIRTABLE - CREATE NEW USER (WHO)
 const newUserData = (alias1, first_name1, email_main1) => {
     nUserData = {
         fields: {
@@ -118,7 +119,20 @@ const newUserData = (alias1, first_name1, email_main1) => {
 }
 
 
+//AIRTABLE - LIST ALL - EVENT
+const getEventsAll = () => {
+    let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+    .then(response => {
+        events = response.data.records;
+        console.log("POST RESPONSE: ", events);
+   })
+    .catch(err => {
+       console.log("ERROR: ",err.response);
+   });
+   return results
+}
 
-getBtn.addEventListener('click', getData)
-postBtn.addEventListener('click', postData)
+
+// getBtn.addEventListener('click', getData)
+// postBtn.addEventListener('click', postData)
 

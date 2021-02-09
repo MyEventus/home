@@ -128,11 +128,25 @@ const getEventsAll = () => {
         console.log("POST RESPONSE: ", events);
         let html = '';
         events.forEach(eve => {
-            html += `
-            <li>
-                AirTable ID: ${eve.id}<br />
-                Title: ${eve.fields.title}<br />
-            </li>`; 
+            html += `<div>
+                <p><strong>Status: ${eve.fields.Status}</strong></p>
+                <p><b>Title: ${eve.fields.Title}</b></p>
+                <p>Date / Time To Meet (Start): ${eve.fields.Date_Start}</p>
+                <p>Meeting Places: ${eve.fields.Title_From_Places_LU}</p>
+                <p>Meeting Place (Details): ${eve.fields.Meeting_From_Places_LU}</p>
+                <p>Meeting Place (Notes): ${eve.fields.Notes_From_Places_LU}</p>
+                <br>
+                <p><b>Team Invited: ${eve.fields.Team_Invited_Text_LU}</b></p>
+                <p>Invited Members: ${eve.fields.Team_Members_Invited_Text_FO}</p>
+                <br>
+                <p>Created By: ${eve.fields.Author_Text_LU}</p>
+                <p>Created On: ${eve.fields.Created_Time}</p>
+                <p><small>AirTable ID: ${eve.id}</small></p>
+
+            
+            </div>
+            <hr>
+            `; 
         });
         document.getElementById('results').innerHTML = html; 
    })

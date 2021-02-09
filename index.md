@@ -103,6 +103,12 @@ layout: home
 
 
 <div>
+    <button onclick='updateEvents()' id="btn3">Update Events on GitHub</button>
+</div>
+
+<hr>
+
+<div>
     <a href="https://airtable.com/shrEHeEsIbilPyjwI">Click to confirm your attendence.</a>
 </div>
 

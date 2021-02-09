@@ -7,9 +7,10 @@
 // }
 let events =    [];
 
+
 let axiosConfig = {
     headers: {
-        'Authorization': 'Bearer keysXtWsXZz4g68dA',
+        'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
         'Content-Type': 'application/json'
     }
   };
@@ -131,6 +132,38 @@ const getEventsAll = () => {
    });
    return results
 }
+
+
+//Integramat to save new _data file in Jekyll on GitHub.
+const updateEvents = () => {
+    data = {
+        pages: [
+        {
+            name: "Home 6",
+            url: "/",
+            title: "Title 6"
+        },
+        {
+            name: "Home 7",
+            url: "/",
+            title: "Title 7"
+        }
+    ]
+    }
+
+    axios.post('https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9', data)
+    .then(response => {
+        events = response.data.records;
+        console.log("POST RESPONSE: ", events);
+   })
+    .catch(err => {
+       console.log("ERROR: ",err.response);
+   });
+}
+//WEBHOOK in
+//https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9
+
+
 
 
 // getBtn.addEventListener('click', getData)

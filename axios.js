@@ -126,11 +126,20 @@ const getEventsAll = () => {
     .then(response => {
         events = response.data.records;
         console.log("POST RESPONSE: ", events);
+        let html = '';
+        events.forEach(eve => {
+            html += `
+            <li>
+                AirTable ID: ${eve.id}<br />
+                Title: ${eve.fields.title}<br />
+            </li>`; 
+        });
+        document.getElementById('results').innerHTML = html; 
    })
     .catch(err => {
        console.log("ERROR: ",err.response);
    });
-   return results
+//    return results
 }
 
 //AIRTABLE -- CREATE NEW EVENT-------
@@ -181,4 +190,3 @@ const updateEvents = () => {
 
 // getBtn.addEventListener('click', getData)
 // postBtn.addEventListener('click', postData)
-

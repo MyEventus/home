@@ -1,4 +1,3 @@
----
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
@@ -22,7 +21,8 @@ layout: home
 
   function eventsListAll(){
         let results = getEventsAll();
-        console.log("Returned : ", results)
+        console.log("Returned : ", results);
+        
   }
 
   function eventNew(){
@@ -66,6 +66,13 @@ layout: home
 
   
 </div> -->
+
+<div class="container">
+
+<div id="results">
+
+</div>
+
 
 <hr>
 
@@ -181,7 +188,7 @@ layout: home
 
 
 
-
+</div>
 
 
 
@@ -190,5 +197,4 @@ layout: home
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 

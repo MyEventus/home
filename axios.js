@@ -133,23 +133,36 @@ const getEventsAll = () => {
    return results
 }
 
+//AIRTABLE -- CREATE NEW EVENT-------
+const eventNewData = (title, date_start) => {
+    data = {
+        fields: {
+            Title: title,
+            Date_Start: date_start
+        }
+    }
+    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
+    .then(response => {
+        console.log("POST RESPONSE: ", response)
+   })
+    .catch(err => {
+       console.log("ERROR: ",err.response);
+   });
+   console.log("POST: ",  data)
+    
+}
+
 
 //Integramat to save new _data file in Jekyll on GitHub.
-const updateEvents = () => {
-    data = {
-        pages: [
-        {
-            name: "Home 6",
-            url: "/",
-            title: "Title 6"
-        },
-        {
-            name: "Home 7",
-            url: "/",
-            title: "Title 7"
-        }
-    ]
+let axiosConfig2 = {
+    headers: {
+        // 'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
+        'Content-Type': 'text/plain'
     }
+  };
+
+const updateEvents = () => {
+    data = {data: 'pages: [{"name": "Home 6","url": "/","title": "Title 6"},{"name": "Home 7","url": "/","title": "Title 7"}]'}
 
     axios.post('https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9', data)
     .then(response => {

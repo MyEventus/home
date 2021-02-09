@@ -24,6 +24,13 @@ layout: home
         let results = getEventsAll();
         console.log("Returned : ", results)
   }
+
+  function eventNew(){
+    var eventTitle = document.getElementById("eventtitle").value;
+    var eventDateStart = document.getElementById("eventdatestart").value;
+    //var email_main = document.getElementById("emailmain").value;
+    eventNewData(eventTitle, eventDateStart)
+  }
 </script>
 
   <link rel="stylesheet" href="app.css">
@@ -33,6 +40,7 @@ layout: home
 </head>
 
 
+<body>
 <!-- <div>
     <iframe class="airtable-embed" 
     src="https://airtable.com/embed/shrBSmLOgJHQrQrD0?backgroundColor=cyan&viewControls=on" 
@@ -58,6 +66,47 @@ layout: home
 
   
 </div> -->
+
+<hr>
+
+<div>
+<h2>Create a new EVENT</h2>
+<div class="btn btn-primary">Button</div>
+
+    <div>
+        <label for="eventtitle">Title (4 to 8 characters):</label>
+
+        <input type="text" id="eventtitle" name="eventtitle" required
+            minlength="4" maxlength="8" size="10">
+    <div>
+
+
+
+    <div>
+        <label for="eventdatestart">Date Start:</label>
+
+        <input type="datetime-local" id="eventdatestart" name="eventdatestart"
+            minlength="4" maxlength="50" size="40">
+    </div>
+
+    <!-- <div>
+        <label for="emailmain">Email:</label>
+
+        <input type="text" id="emailmain" name="emailmain" required
+            minlength="4" maxlength="120" size="40">
+    </div> -->
+
+
+    <div>
+        <button onclick='eventNew()' id="btn4">Create New EVENT</button>
+    </div>
+</div>
+
+<hr>
+
+
+
+
 
 <hr>
 
@@ -117,16 +166,29 @@ layout: home
     <button id="post-btn">POST Data</button>
   </section> -->
 
-  <h3>Test of JSON file from _data sub directory, static data</h3>
-  <ul>
-  {% for page in site.data.events.pages %}
-  <li>
-      <h3>Title: {{ page.title}}</h3>
-      <p>Name: {{ page.name }}</p>
-      <p>URL: {{ page.url}}</p>
-  </li>
+        <h3>Test of JSON file from _data sub directory, static data</h3>
+        <ul>
+        {% for page in site.data.events.pages %}
+        <li>
+            <h3>Title: {{ page.title}}</h3>
+            <p>Name: {{ page.name }}</p>
+            <p>URL: {{ page.url}}</p>
+        </li>
 
-  {% endfor %}
-    </ul>
+        {% endfor %}
+            </ul>
+
+
+
+
+
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
 
 

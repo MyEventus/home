@@ -127,27 +127,73 @@ const getEventsAll = () => {
         events = response.data.records;
         console.log("POST RESPONSE: ", events);
         let html = '';
-        events.forEach(eve => {
-            html += `<div>
-                <p><strong>Status: ${eve.fields.Status}</strong></p>
-                <p><b>Title: ${eve.fields.Title}</b></p>
-                <p>Date / Time To Meet (Start): ${eve.fields.Date_Start}</p>
-                <p>Meeting Places: ${eve.fields.Title_From_Places_LU}</p>
-                <p>Meeting Place (Details): ${eve.fields.Meeting_From_Places_LU}</p>
-                <p>Meeting Place (Notes): ${eve.fields.Notes_From_Places_LU}</p>
-                <br>
-                <p><b>Team Invited: ${eve.fields.Team_Invited_Text_LU}</b></p>
-                <p>Invited Members: ${eve.fields.Team_Members_Invited_Text_FO}</p>
-                <br>
-                <p>Created By: ${eve.fields.Author_Text_LU}</p>
-                <p>Created On: ${eve.fields.Created_Time}</p>
-                <p><small>AirTable ID: ${eve.id}</small></p>
+        let blah;
+        let temp;
+        //temp = events.fields.Team_Members_Invited_Text_FO;
+        //console.log("TEMP: ", temp)
+        //blah = temp.split(",")
+        //console.log("BLAH: " , blah);
+
+        let users = [];
+        //users = events.fields.Team_Members_Invited_LU;
+        //console.log("Users: ", users);
+        //user = users.split(",")
+        //console.log("Users: ", users);
+
+        events.forEach(event => {
+            if(event.fields.Confirmed_Text_LU == undefined){
+                event.fields.Confirmed_Text_LU = "";
+                console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+            }
 
             
+
+            users.push({
+                userid: event.fields.Team_Members_Invited_LU,
+                username: event.fields.Team_Members_Invited_Text_FO
+            });
+            //console.log("Users: ", users);
+
+            html += `<div>
+                <p><strong>Status: ${event.fields.Status}</strong></p>
+                <p><b>Title: ${event.fields.Title}</b></p>
+                <p>Date / Time To Meet (Start): ${event.fields.Date_Start}</p>
+                <p>Meeting Places: ${event.fields.Title_From_Places_LU}</p>
+                <p>Meeting Place (Details): ${event.fields.Meeting_From_Places_LU}</p>
+                <p>Meeting Place (Notes): ${event.fields.Notes_From_Places_LU}</p>
+                <br>
+                <p><b>Team Invited: ${event.fields.Team_Invited_Text_LU}</b></p>
+                <p>Invited Members: ${event.fields.Team_Members_Invited_Text_FO}</p>
+                <p>Member Id: ${event.fields.Team_Members_Invited_LU}</p>
+
+                <select style="width: 280px" id="Mobility" name="Mobility">
+                    <option selected="">Please Select</option>
+                    <option>K</option>
+                </select>
+
+                <p>Attendence Confirmed: ${event.fields.Confirmed_Text_LU}</p>
+                <p>Attendence Confirmed Id: ${event.fields.Confirmed}</p>
+                <br>
+                <p>Created By: ${event.fields.Author_Text_LU}</p>
+                <p>Created On: ${event.fields.Created_Time}</p>
+                <p><small>AirTable ID: ${event.id}</small></p>
             </div>
             <hr>
             `; 
+            event.fields.Team_Members_Invited_LU = '';
         });
+
+        console.log("Users: ", users);
+        users.forEach(user => {
+        html += `<div>
+        <select style="width: 280px" id="Mobility" name="Mobility">
+            <option selected="${user.userid}">Please Select</option>
+            <option>${user.username}</option>
+        </select>
+        </div>`;
+
+        });
+
         document.getElementById('results').innerHTML = html; 
    })
     .catch(err => {

@@ -9,6 +9,8 @@ title: Events
    
    <a href="/sb-admin-jekyll/docs/services/team-new/" role="button" class="btn btn-secondary btn-large">New Team</a>
      <a href="/sb-admin-jekyll/docs/services/member-new/" role="button" class="btn btn-info btn-large">New User</a>
+       <a href="/sb-admin-jekyll/docs/services/places/" role="button" class="btn btn-success btn-large">List Place</a>
+      <a href="/sb-admin-jekyll/docs/services/place-new/" role="button" class="btn btn-danger btn-large">New Place</a>
 </div>
 
 

@@ -6,62 +6,84 @@
   url: docs/getting-started/
 - title: Interface
   links:
-    - title: Services
+    - title: Events
       icon: fa-cog
       children:
-        - title: Events
+        - title: List View
           subtitle: "Event Managment:"
           url: "docs/services/events/"
+        - title: Calendar View
+          url: "docs/services/events-calendar/"
         - title: New Event
           url: "docs/services/events-new/"
-        - title: New Member
-          url: "docs/services/member-new/" 
-- title: Interface
-  links:
-    - title: Components
+    - title: Members
       icon: fa-cog
       children:
-        - title: Buttons
-          subtitle: "Custom Components:"
-          url: "docs/interface/buttons/"
-        - title: Cards
-          url: "docs/interface/cards/"
-    - title: "Utilities"
-      icon: fa-wrench
+        - title: List Member
+          url: "docs/services/members/" 
+        - title: New Members
+          url: "docs/services/member-new/" 
+        - title: List Teams
+    - title: Teams
+      icon: fa-cog
       children:
-        - title: Color
-          subtitle: "Custom Utilities:"
-          url: "docs/utilities/colors"
-        - title: Borders
-          url: "docs/utilities/borders"
-        - title: Animations
-          url: "docs/utilities/animations"
-        - title: Other
-          url: "docs/utilities/other"
-- title: "Addons"
-  links:
-    - title: Pages
-      icon: fa-folder
+        - title: List Teams
+          url: "docs/services/teams/"
+        - title: New Team
+          url: "docs/services/team-new/"
+    - title: Places
+      icon: fa-cog
       children:
-        - title: Login
-          subtitle: "Login Screens:"
-          url: docs/addons/login
-        - title: Register
-          url: docs/addons/register
-        - title: Forgot Password
-          url: docs/addons/forgot-password
-        - title: 404 Page
-          subtitle: "Other Pages:"
-          url: docs/addons/404
-        - title: Blank Page
-          url: docs/addons/blank
-- title: Charts
-  icon: fa-chart-area
-  url: docs/charts/
-- title: Tables
-  icon: fa-table
-  url: docs/tables/
-- title: "About"
-  url: "about"
-- title: "News"
-  url: "news"
+        - title: List Places
+          url: "docs/services/places/"
+        - title: New Place
+          url: "docs/services/place-new/"
+# - title: Interface
+#   links:
+#     - title: Components
+#       icon: fa-cog
+#       children:
+#         - title: Buttons
+#           subtitle: "Custom Components:"
+#           url: "docs/interface/buttons/"
+#         - title: Cards
+#           url: "docs/interface/cards/"
+#     - title: "Utilities"
+#       icon: fa-wrench
+#       children:
+#         - title: Color
+#           subtitle: "Custom Utilities:"
+#           url: "docs/utilities/colors"
+#         - title: Borders
+#           url: "docs/utilities/borders"
+#         - title: Animations
+#           url: "docs/utilities/animations"
+#         - title: Other
+#           url: "docs/utilities/other"
+# - title: "Addons"
+#   links:
+#     - title: Pages
+#       icon: fa-folder
+#       children:
+#         - title: Login
+#           subtitle: "Login Screens:"
+#           url: docs/addons/login
+#         - title: Register
+#           url: docs/addons/register
+#         - title: Forgot Password
+#           url: docs/addons/forgot-password
+#         - title: 404 Page
+#           subtitle: "Other Pages:"
+#           url: docs/addons/404
+#         - title: Blank Page
+#           url: docs/addons/blank
+# - title: Charts
+#   icon: fa-chart-area
+#   url: docs/charts/
+# - title: Tables
+#   icon: fa-table
+#   url: docs/tables/
+# - title: "About"
+#   url: "about"
+# - title: "News"
+#   url: "news"

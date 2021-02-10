@@ -153,7 +153,7 @@ const getEventsAll = () => {
             `<br>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -164,7 +164,7 @@ const getEventsAll = () => {
                             <tr><td>Status<td>${event.fields.Status}</td></tr>
                             <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
                             <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                            <tr><td>Place (Details)</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
                             <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
                             <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
                             <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>

@@ -5,14 +5,14 @@ title: Events
 <div>
      <button class="btn btn-primary" type="button" id="btn1" onclick='getEventsAll()'>List view</button>
 
-  <a href="/sb-admin-jekyll/docs/services/team-new/" role="button" class="btn btn-primary btn-large">Calendar View</a>
+  <a href="docs/services/team-new/" role="button" class="btn btn-primary btn-large">Calendar View</a>
 
-  <a href="/sb-admin-jekyll/docs/services/event-new/" role="button" class="btn btn-primary btn-large">New Event</a>
+  <a href="docs/services/event-new/" role="button" class="btn btn-primary btn-large">New Event</a>
    
-   <a href="/sb-admin-jekyll/docs/services/team-new/" role="button" class="btn btn-secondary btn-large">New Team</a>
-     <a href="/sb-admin-jekyll/docs/services/member-new/" role="button" class="btn btn-secondary btn-large">New User</a>
-       <a href="/sb-admin-jekyll/docs/services/places/" role="button" class="btn btn-success btn-large">List Place</a>
-      <a href="/sb-admin-jekyll/docs/services/place-new/" role="button" class="btn btn-success btn-large">New Place</a>
+   <a href="docs/services/team-new/" role="button" class="btn btn-secondary btn-large">New Team</a>
+     <a href="docs/services/member-new/" role="button" class="btn btn-secondary btn-large">New User</a>
+       <a href="docs/services/places/" role="button" class="btn btn-success btn-large">List Place</a>
+      <a href="docs/services/place-new/" role="button" class="btn btn-success btn-large">New Place</a>
 </div>
 
 

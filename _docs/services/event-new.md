@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Events
+title: event-new
+permalink: event-new
 ---
 
-<a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
+<a href="/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
 <div>
 <h2>Create a new EVENT</h2>
 
@@ -80,6 +81,33 @@ title: Events
 <!-- //////////////// ENDO OF WORKING //////////////// -->
 
 <script>
+//////////  VERSION 2 - WORKING//////////
+// $(document).ready(function() {
+//     $('select[data-source]').each(function() {
+//         var $select = $(this);
+    
+//         $select.append('<option></option>');
+
+//         $.ajax({
+//             url: 'https://jsonplaceholder.typicode.com/users',
+//             headers: {
+//                 'Authorization':'Bearer keysXtWsXZz4g68dA',
+//                 'Content-Type':'application/json'
+//             },
+//             }).then(function(options) {
+//                 options.map(function(option) {
+//                     var $option = $('<option>');
+                    
+//                     $option
+//                         .val(option[$select.attr('data-valueKey')])
+//                         .text(option[$select.attr('data-displayKey')]);
+                    
+//                     $select.append($option);
+//                 });
+//             });
+//         });
+//     });
+/////////// END OF VERSION 2 - WORKING/////////////
 $(document).ready(function() {
     $('select[data-source]').each(function() {
         var $select = $(this);
@@ -87,13 +115,17 @@ $(document).ready(function() {
         $select.append('<option></option>');
 
         $.ajax({
-            url: 'https://jsonplaceholder.typicode.com/users',
+            //url: 'https://jsonplaceholder.typicode.com/users',
+            url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
             headers: {
                 'Authorization':'Bearer keysXtWsXZz4g68dA',
                 'Content-Type':'application/json'
             },
-            }).then(function(options) {
+            }).then(function(data) {
+                console.log("OPTIONS: ", data.records);
+                let options = data.records;
                 options.map(function(option) {
+                    //var option.title = option;
                     var $option = $('<option>');
                     
                     $option
@@ -104,7 +136,23 @@ $(document).ready(function() {
                 });
             });
         });
+    
     });
+});
+
+    // address: {street: "Kulas Light", suite: "Apt. 556", city: "Gwenborough", zipcode: "92998-3874", geo: {…}}
+    // company: {name: "Romaguera-Crona", catchPhrase: "Multi-layered client-server neural-net", bs: "harness real-time e-markets"}
+    // email: "Sincere@april.biz"
+    // id: 1
+    // name: "Leanne Graham"
+    // phone: "1-770-736-8031 x56442"
+    // username: "Bret"
+    // website: "hildegard.org"
+
+
+
+
+
 
 
 // $(document).ready(function() {

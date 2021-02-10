@@ -2,6 +2,7 @@
 layout: default
 title: Events
 ---
+
 <a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
 <div>
 <h2>Create a new EVENT</h2>
@@ -35,3 +36,60 @@ title: Events
 <div>
     <button class="btn btn-primary btn-block" type="button" id="btn2"  onclick='eventNew()'>Save</button>
 </div>
+
+
+
+
+<form>
+    <div class="form-group">
+        <label for="userId">User</label>
+        <select name="userId" id="userId" class="form-control" data-source="https://jsonplaceholder.typicode.com/users" data-valueKey="id" data-displayKey="name"></select>
+    </div>     
+    <button class="btn btn-primary" type="submit">Go</button>
+</form>
+
+
+<script>
+$(document).ready(function() {
+  
+    $('select[data-source]').each(function() {
+        var $select = $(this);
+        
+        $select.append('<option></option>');
+        
+        $.ajax({
+        url: $select.attr('data-source'),
+        }).then(function(options) {
+        options.map(function(option) {
+            var $option = $('<option>');
+            
+            $option
+            .val(option[$select.attr('data-valueKey')])
+            .text(option[$select.attr('data-displayKey')]);
+            
+            $select.append($option);
+        });
+        });
+    });
+    
+});
+</script> 
+
+
+<!-- 
+<script>
+$(document).ready(function() {
+  var url = "https://api.github.com/search/repositories?q={{ site.github_user }}/{{ site.github_repo }}";
+    fetch(url, { 
+        headers: {"Accept":"application/vnd.github.preview"}
+    }).then(function(e) {
+        return e.json()
+    }).then(function(r) {
+        console.log(r.items[0])
+        stars = r.items[0]['stargazers_count']
+        forks = r.items[0]['forks_count']
+        $('#stars').text(stars + " Stars")
+        $('#forks').text(forks + " Forks")
+    });
+});
+</script> -->

@@ -2,7 +2,6 @@
 layout: default
 title: member-new
 ---
-<a href="{% link _docs/services/events.md %}" role="button" class="btn btn-success btn-large">< Back to Events</a>
 
 <div>
         <div class="card shadow mb-4">

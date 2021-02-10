@@ -4,7 +4,6 @@ title: event-new
 permalink: event-new
 ---
 
-<a href="/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
 <div>
 <h2>Create a new EVENT</h2>
 

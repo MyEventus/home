@@ -5,14 +5,14 @@ title: Events
 <div>
      <button class="btn btn-primary" type="button" id="btn1" onclick='getEventsAll()'>List view</button>
 
-  <a href="docs/services/team-new/" role="button" class="btn btn-primary btn-large">Calendar View</a>
+  <a href="{% link _docs/services/team-new.md %}" role="button" class="btn btn-primary btn-large">Calendar View</a>
 
-  <a href="docs/services/event-new/" role="button" class="btn btn-primary btn-large">New Event</a>
+  <a href="{% link _docs/services/event-new.md %}" role="button" class="btn btn-primary btn-large">New Event</a>
    
-   <a href="docs/services/team-new/" role="button" class="btn btn-secondary btn-large">New Team</a>
-     <a href="docs/services/member-new/" role="button" class="btn btn-secondary btn-large">New User</a>
-       <a href="docs/services/places/" role="button" class="btn btn-success btn-large">List Place</a>
-      <a href="docs/services/place-new/" role="button" class="btn btn-success btn-large">New Place</a>
+   <a href="{% link _docs/services/team-new.md %}" role="button" class="btn btn-secondary btn-large">New Team</a>
+     <a href="{% link _docs/services/member-new.md %}" role="button" class="btn btn-secondary btn-large">New User</a>
+       <a href="{% link _docs/services/places.md %}" role="button" class="btn btn-success btn-large">List Place</a>
+      <a href="{% link _docs/services/place-new.md %}" role="button" class="btn btn-success btn-large">New Place</a>
 </div>
 
 

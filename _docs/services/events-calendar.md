@@ -2,7 +2,7 @@
 layout: default
 title: Events-Calendar
 ---
-<a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
+<a href="{% link _docs/services/events.md %}" role="button" class="btn btn-success btn-large">< Back to Events</a>
 
 <h1> MTB Calendar</h1>
 <p>This is read only. If you want to change/edit/create go to</p>

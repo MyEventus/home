@@ -151,7 +151,7 @@ const getEventsAll = () => {
 
             html +=
             `<br>
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4">YourRestEndPoint
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
                 </div>
@@ -247,6 +247,20 @@ const updateEvents = () => {
        console.log("ERROR: ",err.response);
    });
 }
+
+
+const getPlacesAll = () => {
+    let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place', axiosConfig)
+    .then(response => {
+        places = response.data.records;
+        console.log("PLACES: POST RESPONSE: ", places);
+    })
+    .catch(err => {
+        console.log("ERROR: ",err.response);
+    });
+    return results
+}
+
 //WEBHOOK in
 //https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9
 

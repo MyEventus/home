@@ -38,58 +38,241 @@ title: Events
 </div>
 
 
-
-
 <form>
-    <div class="form-group">
-        <label for="userId">User</label>
-        <select name="userId" id="userId" class="form-control" data-source="https://jsonplaceholder.typicode.com/users" data-valueKey="id" data-displayKey="name"></select>
-    </div>     
-    <button class="btn btn-primary" type="submit">Go</button>
-</form>
+        <div class="form-group">
+          <label for="userId">User</label>
+          <select name="userId" id="userId" class="form-control" data-source="https://jsonplaceholder.typicode.com/users" data-valueKey="id" data-displayKey="name"></select>
+        </div>     
+        <button class="btn btn-primary" type="submit">Go</button>
+      </form>
 
+<!-- /////////////// WORKING - DON'T TOUCH ////////////// -->
+<!-- <form>
+        <div class="form-group">
+          <label for="userId">User</label>
+          <select name="userId" id="userId" class="form-control" data-source="https://jsonplaceholder.typicode.com/users" data-valueKey="id" data-displayKey="name"></select>
+        </div>     
+        <button class="btn btn-primary" type="submit">Go</button>
+      </form>
+
+<!-- <script>
+    $('select[data-source]').each(function() {
+  var $select = $(this);
+  
+  $select.append('<option></option>');
+  
+  $.ajax({
+    url: $select.attr('data-source'),
+  }).then(function(options) {
+    options.map(function(option) {
+      var $option = $('<option>');
+      
+      $option
+        .val(option[$select.attr('data-valueKey')])
+        .text(option[$select.attr('data-displayKey')]);
+      
+      $select.append($option);
+    });
+  });
+}); 
+</script> -->
+
+<!-- //////////////// ENDO OF WORKING //////////////// -->
 
 <script>
 $(document).ready(function() {
-  
     $('select[data-source]').each(function() {
         var $select = $(this);
-        
-        $select.append('<option></option>');
-        
-        $.ajax({
-        url: $select.attr('data-source'),
-        }).then(function(options) {
-        options.map(function(option) {
-            var $option = $('<option>');
-            
-            $option
-            .val(option[$select.attr('data-valueKey')])
-            .text(option[$select.attr('data-displayKey')]);
-            
-            $select.append($option);
-        });
-        });
-    });
     
-});
-</script> 
+        $select.append('<option></option>');
 
-
-<!-- 
-<script>
-$(document).ready(function() {
-  var url = "https://api.github.com/search/repositories?q={{ site.github_user }}/{{ site.github_repo }}";
-    fetch(url, { 
-        headers: {"Accept":"application/vnd.github.preview"}
-    }).then(function(e) {
-        return e.json()
-    }).then(function(r) {
-        console.log(r.items[0])
-        stars = r.items[0]['stargazers_count']
-        forks = r.items[0]['forks_count']
-        $('#stars').text(stars + " Stars")
-        $('#forks').text(forks + " Forks")
+        $.ajax({
+            url: 'https://jsonplaceholder.typicode.com/users',
+            headers: {
+                'Authorization':'Bearer keysXtWsXZz4g68dA',
+                'Content-Type':'application/json'
+            },
+            }).then(function(options) {
+                options.map(function(option) {
+                    var $option = $('<option>');
+                    
+                    $option
+                        .val(option[$select.attr('data-valueKey')])
+                        .text(option[$select.attr('data-displayKey')]);
+                    
+                    $select.append($option);
+                });
+            });
+        });
     });
-});
-</script> -->
+
+
+// $(document).ready(function() {
+
+//     $('select[data-source]').each(function() {
+//         var $select = $(this);
+        
+//         $select.append('<option></option>');
+        
+//         $.ajax({
+//             url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
+//             headers: {
+//                 'Authorization':'Bearer keysXtWsXZz4g68dA',
+//                 'Content-Type':'application/json'
+//             },
+//         }).then(function(options) {
+//             options.map(function(option) {
+//             var $option = $('<option>');
+            
+//             $option
+//                 .val(option[$select.attr('data-valueKey')])
+//                 .text(option[$select.attr('data-displayKey')]);
+            
+//             $select.append($option);
+//             });
+//         });
+//     });
+// });
+
+
+    // let axiosConfig = {
+    //     headers: {
+    //         'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
+    //         'Content-Type': 'application/json'
+    //     }
+    // };
+
+
+    // $.ajax({
+    //     url: 
+    //         let results = getPlacesAll(),
+    //     })
+    //     .then(function(){
+    //         console.log("PLACES FROM API: ", results);
+    //     })
+        
+    // });
+    //let authorizationToken = 'Bearer keysXtWsXZz4g68dA'
+
+    //working with real api
+    // $.ajax({
+    //     url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
+    //     headers: {
+    //         'Authorization':'Bearer keysXtWsXZz4g68dA',
+    //         'Content-Type':'application/json'
+    //     },
+    //     method: 'GET',
+    //     dataType: 'json',
+    //     //data: data, //Sending to API
+    //     success: function(data){
+    //     console.log('succes: ',data.records);
+    //     }
+    // });
+
+//     $('select[data-source]').each(function() {
+//         var $select = $(this);
+
+//         $select.append('<option></option>');
+        
+//         $.ajax({
+//             url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
+//             headers: {
+//                 'Authorization':'Bearer keysXtWsXZz4g68dA',
+//                 'Content-Type':'application/json'
+//             },
+//             method: 'GET',
+//             dataType: 'json'
+//             //data: data, //Sending to API
+//             }).then(function(options) {
+//                 options.map(function(option) {
+//                     var $option = $('<option>');
+                    
+//                     $option
+//                     .val(option[$select.attr('data-valueKey')])
+//                     .text(option[$select.attr('data-displayKey')]);
+                    
+//                     $select.append($option);
+//                 });
+//         });
+//     });
+// });
+
+
+
+
+    // $('select[data-source]').each(function() {
+    //     var $select = $(this);
+        
+    //     $select.append('<option></option>');
+
+    //     $.ajax({
+    //         type: "GET",
+    //         beforeSend: function(request) {
+    //             request.setRequestHeader("Authority", authorizationToken);
+    //         },
+    //         url: $select.attr('data-source'),
+    //         //data: "json=" + escape(JSON.stringify(createRequestObject)),
+    //         //processData: false,
+    //         // success: function(msg) {
+    //         //     $("#results").append("The result =" + StringifyPretty(msg));
+    //         // }
+    //         }).then(function(options) {
+    //         options.map(function(option) {
+    //             var $option = $('<option>');
+                
+    //             $option
+    //             .val(option[$select.attr('data-valueKey')])
+    //             .text(option[$select.attr('data-displayKey')]);
+                
+    //             $select.append($option);
+    //         });
+    //     });
+    // });
+        
+//});
+
+    // ORIGINAL WORKING
+//     $('select[data-source]').each(function() {
+//         var $select = $(this);
+        
+//         $select.append('<option></option>');
+        
+//         $.ajax({
+//         url: $select.attr('data-source'),
+//         }).then(function(options) {
+//         options.map(function(option) {
+//             var $option = $('<option>');
+            
+//             $option
+//             .val(option[$select.attr('data-valueKey')])
+//             .text(option[$select.attr('data-displayKey')]);
+            
+//             $select.append($option);
+//         });
+//         });
+//     });
+    
+ //});
+
+
+
+
+
+// <script>
+// $(document).ready(function() {
+//   var url = "https://api.github.com/search/repositories?q={{ site.github_user }}/{{ site.github_repo }}";
+//     fetch(url, { 
+//         headers: {"Accept":"application/vnd.github.preview"}
+//     }).then(function(e) {
+//         return e.json()
+//     }).then(function(r) {
+//         console.log(r.items[0])
+//         stars = r.items[0]['stargazers_count']
+//         forks = r.items[0]['forks_count']
+//         $('#stars').text(stars + " Stars")
+//         $('#forks').text(forks + " Forks")
+//     });
+// });
+
+
+</script>

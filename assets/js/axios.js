@@ -208,13 +208,15 @@ const getEventsAll = () => {
 }
 
 //AIRTABLE -- CREATE NEW EVENT-------
-const eventNewData = (title, date_start) => {
-    data = {
-        fields: {
-            Title: title,
-            Date_Start: date_start
-        }
-    }
+const eventNewData = (formData) => {
+    var data = new FormData(formData);
+    console.log("FORM DATA: ", data);
+    // data = {
+    //     fields: {
+    //         Title: title,
+    //         Date_Start: date_start
+    //     }
+    // }
     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
     .then(response => {
         console.log("POST RESPONSE: ", response)

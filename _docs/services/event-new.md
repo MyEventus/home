@@ -2,39 +2,62 @@
 layout: default
 title: Event New
 ---
+<!-- 
+<head>
+    <script type="text/javascript">
+
+        // function fn1(){
+        //   var alias = document.getElementById("alias").value;
+        //   var first_name = document.getElementById("first_name").value;
+        //   var email_main = document.getElementById("emailmain").value;
+        //   newUserData(alias, first_name, email_main)
+          
+        // }
+      
+        // function eventsListAll(){
+        //       let results = getEventsAll();
+        //       console.log("Returned : ", results);
+              
+        // }
+      
+        function eventNew(){
+          var eventTitle = document.getElementById("eventtitle").value;
+          var eventDateStart = document.getElementById("eventdatestart").value;
+          //var email_main = document.getElementById("emailmain").value;
+          eventNewData(eventTitle, eventDateStart)
+        }
+      </script>
+</head> -->
 
 <div>
 <h2>Create a new EVENT</h2>
 
 <div>
-    <form>
+    <form id="makeNewEvent">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Create a new event</h6>
             </div>
             <div class="card-body">
-                <form id="make-new-event">
-                    <div class="form-group">
-                        <label for="eventtitle">Create a title</label>
-                        <input class="form-control" type="text" id="eventtitle" name="eventtitle" required
-                        minlength="4" maxlength="8" size="10">
-                    </div>
-                    <div class="form-group">
-                        <label for="eventdatestart">Starting Date / Time</label>
-                        <input class="form-control" type="datetime-local" id="eventdatestart" name="eventdatestart"
-                minlength="4" maxlength="50" size="40">
-                    </div>    
+                <div class="form-group">
+                    <label for="eventtitle">Create a title</label>
+                    <input class="form-control" type="text" id="eventtitle" name="eventtitle" required
+                    minlength="4" maxlength="8" size="10">
+                </div>
+                <div class="form-group">
+                    <label for="eventdatestart">Starting Date / Time</label>
+                    <input class="form-control" type="datetime-local" id="eventdatestart" name="eventdatestart" minlength="4" maxlength="50" size="40">
+                </div>    
                 <div class="form-group">
                     <label for="place">Place</label>
-                     <select name="place" id="place" class="form-control"></select>
+                    <select name="place" id="place" class="form-control"></select>
                 </div>
                 <div class="form-group">
                     <label for="team">Team</label>
-                     <select name="team" id="team" class="form-control"></select>
+                    <select name="team" id="team" class="form-control"></select>
                 </div>
-        <div>
-        <div>
-            <button class="btn btn-primary btn-block" type="button" id="btn2"  onclick='eventNewData($("#make-new-event"))'>Save</button>
+                <button class="btn btn-primary btn-block" type="submit" id="submitForm">Save</button>
+            </div>
         </div>
     </form>
 </div>
@@ -57,13 +80,30 @@ title: Event New
         ddTeam.append('<option selected="true" disabled>Select a Team to invite..</option>');
         ddTeam.prop('selectedIndex', 0);
 
+        $('form').on('submit', function (event) {
+
+            // Get form
+            //var data = $('#make-new-event')[0];
+
+            // Create an FormData object 
+            //var data = new FormData(form);
+
+            // If you want to add an extra field for the FormData
+            //data.append("CustomField", "This is some extra data, testing");
+            //console.log("FORM DATA ", this)
+
+            //var form = $('form').serialize();
+            event.preventDefault()
+            eventNew();
+        });
+
         getPlaces();
         //getTeams();
 
         function getPlaces(){
             $.ajax({
                 url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
-                headers: restHeader,
+                headers: restHeader
                 })
                 .then(function(fromAPI){ 
                     let data = fromAPI.records;
@@ -92,6 +132,25 @@ title: Event New
                     ddTeam.append($('<option></option>').attr('value', id).text(title));
                 });              
             });
+        }
+
+
+        function eventNew(){
+          var eventTitle = document.getElementById("eventtitle").value;
+          var eventDateStart = document.getElementById("eventdatestart").value;
+          var eventTeam = document.getElementById("team").value;
+
+
+            //var eventTeamAll = document.getElementById("team");
+            //console.log("eventTeam ID: ", eventTeam);
+            
+            // for (let myKey of eventTeam.keys()) {
+            //     //alert(myKey); // cucumber, tomatoes, onion
+            //     console.log("eventTeam ID: ", myKey);
+            // }
+
+            console.log("eventTeam ID: ", eventTeam);
+            eventNewData(eventTitle, eventDateStart, eventTeam)
         }
 
     });

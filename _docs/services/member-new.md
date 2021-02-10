@@ -27,6 +27,10 @@ title: member-new
             </div>
         <div>
 </div>
-<div>
+<!-- <div>
     <button class="btn btn-primary btn-block" type="button" id="btn1"  onclick='fn1()'>Save</button>
+</div> -->
+
+<div>
+    <button class="btn btn-primary btn-block" type="button" id="btn1"  onclick='newUserData()'>Save</button>
 </div>

@@ -208,15 +208,26 @@ const getEventsAll = () => {
 }
 
 //AIRTABLE -- CREATE NEW EVENT-------
-const eventNewData = (formData) => {
-    var data = new FormData(formData);
-    console.log("FORM DATA: ", data);
-    // data = {
-    //     fields: {
-    //         Title: title,
-    //         Date_Start: date_start
-    //     }
-    // }
+//"https://api.airtable.com/v0/appnPiAF5nEI3Lu1a/all_poll_data?maxRecords=100&view=poll_data&api_key=keyU4jNgidjWREljE&sortField=_createdTime&sortDirection=desc";
+
+
+
+const eventNewData = (title, date_start, teamId) => {
+    console.log("DATA IN: ", title, date_start, teamId);
+    //var data = new FormData(formData);
+    //newData = data.serialize();
+    //let data2 = {fields: {newData}}
+    
+    //console.log("SERIALIZED FORMDATA COVERT: ", data2);
+    data = {
+        fields: {
+            Title: title,
+            Date_Start: date_start,
+            Team_Invited_LI: [teamId]
+        }
+    }
+
+
     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
     .then(response => {
         console.log("POST RESPONSE: ", response)

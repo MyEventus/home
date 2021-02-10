@@ -139,74 +139,65 @@ const getEventsAll = () => {
         //console.log("Users: ", users);
         //user = users.split(",")
         //console.log("Users: ", users);
-
+        // html =+ `
+        // <div class="card shadow mb-4">
+        // `
+        
         events.forEach(event => {
             if(event.fields.Confirmed_Text_LU == undefined){
                 event.fields.Confirmed_Text_LU = "";
                 console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
             }
 
-            
-
-            users.push({
-                userid: event.fields.Team_Members_Invited_LU,
-                username: event.fields.Team_Members_Invited_Text_FO
-            });
-            //console.log("Users: ", users);
-
-            html += `<br><div>
+            html +=
+            `<br>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Title: ${event.fields.Title}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
                 </div>
                 <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-                    <thead><th>Title</th><th>Details</th></thead>               
-                
-                <tbody>
-                <tr><td>Status<td>${event.fields.Status}</td></tr>
-                <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-                <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                <tr><td>Place (Details)</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-                <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-                <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                </tbody>
-                
-                <tfoot>
-                <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
-                <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
-                <tr><td>ID</td><td>${event.id}</td></tr>
-                </tfoot>
-                </table>
-                
-                
-                <select style="width: 280px" id="Mobility" name="Mobility">
-                    <option selected="">Please Select</option>
-                    <option>K</option>
-                </select>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+                        <thead><th>Title</th><th>Details</th></thead>
 
-                <p>Attendence Confirmed: ${event.fields.Confirmed_Text_LU}</p>
-                <p>Attendence Confirmed Id: ${event.fields.Confirmed}</p>
-                <br>
+                        <tbody>
+                            <tr><td>Status<td>${event.fields.Status}</td></tr>
+                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+                            <tr><td>Place (Details)</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+                            </tbody>
 
+                        </table>
+                    </div>            
+                </div>
             </div>
-            <hr>
-            `; 
-            event.fields.Team_Members_Invited_LU = '';
+            </br>
+            `                           
+            //     <tfoot>
+            //     <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
+            //     <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
+            //     <tr><td>ID</td><td>${event.id}</td></tr>
+            //     </tfoot>
+            //     </table>
+                
+            // `; 
+            //event.fields.Team_Members_Invited_LU = '';
         });
 
+    
+        
         console.log("Users: ", users);
-        users.forEach(user => {
-        html += `<div>
-        <select style="width: 280px" id="Mobility" name="Mobility">
-            <option selected="${user.userid}">Please Select</option>
-            <option>${user.username}</option>
-        </select>
-        </div>`;
-
-        });
+        // users.forEach(user => {
+        // html += `<div>
+        // <select style="width: 280px" id="Mobility" name="Mobility">
+        //     <option selected="${user.userid}">Please Select</option>
+        //     <option>${user.username}</option>
+        // </select>
+        // </div>`;
+        //});
 
         document.getElementById('results').innerHTML = html; 
    })

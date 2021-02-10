@@ -14,6 +14,10 @@ title: Events
 
 <div class="container">
     <div id="results"><div>
+    <!-- <h1> NEW LIST</h1>
+    {% for event in results %}
+        {{ event }}
+    {% endfor %} -->
 </div>
 <br>
 <p>To start select one of the above.<p>

@@ -106,7 +106,6 @@ title: Event New
 
             console.log("eventTeam ID: ", eventTeam);
             eventNewData(eventTitle, eventDateStart, eventTeam, eventAuthor, eventPlace)
-        }ta object 
             //var data = new FormData(form);
 
             // If you want to add an extra field for the FormData
@@ -114,8 +113,7 @@ title: Event New
             //console.log("FORM DATA ", this)
 
             //var form = $('form').serialize();
-            event.preventDefault()
-            eventNew();
+            event.preventDefault();
         });
 
         getPlaces();
@@ -128,6 +126,7 @@ title: Event New
                 })
                 .then(function(fromAPI){ 
                     let data = fromAPI.records;
+                    console.log("Places: ", data);
                     data.map(function(data2){
                         let id = data2.id;
                         let title = data2.fields.Title + "-" + data2.fields.Meeting_Place;
@@ -172,16 +171,7 @@ title: Event New
             });
         }
 
-        function eventNew(){
-          var eventTitle = document.getElementById("eventtitle").value;
-          var eventDateStart = document.getElementById("eventdatestart").value;
-          var eventTeam = document.getElementById("team").value;
-          var eventAuthor = document.getElementById("author").value;
-          var eventPlace = document.getElementById("place").value;
-
-            console.log("eventTeam ID: ", eventTeam);
-            eventNewData(eventTitle, eventDateStart, eventTeam, eventAuthor, eventPlace)
-        }
+        
 
     });
 </script>

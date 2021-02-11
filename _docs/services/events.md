@@ -58,13 +58,20 @@ title: Events
     //     // event.preventDefault();    
     // } 
 
+    //Service_From_Team
+    //Team_invited (Team)
+    //Team_Invited_Text_LU
+    //Team_Members_Invited_LU
+    //Team_Members_Invited_Text_FO
+
+
     function displayEvents(events){
         let html = '';
         events.forEach(event => {
-            //         if(event.fields.Confirmed_Text_LU == undefined){
-            //             event.fields.Confirmed_Text_LU = "";
-            //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-            //         }
+            if(event.fields.Confirmed_Text_LU == undefined){
+                event.fields.Confirmed_Text_LU = "";
+                console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+            }
             html +=
             `<br>
             <div class="card shadow mb-4">
@@ -81,9 +88,9 @@ title: Events
                             <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
                             <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
                             <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Title_Text_LU}</td></tr>
                             <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                            <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
+                            <tr><td>Confrimed Attending</td><td>${event.fields.Confirmed_Text_LU}</td></tr>
                         </tbody>
                         </table>
                     </div>

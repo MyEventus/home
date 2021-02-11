@@ -226,8 +226,8 @@ const eventNewData = (title, date_start, teamId, authorId, placeId) => {
             Team_Invited_LI: [teamId], //From user form.
             Places: [placeId], //From user form.
             Author_LI: [authorId], //From user form.
-            Confirmed: [authorId] //Auto assigned.
-            //Status: "ON (Going Ahead)"
+            Confirmed: [authorId], //Auto assigned.
+            Status: "ON (Going Ahead)"
         }
     }
 

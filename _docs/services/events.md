@@ -92,7 +92,6 @@ title: Events
                         <div class="table-responsive">
                             <table class="table table-bordered" id="22" width="100%" cellspacing="0">
                             <thead><th>Title</th><th>Details</th></thead>
-
                             <tbody>
                                 <tr><td>Status<td>${event.fields.Status}</td></tr>
                                 <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
@@ -116,7 +115,7 @@ title: Events
             }); //End of forEach;
 
             document.getElementById('results').innerHTML = html; 
-            getAliasList();
+            //getAliasList();
         })
         .catch((message) => {
             console.log("FROM PROMISE: ", message);

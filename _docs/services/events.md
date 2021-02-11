@@ -19,9 +19,9 @@ title: Events
 <div class="container">
     <div id="results"><div>
     <!-- <h1> NEW LIST</h1>-->
-    {% for event in message %}
+    <!-- {% for event in message %}
         {{ event }}
-    {% endfor %}
+    {% endfor %} -->
 </div>
 <br>
 <p>To start select one of the above.<p>
@@ -43,11 +43,23 @@ title: Events
 
 <script>
     $(document).ready(function() {
+         const restHeader = {
+            'Authorization':'Bearer keysXtWsXZz4g68dA',
+            'Content-Type':'application/json'
+        }
+
+
+        // $('form').on('submit', function (event) {
+        //     event.preventDefault();
+        //     console.log("IEDDDDD: ", event);
+        // });
+
+
 
         //For Place drop down / select.
-        let ddConfirm = $('#place');
+        let ddConfirm = $('#confirm');
         ddConfirm.empty();
-        ddConfirm.append('<option selected="true" disabled>Confirmed..</option>');
+        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
         ddConfirm.prop('selectedIndex', 0);
 
       
@@ -61,6 +73,14 @@ title: Events
                     event.fields.Confirmed_Text_LU = "";
                     console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
                 }
+
+                // <form>
+                //     <div class="form-group">
+                //         <input class="form-control" type="text" id="confirm" name="confirm"
+                //         minlength="4" maxlength="10" size="10">
+                //     </div>
+                // </form>
+
 
                 html +=
                 `<br>
@@ -82,17 +102,12 @@ title: Events
                                 <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
                                 <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
                                 <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
-                                <form>
-                                <div class="form-group">
-                                    <label for="eventtitle">Confirmation</label>
-                                    <input class="form-control" type="text" id="confirm" name="confirm"
-                                    minlength="4" maxlength="8" size="10">
-                                </div>
-                                </form>
-                                </tbody>
-                                
-
+                            </tbody>
                             </table>
+                            <form>
+                                <input type="hidden" id="eventId" name="eventId" value="${event.id}">
+                                <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / Delete</button>
+                            </form>
                         </div>            
                     </div>
                 </div>
@@ -101,29 +116,30 @@ title: Events
             }); //End of forEach;
 
             document.getElementById('results').innerHTML = html; 
+            getAliasList();
         })
         .catch((message) => {
             console.log("FROM PROMISE: ", message);
-        })
+        });
         // console.log("RESULTSS: ", results);
 
 
 
-        // function getConfirmed(eventId){
-        //     $.ajax({
-        //         url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place',
-        //         headers: restHeader
-        //         })
-        //         .then(function(fromAPI){ 
-        //             let data = fromAPI.records;
-        //             data.map(function(data2){
-        //                 let id = data2.id;
-        //                 let title = data2.fields.Title + "-" + data2.fields.Meeting_Place;
-        //                 ddPlace.append($('<option></option>').attr('value', id).text(title));
+        function getAliasList(){
+            $.ajax({
+                url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
+                headers: restHeader
+                })
+                .then(function(fromAPI){ 
+                    let data = fromAPI.records;
+                    console.log("Confirm Alias List: ", data);
+                    data.map(function(data2){
+                        let id = data2.id;
+                        let title = data2.fields.Alias;
+                        ddConfirm.append($('<option></option>').attr('value', id).text(title));
                     
-        //          })
-        //      getTeams();
-        //     });
-        // }
+                 })
+            });
+        }
     });
 </script>

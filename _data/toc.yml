@@ -16,6 +16,8 @@
           url: "docs/services/events-calendar/"
         - title: New Event
           url: "docs/services/event-new/"
+        - title: Edit Event
+          url: "docs/services/event-edit/"
     - title: Members
       icon: fa-cog
       children:

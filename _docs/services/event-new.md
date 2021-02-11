@@ -97,7 +97,16 @@ title: Event New
             // Get form
             //var data = $('#make-new-event')[0];
 
-            // Create an FormData object 
+            // Create an FormDa function eventNew(){
+          var eventTitle = document.getElementById("eventtitle").value;
+          var eventDateStart = document.getElementById("eventdatestart").value;
+          var eventTeam = document.getElementById("team").value;
+          var eventAuthor = document.getElementById("author").value;
+          var eventPlace = document.getElementById("place").value;
+
+            console.log("eventTeam ID: ", eventTeam);
+            eventNewData(eventTitle, eventDateStart, eventTeam, eventAuthor, eventPlace)
+        }ta object 
             //var data = new FormData(form);
 
             // If you want to add an extra field for the FormData

@@ -2,6 +2,11 @@
 layout: default
 title: Events
 ---
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+</head>
+
 <a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a>
 
 <h1>New Team</h1>
@@ -16,15 +21,16 @@ title: Events
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="teamttitle">Create a title</label>
-                    <input class="form-control" type="text" id="teamttitle" name="teamttitle" required
+                    <label for="teamtitle">Create a title</label>
+                    <input class="form-control" type="text" id="teamtitle" name="teamtitle" required
                     minlength="4" maxlength="8" size="10">
                 </div>
-            </div>
-             <div class="form-group">
+                <div class="form-group">
                     <label for="author">Member</label>
-                    <select name="author" id="author" class="form-control"></select>
+                    <select name="author" id="author" class="form-control" multiple></select>
+                    <!-- <select name="author" id="author" class="selectpicker" multiple></select> -->
                 </div>
+            </div>
             <div>
                 <button class="btn btn-primary btn-block" type="submit" id="submitForm">Save</button>
             </div>
@@ -34,6 +40,7 @@ title: Events
 
 
 <script>
+
     $(document).ready(function() {
         const restHeader = {
             'Authorization':'Bearer keysXtWsXZz4g68dA',
@@ -41,9 +48,13 @@ title: Events
         }
         //For Place drop down / select.
         let ddAuthor = $('#author');
+        //let ddAuthor = $('#author').selectpicker();
         ddAuthor.empty();
         ddAuthor.append('<option selected="true" disabled>Select a member..</option>');
         ddAuthor.prop('selectedIndex', 0);
+
+        // Refresh the selectpicker
+        // $("#author").selectpicker("refresh");
 
         getAuthor();
 
@@ -61,6 +72,7 @@ title: Events
                     ddAuthor.append($('<option></option>').attr('value', id).text(author));
                 });              
             });
+        //$("#author").selectpicker("refresh");
         }
 
 
@@ -76,11 +88,18 @@ title: Events
 
 
      function teamNew(){
+          let eventAuthor = [];
           var eventTitle = document.getElementById("teamtitle").value;
-          var eventAuthor = document.getElementById("author").value;
+          eventAuthor = document.getElementById("author").value;
          
-            console.log("eventTeam ID: ", eventTeam);
+            console.log("NEW TEAM: ", eventAuthor);
             teamNewData(eventTitle, eventAuthor);
         }
 
 </script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>

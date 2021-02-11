@@ -321,7 +321,7 @@ const teamNewData = (title, authorId) => {
     data = {
         fields: {
             Title: title, //From user form.
-            Author_LI: [authorId], //From user form.
+            Who: [authorId], //From user form.
         }
     }
 

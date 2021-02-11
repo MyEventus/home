@@ -45,9 +45,9 @@ title: Events
     //Main decision hub sync / await in order.
     async function eventsMain(){
        const getEvents = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
-       console.log("Promise has finished eventsListAll", getEvents);
-       const getAliass = await getAliasList(); //Above
-       console.log("Promise has finished aliasListAll")
+       console.log("Promise has finished eventsListAll", getEvents); //Once above line is completed this is then run.
+       //const getAliass = await getAliasList(); //Above
+       //console.log("Promise has finished aliasListAll")
     }
 
 
@@ -117,22 +117,16 @@ title: Events
     }
     
     $(document).ready(function() {
-        //  const restHeader = {
-        //     'Authorization':'Bearer keysXtWsXZz4g68dA',
-        //     'Content-Type':'application/json'
-        // }
-
-      
+     
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
         ddConfirm.empty();
         ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
         ddConfirm.prop('selectedIndex', 0);
-      
-        //let $message = [];
-        // let results = getEventsAll();
+
         let html = '';
 
+        //Trigger the main decision tree hub.
         eventsMain();        
         
         // p.then((events) => {

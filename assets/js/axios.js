@@ -120,37 +120,28 @@ const postData = () => {
 //     console.log("New User: ", alias1, first_name1, email_main1);
 // }
 
-//---- VERSION 3 -----
-// const newUserData2 = () => {
-//     console.log("In newUserData");
 
-
-// }
-
+//Get list of all events.
 function eventsList(){
     console.log("In newUserData");
-    const eventsListAll = () => {
-        return new Promise((resolve, reject) => {
-            let events = [];
+    return new Promise((resolve, reject) => {
+        let events = [];
+        //let a = 1 + 1;
+        if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-                .then(response => {
-                    events = response.data.records;
-                    console.log("IN PROMISE: ", events);
-                    resolve(events)
-                })
-                .catch(err => {
-                    console.log("err", err);
-                })
-            //let a = 1 + 1;
-            //if (a == 2) {
-                //resolve(events)
-            //}
-            //else {
-            //    reject("Failed")
-            //}
-        });
-    }
-
+            .then(response => {
+                events = response.data.records;
+                //console.log("IN PROMISE: ", events);
+                resolve(events)
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        }
+        else {
+            reject("Failed")
+        }
+    });
 }
 
 

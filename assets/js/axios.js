@@ -101,45 +101,102 @@ const postData = () => {
 
 
 //AIRTABLE - CREATE NEW USER (WHO)
-const newUserData = (alias1, first_name1, email_main1) => {
-    nUserData = {
-        fields: {
-            Alias: alias1,
-            First_Name: first_name1,
-            Email_Main: email_main1
-        }
+//const newUserData = (alias1, first_name1, email_main1) => {
+//     console.log("In newUserData");
+//     nUserData = {
+//         fields: {
+//             Alias: alias1,
+//             First_Name: first_name1,
+//             Email_Main: email_main1
+//         }
+//     }
+//     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
+//     .then(response => {
+//         console.log("POST RESPONSE: ", response)
+//    })
+//     .catch(err => {
+//        console.log("ERROR: ",err.response);
+//    });
+//     console.log("New User: ", alias1, first_name1, email_main1);
+// }
+
+//---- VERSION 3 -----
+// const newUserData2 = () => {
+//     console.log("In newUserData");
+
+
+// }
+
+function eventsList(){
+    console.log("In newUserData");
+    const eventsListAll = () => {
+        return new Promise((resolve, reject) => {
+            let events = [];
+            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+                .then(response => {
+                    events = response.data.records;
+                    console.log("IN PROMISE: ", events);
+                    resolve(events)
+                })
+                .catch(err => {
+                    console.log("err", err);
+                })
+            //let a = 1 + 1;
+            //if (a == 2) {
+                //resolve(events)
+            //}
+            //else {
+            //    reject("Failed")
+            //}
+        });
     }
-    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
-    .then(response => {
-        console.log("POST RESPONSE: ", response)
-   })
-    .catch(err => {
-       console.log("ERROR: ",err.response);
-   });
-    console.log("New User: ", alias1, first_name1, email_main1);
+
 }
 
-//AIRTABLE - LIST ALL - EVENT - VERSION 2 - WORKING------
-let p = new Promise((resolve, reject) => {
-    let events = [];
-    
-    axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-        .then(response => {
-            events = response.data.records;
-            resolve(events)
-        })
-        .catch(err => {
-            console.log("err", err);
-        })
-    //let a = 1 + 1;
-    //if (a == 2) {
-        //resolve(events)
-    //}
-    //else {
-    //    reject("Failed")
-    //}
-});
 
+//AIRTABLE - LIST ALL - EVENT - VERSION 2 - WORKING------
+//function eventsListAll(){
+// const eventsListAll = () => {
+//     return new Promise((resolve, reject) => {
+//         let events = [];
+//         axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+//             .then(response => {
+//                 events = response.data.records;
+//                 resolve(events)
+//             })
+//             .catch(err => {
+//                 console.log("err", err);
+//             })
+//         //let a = 1 + 1;
+//         //if (a == 2) {
+//             //resolve(events)
+//         //}
+//         //else {
+//         //    reject("Failed")
+//         //}
+//     });
+// }
+
+// let p = new Promise((resolve, reject) => {
+//     let events = [];
+    
+//     axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+//         .then(response => {
+//             events = response.data.records;
+//             resolve(events)
+//         })
+//         .catch(err => {
+//             console.log("err", err);
+//         })
+//     //let a = 1 + 1;
+//     //if (a == 2) {
+//         //resolve(events)
+//     //}
+//     //else {
+//     //    reject("Failed")
+//     //}
+// });
+//===============================
 //AIRTABLE - LIST ALL - EVENT - VERSION 1 - WORKING------
 // const getEventsAll = () => {
 //     let events = [];

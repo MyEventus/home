@@ -42,11 +42,52 @@ title: Events
 
 
 <script>
+    //Main decision hub sync / await in order.
+    async function eventsMain(){
+       const getEvents = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
+       console.log("Promise has finished eventsListAll", getEvents);
+       const getAliass = await getAliasList(); //Above
+       console.log("Promise has finished aliasListAll")
+    }
+
+
     // function goToEdit(event){
     //     // $('form').on('submit', function (event) {
     //     console.log("IEDDDDD: ", event);
     //     // event.preventDefault();    
     // } 
+
+    // events.forEach(event => {
+    //     //         if(event.fields.Confirmed_Text_LU == undefined){
+    //     //             event.fields.Confirmed_Text_LU = "";
+    //     //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+    //     //         }
+    //     html +=
+    //     `<br>
+    //     <div class="card shadow mb-4">
+    //         <div class="card-header py-3">
+    //             <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+    //         </div>
+    //         <div class="card-body">
+    //             <div class="table-responsive">
+    //                 <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+    //                 <thead><th>Title</th><th>Details</th></thead>
+    //                 <tbody>
+    //                     <tr><td>Status<td>${event.fields.Status}</td></tr>
+    //                     <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+    //                     <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+    //                     <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+    //                     <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+    //                     <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+    //                     <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+    //                     <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
+    //                 </tbody>
+    //                 </table>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     ` 
+    // }
 
     $('form').on('submit', function (event) {
          console.log("IEDDDDD: ");
@@ -54,12 +95,32 @@ title: Events
        
     });
 
-
-    $(document).ready(function() {
-         const restHeader = {
+    function getAliasList(){
+        const restHeader = {
             'Authorization':'Bearer keysXtWsXZz4g68dA',
             'Content-Type':'application/json'
         }
+        $.ajax({
+            url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
+            headers: restHeader
+            })
+            .then(function(fromAPI){ 
+                let data = fromAPI.records;
+                console.log("Confirm Alias List: ", data);
+                data.map(function(data2){
+                    let id = data2.id;
+                    let title = data2.fields.Alias;
+                    ddConfirm.append($('<option></option>').attr('value', id).text(title));
+                
+                })
+        });
+    }
+    
+    $(document).ready(function() {
+        //  const restHeader = {
+        //     'Authorization':'Bearer keysXtWsXZz4g68dA',
+        //     'Content-Type':'application/json'
+        // }
 
       
         //For Place drop down / select.
@@ -67,82 +128,87 @@ title: Events
         ddConfirm.empty();
         ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
         ddConfirm.prop('selectedIndex', 0);
-
       
         //let $message = [];
         // let results = getEventsAll();
         let html = '';
+
+        eventsMain();        
         
-        p.then((events) => {
-            console.log("FROM PROMISE: ", events);
-            events.forEach(event => {
-                if(event.fields.Confirmed_Text_LU == undefined){
-                    event.fields.Confirmed_Text_LU = "";
-                    console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-                }
+        // p.then((events) => {
+        //     console.log("FROM PROMISE: ", events);
+        //     events.forEach(event => {
+        //         if(event.fields.Confirmed_Text_LU == undefined){
+        //             event.fields.Confirmed_Text_LU = "";
+        //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+        //         }
 
                
     
-                html +=
-                `<br>
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-                            <thead><th>Title</th><th>Details</th></thead>
-                            <tbody>
-                                <tr><td>Status<td>${event.fields.Status}</td></tr>
-                                <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-                                <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                                <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-                                <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                                <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-                                <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                                <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
-                            </tbody>
-                            </table>
-                ` 
+        //         html +=
+        //         `<br>
+        //         <div class="card shadow mb-4">
+        //             <div class="card-header py-3">
+        //                 <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+        //             </div>
+        //             <div class="card-body">
+        //                 <div class="table-responsive">
+        //                     <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+        //                     <thead><th>Title</th><th>Details</th></thead>
+        //                     <tbody>
+        //                         <tr><td>Status<td>${event.fields.Status}</td></tr>
+        //                         <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+        //                         <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+        //                         <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+        //                         <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+        //                         <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+        //                         <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+        //                         <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
+        //                     </tbody>
+        //                     </table>
+        //         ` 
 
-                // html +=
-                //  `<button class="btn btn-primary btn-block btn-large" onclick="goToEdit(${event.id})">Edit</button></div></div></div>`
+        //         // html +=
+        //         //  `<button class="btn btn-primary btn-block btn-large" onclick="goToEdit(${event.id})">Edit</button></div></div></div>`
 
-                html += 
-                `<form><input type="hidden" id="eventId" name="eventId" value="${event.id}">
-                         <button class="btn btn-primary btn-block" type="submit" id="form1">Confirm / Edit / Delete</button></form></div></div></div>`
+        //         html += 
+        //         `<form><input type="hidden" id="eventId" name="eventId" value="${event.id}">
+        //                  <button class="btn btn-primary btn-block" type="submit" id="form1">Confirm / Edit / Delete</button></form></div></div></div>`
 
 
-            }); //End of forEach;
+        //     }); //End of forEach;
 
-            document.getElementById('results').innerHTML = html; 
-            //getAliasList();
-        })
-        .catch((message) => {
-            console.log("FROM PROMISE: ", message);
-        });
-        // console.log("RESULTSS: ", results);
+        //     document.getElementById('results').innerHTML = html; 
+        //     //getAliasList();
+        // })
+        // .catch((message) => {
+        //     console.log("FROM PROMISE: ", message);
+        // });
+        // // console.log("RESULTSS: ", results);
 
-//  <input type="hidden" id="eventId" name="eventId" value="${event.id}">
-//                         <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / Delete</button>
+        //------------------------
 
-        function getAliasList(){
-            $.ajax({
-                url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
-                headers: restHeader
-                })
-                .then(function(fromAPI){ 
-                    let data = fromAPI.records;
-                    console.log("Confirm Alias List: ", data);
-                    data.map(function(data2){
-                        let id = data2.id;
-                        let title = data2.fields.Alias;
-                        ddConfirm.append($('<option></option>').attr('value', id).text(title));
+        //  <input type="hidden" id="eventId" name="eventId" value="${event.id}">
+        //                         <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / //Delete</button>
+
+        
+        
+        // function getAliasList(){
+        //     $.ajax({
+        //         url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
+        //         headers: restHeader
+        //         })
+        //         .then(function(fromAPI){ 
+        //             let data = fromAPI.records;
+        //             console.log("Confirm Alias List: ", data);
+        //             data.map(function(data2){
+        //                 let id = data2.id;
+        //                 let title = data2.fields.Alias;
+        //                 ddConfirm.append($('<option></option>').attr('value', id).text(title));
                     
-                 })
-            });
-        }
+        //          })
+        //     });
+        // }
 
     });
 </script>

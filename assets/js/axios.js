@@ -119,93 +119,122 @@ const newUserData = (alias1, first_name1, email_main1) => {
     console.log("New User: ", alias1, first_name1, email_main1);
 }
 
+//AIRTABLE - LIST ALL - EVENT - VERSION 2 - WORKING------
+let p = new Promise((resolve, reject) => {
+    let events = [];
+    
+    axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+        .then(response => {
+            events = response.data.records;
+            resolve(events)
+        })
+        .catch(err => {
+            console.log("err", err);
+        })
+    //let a = 1 + 1;
+    //if (a == 2) {
+        //resolve(events)
+    //}
+    //else {
+    //    reject("Failed")
+    //}
+});
 
-//AIRTABLE - LIST ALL - EVENT
-const getEventsAll = () => {
-    let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-    .then(response => {
-        events = response.data.records;
-        console.log("POST RESPONSE: ", events);
-        let html = '';
-        let blah;
-        let temp;
-        //temp = events.fields.Team_Members_Invited_Text_FO;
-        //console.log("TEMP: ", temp)
-        //blah = temp.split(",")
-        //console.log("BLAH: " , blah);
+//AIRTABLE - LIST ALL - EVENT - VERSION 1 - WORKING------
+// const getEventsAll = () => {
+//     let events = [];
+//     let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+//     .then(response => {
+//         events = response.data.records;
+//         console.log("POST RESPONSE: ", events);
+//         let html = '';
+//         let blah;
+//         let temp;
+//         //temp = events.fields.Team_Members_Invited_Text_FO;
+//         //console.log("TEMP: ", temp)
+//         //blah = temp.split(",")
+//         //console.log("BLAH: " , blah);
 
-        let users = [];
-        //users = events.fields.Team_Members_Invited_LU;
-        //console.log("Users: ", users);
-        //user = users.split(",")
-        //console.log("Users: ", users);
-        // html =+ `
-        // <div class="card shadow mb-4">
-        // `
+//         let users = [];
+//         //users = events.fields.Team_Members_Invited_LU;
+//         //console.log("Users: ", users);
+//         //user = users.split(",")
+//         //console.log("Users: ", users);
+//         // html =+ `
+//         // <div class="card shadow mb-4">
+//         // `
         
-        events.forEach(event => {
-            if(event.fields.Confirmed_Text_LU == undefined){
-                event.fields.Confirmed_Text_LU = "";
-                console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-            }
+//         events.forEach(event => {
+//             if(event.fields.Confirmed_Text_LU == undefined){
+//                 event.fields.Confirmed_Text_LU = "";
+//                 console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+//             }
 
-            html +=
-            `<br>
-            <div class="card shadow mb-4">YourRestEndPoint
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-                        <thead><th>Title</th><th>Details</th></thead>
+//             html +=
+//             `<br>
+//             <div class="card shadow mb-4">
+//                 <div class="card-header py-3">
+//                     <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+//                 </div>
+//                 <div class="card-body">
+//                     <div class="table-responsive">
+//                         <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+//                         <thead><th>Title</th><th>Details</th></thead>
 
-                        <tbody>
-                            <tr><td>Status<td>${event.fields.Status}</td></tr>
-                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                            </tbody>
+//                         <tbody>
+//                             <tr><td>Status<td>${event.fields.Status}</td></tr>
+//                             <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+//                             <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+//                             <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+//                             <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+//                             <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+//                             <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+//                             <form>
+//                             <div class="form-group">
+//                                 <label for="eventtitle">Confirmation</label>
+//                                 <input class="form-control" type="text" id="confirm" name="confirm"
+//                                 minlength="4" maxlength="8" size="10">
+//                             </div>
+//                             </form>
+//                             </tbody>
+                            
 
-                        </table>
-                    </div>            
-                </div>
-            </div>
-            </br>
-            `                           
-            //     <tfoot>
-            //     <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
-            //     <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
-            //     <tr><td>ID</td><td>${event.id}</td></tr>
-            //     </tfoot>
-            //     </table>
+//                         </table>
+//                     </div>            
+//                 </div>
+//             </div>
+//             </br>
+//             `                           
+//             //     <tfoot>
+//             //     <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
+//             //     <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
+//             //     <tr><td>ID</td><td>${event.id}</td></tr>
+//             //     </tfoot>
+//             //     </table>
                 
-            // `; 
-            //event.fields.Team_Members_Invited_LU = '';
-        });
+//             // `; 
+//             //event.fields.Team_Members_Invited_LU = '';
+//         });
 
     
         
-        console.log("Users: ", users);
-        // users.forEach(user => {
-        // html += `<div>
-        // <select style="width: 280px" id="Mobility" name="Mobility">
-        //     <option selected="${user.userid}">Please Select</option>
-        //     <option>${user.username}</option>
-        // </select>
-        // </div>`;
-        //});
+//         //console.log("Users: ", users);
+//         // users.forEach(user => {
+//         // html += `<div>
+//         // <select style="width: 280px" id="Mobility" name="Mobility">
+//         //     <option selected="${user.userid}">Please Select</option>
+//         //     <option>${user.username}</option>
+//         // </select>
+//         // </div>`;
+//         //});
 
-        document.getElementById('results').innerHTML = html; 
-   })
-    .catch(err => {
-       console.log("ERROR: ",err.response);
-   });
-//    return results
-}
+//         document.getElementById('results').innerHTML = html; 
+//    })
+//     .catch(err => {
+//        console.log("ERROR: ",err.response);
+//    });
+//    return events
+// }
 
 //AIRTABLE -- CREATE NEW EVENT-------
 //"https://api.airtable.com/v0/appnPiAF5nEI3Lu1a/all_poll_data?maxRecords=100&view=poll_data&api_key=keyU4jNgidjWREljE&sortField=_createdTime&sortDirection=desc";

@@ -44,8 +44,9 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function eventsMain(){
-       const getEvents = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
-       console.log("Promise has finished eventsListAll", getEvents); //Once above line is completed this is then run.
+       const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
+       console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
+       displayEvents(events);
        //const getAliass = await getAliasList(); //Above
        //console.log("Promise has finished aliasListAll")
     }
@@ -57,37 +58,42 @@ title: Events
     //     // event.preventDefault();    
     // } 
 
-    // events.forEach(event => {
-    //     //         if(event.fields.Confirmed_Text_LU == undefined){
-    //     //             event.fields.Confirmed_Text_LU = "";
-    //     //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-    //     //         }
-    //     html +=
-    //     `<br>
-    //     <div class="card shadow mb-4">
-    //         <div class="card-header py-3">
-    //             <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-    //         </div>
-    //         <div class="card-body">
-    //             <div class="table-responsive">
-    //                 <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-    //                 <thead><th>Title</th><th>Details</th></thead>
-    //                 <tbody>
-    //                     <tr><td>Status<td>${event.fields.Status}</td></tr>
-    //                     <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-    //                     <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-    //                     <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-    //                     <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-    //                     <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-    //                     <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-    //                     <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
-    //                 </tbody>
-    //                 </table>
-    //             </div>
-    //         </div>
-    //     </div>
-    //     ` 
-    // }
+    function displayEvents(events){
+        let html = '';
+        events.forEach(event => {
+            //         if(event.fields.Confirmed_Text_LU == undefined){
+            //             event.fields.Confirmed_Text_LU = "";
+            //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+            //         }
+            html +=
+            `<br>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+                        <thead><th>Title</th><th>Details</th></thead>
+                        <tbody>
+                            <tr><td>Status<td>${event.fields.Status}</td></tr>
+                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
+                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+                            <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            ` 
+        });
+        document.getElementById('results').innerHTML = html; 
+    }
+
 
     $('form').on('submit', function (event) {
          console.log("IEDDDDD: ");

@@ -56,6 +56,12 @@ title: Event New
                     <label for="team">Team</label>
                     <select name="team" id="team" class="form-control"></select>
                 </div>
+
+                <div class="form-group">
+                    <label for="author">Author (You)</label>
+                    <select name="author" id="author" class="form-control"></select>
+                </div>
+
                 <button class="btn btn-primary btn-block" type="submit" id="submitForm">Save</button>
             </div>
         </div>
@@ -79,6 +85,12 @@ title: Event New
         ddTeam.empty();
         ddTeam.append('<option selected="true" disabled>Select a Team to invite..</option>');
         ddTeam.prop('selectedIndex', 0);
+
+        //For Author.
+        let ddAuthor = $('#author');
+        ddAuthor.empty();
+        ddAuthor.append('<option selected="true" disabled>Select your alias..</option>');
+        ddAuthor.prop('selectedIndex', 0);
 
         $('form').on('submit', function (event) {
 
@@ -113,8 +125,7 @@ title: Event New
                         ddPlace.append($('<option></option>').attr('value', id).text(title));
                     
                  })
-                 getTeams();
-                
+             getTeams();
             });
         }
 
@@ -125,32 +136,42 @@ title: Event New
                 })
                 .then(function(fromAPI){ 
                     let data = fromAPI.records;
-                    console.log(data);
+                    console.log("Teams: ", data);
                     data.map(function(data2){
                         let id = data2.id;
                         let title = data2.fields.Title
                     ddTeam.append($('<option></option>').attr('value', id).text(title));
-                });              
+                })
+            getAuthor();
             });
         }
 
+
+        function getAuthor(){
+            $.ajax({
+                url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
+                headers: restHeader,
+                })
+                .then(function(fromAPI){ 
+                    let data = fromAPI.records;
+                    console.log("Alias: ", data);
+                    data.map(function(data2){
+                        let id = data2.id;
+                        let author = data2.fields.Alias
+                    ddAuthor.append($('<option></option>').attr('value', id).text(author));
+                });              
+            });
+        }
 
         function eventNew(){
           var eventTitle = document.getElementById("eventtitle").value;
           var eventDateStart = document.getElementById("eventdatestart").value;
           var eventTeam = document.getElementById("team").value;
-
-
-            //var eventTeamAll = document.getElementById("team");
-            //console.log("eventTeam ID: ", eventTeam);
-            
-            // for (let myKey of eventTeam.keys()) {
-            //     //alert(myKey); // cucumber, tomatoes, onion
-            //     console.log("eventTeam ID: ", myKey);
-            // }
+          var eventAuthor = document.getElementById("author").value;
+          var eventPlace = document.getElementById("place").value;
 
             console.log("eventTeam ID: ", eventTeam);
-            eventNewData(eventTitle, eventDateStart, eventTeam)
+            eventNewData(eventTitle, eventDateStart, eventTeam, eventAuthor, eventPlace)
         }
 
     });

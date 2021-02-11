@@ -212,8 +212,8 @@ const getEventsAll = () => {
 
 
 
-const eventNewData = (title, date_start, teamId) => {
-    console.log("DATA IN: ", title, date_start, teamId);
+const eventNewData = (title, date_start, teamId, authorId, placeId) => {
+    //console.log("DATA IN: ", title, date_start, teamId);
     //var data = new FormData(formData);
     //newData = data.serialize();
     //let data2 = {fields: {newData}}
@@ -221,11 +221,17 @@ const eventNewData = (title, date_start, teamId) => {
     //console.log("SERIALIZED FORMDATA COVERT: ", data2);
     data = {
         fields: {
-            Title: title,
-            Date_Start: date_start,
-            Team_Invited_LI: [teamId]
+            Title: title, //From user form.
+            Date_Start: date_start, //From user form.
+            Team_Invited_LI: [teamId], //From user form.
+            Places: [placeId], //From user form.
+            Author_LI: [authorId], //From user form.
+            Confirmed: [authorId] //Auto assigned.
+            //Status: "ON (Going Ahead)"
         }
     }
+
+    console.log("ABOUT TO UPDATE DB: ", data);
 
 
     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)

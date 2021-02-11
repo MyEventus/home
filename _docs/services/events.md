@@ -42,20 +42,26 @@ title: Events
 
 
 <script>
+    // function goToEdit(event){
+    //     // $('form').on('submit', function (event) {
+    //     console.log("IEDDDDD: ", event);
+    //     // event.preventDefault();    
+    // } 
+
+    $('form').on('submit', function (event) {
+         console.log("IEDDDDD: ");
+         event.preventDefault();
+       
+    });
+
+
     $(document).ready(function() {
          const restHeader = {
             'Authorization':'Bearer keysXtWsXZz4g68dA',
             'Content-Type':'application/json'
         }
 
-
-        // $('form').on('submit', function (event) {
-        //     event.preventDefault();
-        //     console.log("IEDDDDD: ", event);
-        // });
-
-
-
+      
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
         ddConfirm.empty();
@@ -66,6 +72,7 @@ title: Events
         //let $message = [];
         // let results = getEventsAll();
         let html = '';
+        
         p.then((events) => {
             console.log("FROM PROMISE: ", events);
             events.forEach(event => {
@@ -74,14 +81,8 @@ title: Events
                     console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
                 }
 
-                // <form>
-                //     <div class="form-group">
-                //         <input class="form-control" type="text" id="confirm" name="confirm"
-                //         minlength="4" maxlength="10" size="10">
-                //     </div>
-                // </form>
-
-
+               
+    
                 html +=
                 `<br>
                 <div class="card shadow mb-4">
@@ -103,15 +104,16 @@ title: Events
                                 <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
                             </tbody>
                             </table>
-                            <form>
-                                <input type="hidden" id="eventId" name="eventId" value="${event.id}">
-                                <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / Delete</button>
-                            </form>
-                        </div>            
-                    </div>
-                </div>
-                </br>
                 ` 
+
+                // html +=
+                //  `<button class="btn btn-primary btn-block btn-large" onclick="goToEdit(${event.id})">Edit</button></div></div></div>`
+
+                html += 
+                `<form><input type="hidden" id="eventId" name="eventId" value="${event.id}">
+                         <button class="btn btn-primary btn-block" type="submit" id="form1">Confirm / Edit / Delete</button></form></div></div></div>`
+
+
             }); //End of forEach;
 
             document.getElementById('results').innerHTML = html; 
@@ -122,7 +124,8 @@ title: Events
         });
         // console.log("RESULTSS: ", results);
 
-
+//  <input type="hidden" id="eventId" name="eventId" value="${event.id}">
+//                         <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / Delete</button>
 
         function getAliasList(){
             $.ajax({
@@ -140,5 +143,6 @@ title: Events
                  })
             });
         }
+
     });
 </script>

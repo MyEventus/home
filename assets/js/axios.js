@@ -309,6 +309,36 @@ const getPlacesAll = () => {
     return results
 }
 
+
+
+const teamNewData = (title, authorId) => {
+    //console.log("DATA IN: ", title, date_start, teamId);
+    //var data = new FormData(formData);
+    //newData = data.serialize();
+    //let data2 = {fields: {newData}}
+    
+    //console.log("SERIALIZED FORMDATA COVERT: ", data2);
+    data = {
+        fields: {
+            Title: title, //From user form.
+            Author_LI: [authorId], //From user form.
+        }
+    }
+
+    console.log("ABOUT TO UPDATE DB: ", data);
+
+
+    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
+    .then(response => {
+        console.log("POST RESPONSE: ", response)
+   })
+    .catch(err => {
+       console.log("ERROR: ",err.response);
+   });
+   console.log("POST: ",  data)
+    
+}
+
 //WEBHOOK in
 //https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9
 

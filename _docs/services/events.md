@@ -2,7 +2,7 @@
 layout: default
 title: Events
 ---
-<div>
+<!-- <div>
      <button class="btn btn-primary" type="button" id="btn1" onclick='getEventsAll()'>List view</button>
 
   <a href="{% link _docs/services/team-new.md %}" role="button" class="btn btn-primary btn-large">Calendar View</a>
@@ -13,7 +13,7 @@ title: Events
      <a href="{% link _docs/services/member-new.md %}" role="button" class="btn btn-secondary btn-large">New User</a>
        <a href="{% link _docs/services/places.md %}" role="button" class="btn btn-success btn-large">List Place</a>
       <a href="{% link _docs/services/place-new.md %}" role="button" class="btn btn-success btn-large">New Place</a>
-</div>
+</div> -->
 
 
 <div class="container">

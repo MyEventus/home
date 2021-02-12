@@ -3,7 +3,7 @@
 # url is the full website URL
 # baseurl is the website's URL without the hostname
 url: "https://myeventus.github.io/home"
-baseurl: "/"
+baseurl: "/home"
 
 # Name of website
 title: MyEventus

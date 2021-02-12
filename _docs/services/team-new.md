@@ -41,14 +41,8 @@ css"> -->
                 <div class="form-group">
                     <label for="teamtitle">Create a title</label>
                     <input class="form-control" type="text" id="teamtitle" name="teamtitle" required
-                    minlength="4" maxlength="50" size="40">
+                    minlength="3" maxlength="50" size="40">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="author">Member</label>
-                    <select name="author" id="author" class="form-control" multiple>
-                    <select name="author[]" id="author" class="form-control" multiple="multiple"> </select> 
-                    <select name="author[]" id="author" class="selectpicker" multiple></select>
-                </div> -->
                 <div>
                     <select name="author[]" id="author" class="selectpicker w-100" multiple>
                     </select>
@@ -102,7 +96,6 @@ css"> -->
                     $(".selectpicker").selectpicker("refresh");
                 });              
             });
-        //$(".selectpicker").selectpicker("refresh");
         }
 
 

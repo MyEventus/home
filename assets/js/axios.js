@@ -15,6 +15,65 @@ let axiosConfig = {
     }
   };
 
+
+//Get list of all events.
+function memberNewData(alias, firstname, email, team){
+    data = {
+        fields: {
+            Alias: alias, //From user form.
+            First_Name: firstname,
+            Email_Main: email,
+            Team: team //From user form.
+        }
+    }
+
+    console.log("In newMember", data);
+    return new Promise((resolve, reject) => {
+        let items = [];
+        //let a = 1 + 1;
+        if (1 == 1) {
+            //resolve(console.log("Hi"))
+            axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
+                .then(response => {
+                 //events = response.data.records;
+                 //console.log("IN PROMISE: ", events);
+                 resolve()
+             })
+             .catch(err => {
+                 console.log("err", err);
+             })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+}
+
+
+//Get list of all events.
+function eventsList(){
+    console.log("In newUserData");
+    return new Promise((resolve, reject) => {
+        let events = [];
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+            .then(response => {
+                events = response.data.records;
+                //console.log("IN PROMISE: ", events);
+                resolve(events)
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+}
+
+// ------------------------- ABOVE IS RE FACTORED V 2 ------------------
 // const getData = () => {
 //     axios.get('https://reqres.in/api/users', axiosConfig)
 //     .then(response => {
@@ -121,28 +180,7 @@ const postData = () => {
 // }
 
 
-//Get list of all events.
-function eventsList(){
-    console.log("In newUserData");
-    return new Promise((resolve, reject) => {
-        let events = [];
-        //let a = 1 + 1;
-        if (1 == 1) {
-            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-            .then(response => {
-                events = response.data.records;
-                //console.log("IN PROMISE: ", events);
-                resolve(events)
-            })
-            .catch(err => {
-                console.log("err", err);
-            })
-        }
-        else {
-            reject("Failed")
-        }
-    });
-}
+
 
 
 //AIRTABLE - LIST ALL - EVENT - VERSION 2 - WORKING------

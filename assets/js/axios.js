@@ -369,14 +369,13 @@ const teamNewData = (title, authorId) => {
     data = {
         fields: {
             Title: title, //From user form.
-            Who: [authorId], //From user form.
+            Who: authorId, //From user form.
         }
     }
 
     console.log("ABOUT TO UPDATE DB: ", data);
 
-
-    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
+    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team', data, axiosConfig)
     .then(response => {
         console.log("POST RESPONSE: ", response)
    })

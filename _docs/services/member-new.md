@@ -14,12 +14,12 @@ title: member-new
                         <thead><th>Title</th><th>Details</th></thead>                       
                             <tbody>
                                 <tr><td>Create an username</td>
-                                <td><input type="text" id="alias" name="alias" required minlength="4" maxlength="8" size="10"></td></tr>
+                                <td><input type="text" id="alias" name="alias" required minlength="4" maxlength="25" size="10"></td></tr>
                                 <tr><td>Your first name</td>
                                 <td><input type="text" id="first_name" name="first_name" required
                             minlength="4" maxlength="8" size="10"></td></tr>
                                 <tr><td>Your email</td><td><input type="text" id="emailmain" name="emailmain" required
-                            minlength="4" maxlength="120" size="40"></td></tr>
+                            minlength="4" maxlength="120" size="50"></td></tr>
                                 <tr><td>Team</td><td>TBA</td></tr>
                             </tbody>         
                     </table>

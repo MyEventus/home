@@ -120,11 +120,12 @@ css"> -->
 
      function teamNew(){
         //console.log("EVENT FROM FORM 2: ", event);
-        var eventAuthor = [];
+        //var eventAuthor = [];
         var eventTitle = document.getElementById("teamtitle").value;
-        eventAuthor = document.getElementById("author").value;
+        //eventAuthor = document.getElementById("author").value;
           
-        //console.log("NEW TEAM: ", eventAuthor);
+        let eventAuthor  = $('#author').val();
+        //console.log("NEW TEAM 2: ", blah);
          
         // eventAuthor.forEach(each => {
         //     console.log("each" , each)
@@ -132,8 +133,8 @@ css"> -->
         //rec9dsMhxydsEjFJ0 = Grant?
         //recNdaeR1aM3adcPd = Hazy
         //////eventAuthor = ["rec9dsMhxydsEjFJ0", "recNdaeR1aM3adcPd"]; //Working
-        console.log("NEW TEAM: ", eventAuthor);
-        //teamNewData(eventTitle, eventAuthor);
+        //console.log("NEW TEAM: ", eventAuthor);
+        teamNewData(eventTitle, eventAuthor);
     }
 
 </script>

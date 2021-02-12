@@ -50,6 +50,30 @@ function memberNewData(alias, firstname, email, team){
 }
 
 
+//Get list of all members.
+function membersList(){
+    //console.log("In newUserData");
+    return new Promise((resolve, reject) => {
+        let events = [];
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
+            .then(response => {
+                events = response.data.records;
+                console.log("IN PROMISE: ", events);
+                resolve(events)
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+}
+
+
 //Get list of all events.
 function eventsList(){
     console.log("In newUserData");

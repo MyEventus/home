@@ -96,17 +96,29 @@ function placesList(){
         }
     });
 }
-// const getPlacesAll = () => {
-//     let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place', axiosConfig)
-//     .then(response => {
-//         places = response.data.records;
-//         console.log("PLACES: POST RESPONSE: ", places);
-//     })
-//     .catch(err => {
-//         console.log("ERROR: ",err.response);
-//     });
-//     return results
-// }
+
+//////////////////// TEAMS ////////////////////////
+function teamsList(){
+    //console.log("In newUserData");
+    return new Promise((resolve, reject) => {
+        let events = [];
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team', axiosConfig)
+            .then(response => {
+                events = response.data.records;
+                console.log("IN PROMISE: ", events);
+                resolve(events)
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+}
 
 ///////////////////// EVENTS ///////////////////////////
 //Get list of all events.

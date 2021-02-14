@@ -15,6 +15,11 @@ title: Events
        displayItems(items);
     }
 
+    async function deleteItem(event){
+        console.log("DELETE : ", event);
+        const response = await removeItem(event, "Who");
+        console.log("RESPONSE DELETE : ", response);
+    };
 
 
     function displayItems(items){
@@ -36,6 +41,7 @@ title: Events
                             <tr><td>Alias</td><td>${item.fields.Alias}</td></tr>
                         </tbody>
                         </table>
+                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
                     </div>
                 </div>
             </div>

@@ -67,10 +67,10 @@ title: Events
 
     function displayEvents(events){
         let html = '';
-        events.forEach(event => {
-            if(event.fields.Confirmed_Text_LU == undefined){
-                event.fields.Confirmed_Text_LU = "";
-                console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
+        events.forEach(item => {
+            if(item.fields.Confirmed_Text_LU == undefined){
+                item.fields.Confirmed_Text_LU = "";
+                console.log("CONFIRMED: ", item.fields.Confirmed_Text_LU);
             }        // p.then((events) => {
         //     console.log("FROM PROMISE: ", events);
         //     events.forEach(event => {
@@ -133,23 +133,24 @@ title: Events
             `<br>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">${item.fields.Title}</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="22" width="100%" cellspacing="0">
                         <thead><th>Title</th><th>Details</th></thead>
                         <tbody>
-                            <tr><td>Status<td>${event.fields.Status}</td></tr>
-                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Title_Text_LU}</td></tr>
-                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                            <tr><td>Confirmed Attending</td><td>${event.fields.Confirmed_Text_LU}</td></tr>
+                            <tr><td>Status<td>${item.fields.Status}</td></tr>
+                            <tr><td>Date / Time<td>${item.fields.Date_Start}</td></tr>
+                            <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
+                            <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
+                            <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
+                            <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
+                            <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
+                            <tr><td>Confirmed Attending</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
                         </tbody>
                         </table>
+                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
                     </div>
                 </div>
             </div>
@@ -159,11 +160,14 @@ title: Events
     }
 
 
-    $('form').on('submit', function (event) {
-         console.log("IEDDDDD: ");
-         event.preventDefault();
+    $('form').on('submit', function (item) {
+         item.preventDefault();
        
     });
+
+    async function deleteItem(item){
+        const response = await removeItem(item, "Event");
+    };
 
     function getAliasList(){
         const restHeader = {
@@ -197,7 +201,7 @@ title: Events
         let html = '';
 
         //Trigger the main decision tree hub.
-        main();        
+        main();
        
 
     });

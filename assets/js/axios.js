@@ -1,13 +1,4 @@
-// const getBtn = document.getElementById('get-btn')
-// const postBtn = document.getElementById('post-btn')
-
-// function fn1(){
-//     var str = document.getElementById("alias").value;
-//     alert(str)
-// }
-let events =    [];
-
-
+//Axios .bug. Need to hide this later.
 let axiosConfig = {
     headers: {
         'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
@@ -60,7 +51,6 @@ function membersList(){
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
             .then(response => {
                 data = response.data.records;
-                console.log("IN PROMISE: ", events);
                 resolve(data)
             })
             .catch(err => {
@@ -73,6 +63,31 @@ function membersList(){
     });
 }
 
+
+function removeItem(id, table){
+    return new Promise((resolve, reject) => {
+        //let items = [];
+        //let a = 1 + 1;
+        console.log("DELETE: ", id, table)
+        if (1 == 1) {
+            //resolve(console.log("Hi"))
+            axios.delete(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/${table}/${id}`,axiosConfig)
+                .then(resp => {
+                 //let results = resp.data.records;
+                 console.log("IN PROMISE: ", resp.data);
+                 //alert(resp.statusText +". Completed successfully. Deleted User: " + resp.data.fields.Alias)
+                 alert(resp.statusText +". Completed successfully. DELETED.");
+                 resolve()
+             })
+             .catch(err => {
+                 console.log("err", err);
+             })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+}
 //////////////////// PLACES ////////////////////////
 function placeNewData(title, meeting_place, notes){
 
@@ -112,7 +127,6 @@ function placesList(){
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place', axiosConfig)
             .then(resp => {
                 data = resp.data.records;
-                //console.log("IN PROMISE: ", data);
                 resolve(data)
             })
             .catch(err => {

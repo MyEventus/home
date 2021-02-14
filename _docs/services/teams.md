@@ -21,6 +21,9 @@ title: Teams
     }
 
 
+    async function deleteItem(item){
+        const response = await removeItem(item, "Team");
+    };
 
     function displayItems(items){
         let html = '';
@@ -42,6 +45,7 @@ title: Teams
                             <tr><td>Members</td><td>${item.fields.Team_Members_Text_FO}</td></tr>
                         </tbody>
                         </table>
+                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
                     </div>
                 </div>
             </div>

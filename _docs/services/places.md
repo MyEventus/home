@@ -19,6 +19,9 @@ title: Events
        displayItems(items);
     }
 
+    async function deleteItem(item){
+        const response = await removeItem(item, "Place");
+    };
 
 
     function displayItems(items){
@@ -42,6 +45,7 @@ title: Events
                             <tr><td>Notes</td><td>${item.fields.Notes}</td></tr>
                         </tbody>
                         </table>
+                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
                     </div>
                 </div>
             </div>

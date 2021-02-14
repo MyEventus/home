@@ -66,16 +66,9 @@ function membersList(){
 
 function removeItem(id, table){
     return new Promise((resolve, reject) => {
-        //let items = [];
-        //let a = 1 + 1;
-        console.log("DELETE: ", id, table)
         if (1 == 1) {
-            //resolve(console.log("Hi"))
             axios.delete(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/${table}/${id}`,axiosConfig)
                 .then(resp => {
-                 //let results = resp.data.records;
-                 console.log("IN PROMISE: ", resp.data);
-                 //alert(resp.statusText +". Completed successfully. Deleted User: " + resp.data.fields.Alias)
                  alert(resp.statusText +". Completed successfully. DELETED.");
                  resolve()
              })

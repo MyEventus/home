@@ -50,7 +50,6 @@ title: member-new
 <script>
     $('form').on('submit', function (event) {
         event.preventDefault()
-        //console.log("EVENT FROM FORM 1: ", event);
         memberNew();
     });
 

@@ -106,14 +106,14 @@ function placeNewData(title, meeting_place, notes){
 function placesList(){
     //console.log("In newUserData");
     return new Promise((resolve, reject) => {
-        let events = [];
+        let data = [];
         //let a = 1 + 1;
         if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place', axiosConfig)
-            .then(response => {
-                events = response.data.records;
-                console.log("IN PROMISE: ", events);
-                resolve(events)
+            .then(resp => {
+                data = resp.data.records;
+                //console.log("IN PROMISE: ", data);
+                resolve(data)
             })
             .catch(err => {
                 console.log("err", err);
@@ -181,6 +181,41 @@ function teamsList(){
 }
 
 ///////////////////// EVENTS ///////////////////////////
+function eventNewData(title, date_start, teamId, authorId, placeId){
+    let data = {
+        fields: {
+            Title: title, //From user form.
+            Date_Start: date_start, //From user form.
+            Team_Invited_Id_LI: [teamId], //From user form.
+            Place: [placeId], //From user form.
+            Author_LI: [authorId], //From user form.
+            Confirmed: [authorId], //Auto assigned.
+            Status: "ON (Going Ahead)"
+        }
+    }
+
+    console.log("NEW EVENT: ", data);
+
+    return new Promise((resolve, reject) => {
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
+                .then(resp => {
+                    alert(resp.statusText +". Completed successfully. New Event: " + resp.data.fields.Title)
+                    resolve()
+             })
+                .catch(err => {
+                    console.log("err", err);
+             })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+    
+}
+
+
 //Get list of all events.
 function eventsList(){
     console.log("In newUserData");
@@ -264,38 +299,38 @@ function eventsList(){
 
 
 
-const eventNewData = (title, date_start, teamId, authorId, placeId) => {
-    //console.log("DATA IN: ", title, date_start, teamId);
-    //var data = new FormData(formData);
-    //newData = data.serialize();
-    //let data2 = {fields: {newData}}
+// const eventNewData = (title, date_start, teamId, authorId, placeId) => {
+//     //console.log("DATA IN: ", title, date_start, teamId);
+//     //var data = new FormData(formData);
+//     //newData = data.serialize();
+//     //let data2 = {fields: {newData}}
     
-    //console.log("SERIALIZED FORMDATA COVERT: ", data2);
-    data = {
-        fields: {
-            Title: title, //From user form.
-            Date_Start: date_start, //From user form.
-            Team_Invited_Id_LI: [teamId], //From user form.
-            Place: [placeId], //From user form.
-            Author_LI: [authorId], //From user form.
-            Confirmed: [authorId], //Auto assigned.
-            Status: "ON (Going Ahead)"
-        }
-    }
+//     //console.log("SERIALIZED FORMDATA COVERT: ", data2);
+//     data = {
+//         fields: {
+//             Title: title, //From user form.
+//             Date_Start: date_start, //From user form.
+//             Team_Invited_Id_LI: [teamId], //From user form.
+//             Place: [placeId], //From user form.
+//             Author_LI: [authorId], //From user form.
+//             Confirmed: [authorId], //Auto assigned.
+//             Status: "ON (Going Ahead)"
+//         }
+//     }
 
-    console.log("ABOUT TO UPDATE DB: ", data);
+//     console.log("ABOUT TO UPDATE DB: ", data);
 
 
-    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
-    .then(response => {
-        console.log("POST RESPONSE: ", response)
-   })
-    .catch(err => {
-       console.log("ERROR: ",err.response);
-   });
-   console.log("POST: ",  data)
+//     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
+//     .then(response => {
+//         console.log("POST RESPONSE: ", response)
+//    })
+//     .catch(err => {
+//        console.log("ERROR: ",err.response);
+//    });
+//    console.log("POST: ",  data)
     
-}
+// }
 
 
 //Integramat to save new _data file in Jekyll on GitHub.

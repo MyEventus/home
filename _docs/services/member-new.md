@@ -10,13 +10,13 @@ title: member-new
 
 </head>
 
-<h1>New Member / User</h1>
+<h1>New Member</h1>
 
 <div>
     <form id="makeNewMember">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create a new user.</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Create a new member or user.</h6>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -53,7 +53,6 @@ title: member-new
         //console.log("EVENT FROM FORM 1: ", event);
         memberNew();
     });
-
 
     async function memberNew(){
         var firstName = $('#first_name').val(); //document.getElementById("first_name").value;

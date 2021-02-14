@@ -74,6 +74,35 @@ function membersList(){
 }
 
 //////////////////// PLACES ////////////////////////
+function placeNewData(title, meeting_place, notes){
+
+    let data = {
+        fields: {
+            Title: title, //From user form.
+            Meeting_Place: meeting_place, //From user form.
+            Notes: notes, //From user form.
+        }
+    }
+
+    return new Promise((resolve, reject) => {
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Place', data, axiosConfig)
+                .then(resp => {
+                    alert(resp.statusText +". Completed successfully. New Place: " + resp.data.fields.Title + ". " + resp.data.fields.Meeting_Place)
+                    resolve()
+             })
+                .catch(err => {
+                    console.log("err", err);
+             })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+    
+}
+
 function placesList(){
     //console.log("In newUserData");
     return new Promise((resolve, reject) => {
@@ -102,6 +131,7 @@ function teamNewData(title, authorId){
     //newData = data.serialize();
     //let data2 = {fields: {newData}}
 
+    //let data..bug.
     data = {
         fields: {
             Title: title, //From user form.
@@ -160,7 +190,7 @@ function eventsList(){
         if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
             .then(resp => {
-                let data = resp.data.records;              
+                let data = resp.data.records;
                 resolve(data)
             })
             .catch(err => {
@@ -217,16 +247,16 @@ function eventsList(){
 
 
 //POST TO AIRTABLE.
-const postData = () => {
-    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
-    .then(response => {
-        console.log("POST RESPONSE: ", response)
-    })
-    .catch(err => {
-        console.log("ERROR: ",err.response);
-    });
-    console.log("New User: ", alias, first_name);
-}
+// const postData = () => {
+//     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
+//     .then(response => {
+//         console.log("POST RESPONSE: ", response)
+//     })
+//     .catch(err => {
+//         console.log("ERROR: ",err.response);
+//     });
+//     console.log("New User: ", alias, first_name);
+// }
 
 
 //AIRTABLE -- CREATE NEW EVENT-------

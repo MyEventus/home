@@ -140,7 +140,8 @@ title: Events
                         <table class="table table-bordered" id="22" width="100%" cellspacing="0">
                         <thead><th>Title</th><th>Details</th></thead>
                         <tbody>
-                            <tr><td>Status<td>${item.fields.Status}</td></tr>
+                            <tr><td>Status<td>${item.fields.Title}</td></tr>
+                            <tr><td>Status<td><strong>${item.fields.Status}</strong></td></tr>
                             <tr><td>Date / Time<td>${item.fields.Date_Start}</td></tr>
                             <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
                             <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>

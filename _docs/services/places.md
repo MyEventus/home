@@ -14,8 +14,8 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       const items = await teamsList(); //From axios.js. Will return "resoved" section of Promise.
-       console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
+       const items = await placesList(); //From axios.js. Will return "resoved" section of Promise.
+       //console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
        displayItems(items);
     }
 
@@ -26,9 +26,11 @@ title: Events
 
     function displayItems(items){
         let html = '';
-        console.log("ITEMS: ", items);
         items.forEach(item => {
-            // 
+            if (item.fields.Notes == undefined){
+                item.fields.Notes = '';
+            }
+
             html +=
             `<br>
             <div class="card shadow mb-4">

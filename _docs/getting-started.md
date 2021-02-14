@@ -3,6 +3,37 @@ layout: page
 title: Getting Started
 ---
 
+## Start Here (about)
+
+Last Update: 2021Feb12.
+
+This is is just a simple way to coordinate Mountain Bike rides, drinks etc between small group of friends.
+
+To Public:
+If you have stumbled on this page, it is currenlty NOT open to public.
+Stay tuned for more info in a month or so.
+
+Hi Devo.
+
+Step 1. Make a "Team". (No need if already exists).
+Step 2. Make a new user/member then add to Team. (No need if already exists).
+Step 3. Make a "Place".
+Step 4. Make an .Event".
+
+Use menu on the left.
+
+Do NOT release to the pubic yet.
+Don't share the link with anyone.
+Still a lot of bug testing to do and not finshed yet.
+If too many people start using at once may crash the system.
+
+<!-- ---
+layout: page
+title: Getting Started
+---
+
+
+
 The sections in the navigation will show you want components look like, but
 not how to easily include them in pages! This getting started section
 will help you to do that.
@@ -198,4 +229,4 @@ The code looks like this, and if you add a url parameter, the buttons will link 
 {% include buttons/split-button.html style="secondary" title="Split Button Secondary" icon="fa-arrow-right"%}
 {% include buttons/split-button.html style="light" title="Split Button Primary" icon="fa-arrow-right"%}
 {% endraw %}
-```
+``` -->

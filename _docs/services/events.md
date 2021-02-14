@@ -43,7 +43,7 @@ title: Events
 
 <script>
     //Main decision hub sync / await in order.
-    async function eventsMain(){
+    async function main(){
        const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
        console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
        displayEvents(events);
@@ -71,78 +71,7 @@ title: Events
             if(event.fields.Confirmed_Text_LU == undefined){
                 event.fields.Confirmed_Text_LU = "";
                 console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-            }
-            html +=
-            `<br>
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-                        <thead><th>Title</th><th>Details</th></thead>
-                        <tbody>
-                            <tr><td>Status<td>${event.fields.Status}</td></tr>
-                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Title_Text_LU}</td></tr>
-                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-                            <tr><td>Confrimed Attending</td><td>${event.fields.Confirmed_Text_LU}</td></tr>
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            ` 
-        });
-        document.getElementById('results').innerHTML = html; 
-    }
-
-
-    $('form').on('submit', function (event) {
-         console.log("IEDDDDD: ");
-         event.preventDefault();
-       
-    });
-
-    function getAliasList(){
-        const restHeader = {
-            'Authorization':'Bearer keysXtWsXZz4g68dA',
-            'Content-Type':'application/json'
-        }
-        $.ajax({
-            url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
-            headers: restHeader
-            })
-            .then(function(fromAPI){ 
-                let data = fromAPI.records;
-                console.log("Confirm Alias List: ", data);
-                data.map(function(data2){
-                    let id = data2.id;
-                    let title = data2.fields.Alias;
-                    ddConfirm.append($('<option></option>').attr('value', id).text(title));
-                
-                })
-        });
-    }
-    
-    $(document).ready(function() {
-     
-        //For Place drop down / select.
-        let ddConfirm = $('#confirm');
-        ddConfirm.empty();
-        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
-        ddConfirm.prop('selectedIndex', 0);
-
-        let html = '';
-
-        //Trigger the main decision tree hub.
-        eventsMain();        
-        
-        // p.then((events) => {
+            }        // p.then((events) => {
         //     console.log("FROM PROMISE: ", events);
         //     events.forEach(event => {
         //         if(event.fields.Confirmed_Text_LU == undefined){
@@ -200,22 +129,76 @@ title: Events
 
         
         
-        // function getAliasList(){
-        //     $.ajax({
-        //         url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
-        //         headers: restHeader
-        //         })
-        //         .then(function(fromAPI){ 
-        //             let data = fromAPI.records;
-        //             console.log("Confirm Alias List: ", data);
-        //             data.map(function(data2){
-        //                 let id = data2.id;
-        //                 let title = data2.fields.Alias;
-        //                 ddConfirm.append($('<option></option>').attr('value', id).text(title));
-                    
-        //          })
-        //     });
-        // }
+            html +=
+            `<br>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+                        <thead><th>Title</th><th>Details</th></thead>
+                        <tbody>
+                            <tr><td>Status<td>${event.fields.Status}</td></tr>
+                            <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
+                            <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
+                            <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
+                            <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
+                            <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Title_Text_LU}</td></tr>
+                            <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
+                            <tr><td>Confirmed Attending</td><td>${event.fields.Confirmed_Text_LU}</td></tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            ` 
+        });
+        document.getElementById('results').innerHTML = html; 
+    }
+
+
+    $('form').on('submit', function (event) {
+         console.log("IEDDDDD: ");
+         event.preventDefault();
+       
+    });
+
+    function getAliasList(){
+        const restHeader = {
+            'Authorization':'Bearer keysXtWsXZz4g68dA',
+            'Content-Type':'application/json'
+        }
+        $.ajax({
+            url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who',
+            headers: restHeader
+            })
+            .then(function(fromAPI){ 
+                let data = fromAPI.records;
+                console.log("Confirm Alias List: ", data);
+                data.map(function(data2){
+                    let id = data2.id;
+                    let title = data2.fields.Alias;
+                    ddConfirm.append($('<option></option>').attr('value', id).text(title));
+                
+                })
+        });
+    }
+    
+    $(document).ready(function() {
+     
+        //For Place drop down / select.
+        let ddConfirm = $('#confirm');
+        ddConfirm.empty();
+        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
+        ddConfirm.prop('selectedIndex', 0);
+
+        let html = '';
+
+        //Trigger the main decision tree hub.
+        main();        
+       
 
     });
 </script>

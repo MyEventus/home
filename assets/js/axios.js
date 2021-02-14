@@ -15,8 +15,7 @@ let axiosConfig = {
     }
   };
 
-/////////////////// MEMBERS //////////////////////
-//Get list of all events.
+/////////////////// MEMBERS - NEW //////////////////////
 function memberNewData(alias, firstname, email, team){
     data = {
         fields: {
@@ -27,16 +26,16 @@ function memberNewData(alias, firstname, email, team){
         }
     }
 
-    console.log("In newMember", data);
     return new Promise((resolve, reject) => {
-        let items = [];
+        //let items = [];
         //let a = 1 + 1;
         if (1 == 1) {
             //resolve(console.log("Hi"))
             axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', data, axiosConfig)
-                .then(response => {
-                 //events = response.data.records;
-                 //console.log("IN PROMISE: ", events);
+                .then(resp => {
+                 //let results = resp.data.records;
+                 console.log("IN PROMISE: ", resp.data);
+                 alert(resp.statusText +". Completed successfully. New User: " + resp.data.fields.Alias + " " + resp.data.fields.Email_Main)
                  resolve()
              })
              .catch(err => {
@@ -60,9 +59,9 @@ function membersList(){
         if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
             .then(response => {
-                events = response.data.records;
+                data = response.data.records;
                 console.log("IN PROMISE: ", events);
-                resolve(events)
+                resolve(data)
             })
             .catch(err => {
                 console.log("err", err);
@@ -98,17 +97,48 @@ function placesList(){
 }
 
 //////////////////// TEAMS ////////////////////////
+function teamNewData(title, authorId){
+    //var data = new FormData(formData);
+    //newData = data.serialize();
+    //let data2 = {fields: {newData}}
+
+    data = {
+        fields: {
+            Title: title, //From user form.
+            Who: authorId, //From user form.
+        }
+    }
+
+    return new Promise((resolve, reject) => {
+        //let a = 1 + 1;
+        if (1 == 1) {
+            axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team', data, axiosConfig)
+                .then(resp => {
+                    alert(resp.statusText +". Completed successfully. New Team: " + resp.data.fields.Title)
+                    resolve()
+             })
+                .catch(err => {
+                    console.log("err", err);
+             })
+        }
+        else {
+            reject("Failed")
+        }
+    });
+    
+}
+
+
 function teamsList(){
     //console.log("In newUserData");
     return new Promise((resolve, reject) => {
-        let events = [];
+        let data = [];
         //let a = 1 + 1;
         if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team', axiosConfig)
-            .then(response => {
-                events = response.data.records;
-                console.log("IN PROMISE: ", events);
-                resolve(events)
+            .then(resp => {
+                data = resp.data.records;
+                resolve(data)
             })
             .catch(err => {
                 console.log("err", err);
@@ -125,14 +155,13 @@ function teamsList(){
 function eventsList(){
     console.log("In newUserData");
     return new Promise((resolve, reject) => {
-        let events = [];
+        let data = [];
         //let a = 1 + 1;
         if (1 == 1) {
             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-            .then(response => {
-                events = response.data.records;
-                //console.log("IN PROMISE: ", events);
-                resolve(events)
+            .then(resp => {
+                let data = resp.data.records;              
+                resolve(data)
             })
             .catch(err => {
                 console.log("err", err);
@@ -186,36 +215,6 @@ function eventsList(){
 //     });
 // }
 
-// data = {
-//         "id": "recV1hC0rOIW77QnQ",
-//         "fields": {
-//           "Alias": "Devo",
-//           "First_Name": "Daviddddd",
-//           "Event": [
-//             "recN0DLilG2ajUaGJ",
-//             "rec5gazPsKZjOzLXY"
-//           ],
-//           "Team": [
-//             "rec4LOtiNa6V6TfxP",
-//             "rech7pERFECSHrXct",
-//             "recQ8s8eWsq48JUg9"
-//           ],
-//           "Email-Main": "al601lan@hotmail.com",
-//           "Chat": [
-//             "recbpWPun8Du4tgkZ"
-//           ],
-//           "Event 3": [
-//             "recYbSogkySXO82UJ"
-//           ]
-//     }
-// }
-
-//POST NEW. USER / WHO
-data = {
-    fields: {
-        Alias: "Blah1"
-    }
-}
 
 //POST TO AIRTABLE.
 const postData = () => {
@@ -229,169 +228,6 @@ const postData = () => {
     console.log("New User: ", alias, first_name);
 }
 
-
-//AIRTABLE - CREATE NEW USER (WHO)
-//const newUserData = (alias1, first_name1, email_main1) => {
-//     console.log("In newUserData");
-//     nUserData = {
-//         fields: {
-//             Alias: alias1,
-//             First_Name: first_name1,
-//             Email_Main: email_main1
-//         }
-//     }
-//     axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', nUserData, axiosConfig)
-//     .then(response => {
-//         console.log("POST RESPONSE: ", response)
-//    })
-//     .catch(err => {
-//        console.log("ERROR: ",err.response);
-//    });
-//     console.log("New User: ", alias1, first_name1, email_main1);
-// }
-
-
-
-
-
-//AIRTABLE - LIST ALL - EVENT - VERSION 2 - WORKING------
-//function eventsListAll(){
-// const eventsListAll = () => {
-//     return new Promise((resolve, reject) => {
-//         let events = [];
-//         axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-//             .then(response => {
-//                 events = response.data.records;
-//                 resolve(events)
-//             })
-//             .catch(err => {
-//                 console.log("err", err);
-//             })
-//         //let a = 1 + 1;
-//         //if (a == 2) {
-//             //resolve(events)
-//         //}
-//         //else {
-//         //    reject("Failed")
-//         //}
-//     });
-// }
-
-// let p = new Promise((resolve, reject) => {
-//     let events = [];
-    
-//     axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-//         .then(response => {
-//             events = response.data.records;
-//             resolve(events)
-//         })
-//         .catch(err => {
-//             console.log("err", err);
-//         })
-//     //let a = 1 + 1;
-//     //if (a == 2) {
-//         //resolve(events)
-//     //}
-//     //else {
-//     //    reject("Failed")
-//     //}
-// });
-//===============================
-//AIRTABLE - LIST ALL - EVENT - VERSION 1 - WORKING------
-// const getEventsAll = () => {
-//     let events = [];
-//     let results = axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
-//     .then(response => {
-//         events = response.data.records;
-//         console.log("POST RESPONSE: ", events);
-//         let html = '';
-//         let blah;
-//         let temp;
-//         //temp = events.fields.Team_Members_Invited_Text_FO;
-//         //console.log("TEMP: ", temp)
-//         //blah = temp.split(",")
-//         //console.log("BLAH: " , blah);
-
-//         let users = [];
-//         //users = events.fields.Team_Members_Invited_LU;
-//         //console.log("Users: ", users);
-//         //user = users.split(",")
-//         //console.log("Users: ", users);
-//         // html =+ `
-//         // <div class="card shadow mb-4">
-//         // `
-        
-//         events.forEach(event => {
-//             if(event.fields.Confirmed_Text_LU == undefined){
-//                 event.fields.Confirmed_Text_LU = "";
-//                 console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-//             }
-
-//             html +=
-//             `<br>
-//             <div class="card shadow mb-4">
-//                 <div class="card-header py-3">
-//                     <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-//                 </div>
-//                 <div class="card-body">
-//                     <div class="table-responsive">
-//                         <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-//                         <thead><th>Title</th><th>Details</th></thead>
-
-//                         <tbody>
-//                             <tr><td>Status<td>${event.fields.Status}</td></tr>
-//                             <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-//                             <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-//                             <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-//                             <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-//                             <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-//                             <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-//                             <form>
-//                             <div class="form-group">
-//                                 <label for="eventtitle">Confirmation</label>
-//                                 <input class="form-control" type="text" id="confirm" name="confirm"
-//                                 minlength="4" maxlength="8" size="10">
-//                             </div>
-//                             </form>
-//                             </tbody>
-                            
-
-//                         </table>
-//                     </div>            
-//                 </div>
-//             </div>
-//             </br>
-//             `                           
-//             //     <tfoot>
-//             //     <tr><td>Created By</td><td>${event.fields.Author_Text_LU}</td></tr>
-//             //     <tr><td>Created On</td><td>${event.fields.Created_Time}</td></tr>
-//             //     <tr><td>ID</td><td>${event.id}</td></tr>
-//             //     </tfoot>
-//             //     </table>
-                
-//             // `; 
-//             //event.fields.Team_Members_Invited_LU = '';
-//         });
-
-    
-        
-//         //console.log("Users: ", users);
-//         // users.forEach(user => {
-//         // html += `<div>
-//         // <select style="width: 280px" id="Mobility" name="Mobility">
-//         //     <option selected="${user.userid}">Please Select</option>
-//         //     <option>${user.username}</option>
-//         // </select>
-//         // </div>`;
-//         //});
-
-//         document.getElementById('results').innerHTML = html; 
-//    })
-//     .catch(err => {
-//        console.log("ERROR: ",err.response);
-//    });
-//    return events
-// }
 
 //AIRTABLE -- CREATE NEW EVENT-------
 //"https://api.airtable.com/v0/appnPiAF5nEI3Lu1a/all_poll_data?maxRecords=100&view=poll_data&api_key=keyU4jNgidjWREljE&sortField=_createdTime&sortDirection=desc";
@@ -454,64 +290,9 @@ const updateEvents = () => {
 }
 
 
-
-
-
-const teamNewData = (title, authorId) => {
-    //console.log("DATA IN: ", title, date_start, teamId);
-    //var data = new FormData(formData);
-    //newData = data.serialize();
-    //let data2 = {fields: {newData}}
-    
-    //console.log("SERIALIZED FORMDATA COVERT: ", data2);
-    data = {
-        fields: {
-            Title: title, //From user form.
-            Who: authorId, //From user form.
-        }
-    }
-
-    console.log("ABOUT TO UPDATE DB: ", data);
-
-    axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team', data, axiosConfig)
-    .then(response => {
-        console.log("POST RESPONSE: ", response)
-   })
-    .catch(err => {
-       console.log("ERROR: ",err.response);
-   });
-   console.log("POST: ",  data)
-    
-}
-
 //WEBHOOK in
 //https://hook.integromat.com/kkakxq2vhm6fa8p1qs7dc59eejbsobq9
 
 
 
-
-// getBtn.addEventListener('click', getData)
-// postBtn.addEventListener('click', postData)
-
-
-// $('select[data-source]').each(function() {
-//     var $select = $(this);
-    
-//     $select.append('<option></option>');
-    
-//     $.ajax({
-//       url: $select.attr('data-source'),
-//     }).then(function(options) {
-//       options.map(function(option) {
-//         var $option = $('<option>');
-        
-//         $option
-//           .val(option[$select.attr('data-valueKey')])
-//           .text(option[$select.attr('data-displayKey')]);
-        
-//         $select.append($option);
-//       });
-//     });
-//   });
-  
 

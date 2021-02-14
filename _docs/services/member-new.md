@@ -3,18 +3,20 @@ layout: default
 title: member-new
 ---
 <head>
+<!-- Required for multi-select drop down -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 <!-- <a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a> -->
 
 </head>
 
+<h1>New Member / User</h1>
 
 <div>
     <form id="makeNewMember">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create a new team / group.</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Create a new user.</h6>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -28,11 +30,12 @@ title: member-new
                     minlength="4" maxlength="50" size="40">
                 </div>
                   <div class="form-group">
-                    <label for="emailmain">Enter working email</label>
-                    <input class="form-control" type="email" id="emailmain" name="emailmain" required
+                    <label for="email">Enter working email</label>
+                    <input class="form-control" type="email" id="email" name="email" required
                     minlength="4" maxlength="120" size="40">
                 </div>
-                 <div class="form-group">               
+                 <div class="form-group">   
+                    <label for="team">Add user to at least one team</label>            
                     <select name="team[]" id="team" class="selectpicker w-100" multiple>
                     </select>
                  </div>
@@ -45,7 +48,6 @@ title: member-new
 </div>
 
 <script>
-
     $('form').on('submit', function (event) {
         event.preventDefault()
         //console.log("EVENT FROM FORM 1: ", event);
@@ -53,45 +55,59 @@ title: member-new
     });
 
 
-     function memberNew(){
-        var firstName = document.getElementById("first_name").value;
-        var email = document.getElementById("emailmain").value;
-        var alias = document.getElementById("alias").value;        
+    async function memberNew(){
+        var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
+        var email = $('#email').val();
+        var alias = $('#alias').val();
         let team  = $('#team').val();
-        memberNewData(alias, firstName, email, team);
+        const items = await memberNewData(alias, firstName, email, team);
+
+        //Clear fields in form.
+        $('#first_name').val("");
+        $('#email').val("");
+        $('#alias').val("");
+        $('#team').val("");
+        //$(".selectpicker").selectpicker("refresh");
      }
 
- $(document).ready(function() {
-
-     const restHeader = {
-            'Authorization':'Bearer keysXtWsXZz4g68dA',
-            'Content-Type':'application/json'
-        }
-
-    let ddTeam = $('#team');
+    async function getTeamsList(){
+        let ddTeam = $('#team');
         ddTeam.empty();
         ddTeam.prop('selectedIndex', 0);
 
-     getTeam();
+        const data = await teamsList();
+        data.map(function(data2){
+            let id = data2.id;
+            let title = data2.fields.Title
+            ddTeam.append($('<option></option>').attr('value', id).text(title));
+            $(".selectpicker").selectpicker("refresh");
+        });
+    }
 
-        function getTeam(){
-            $.ajax({
-                url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team',
-                headers: restHeader,
-                })
-                .then(function(fromAPI){ 
-                    let data = fromAPI.records;
-                    console.log("Teams: ", data);
-                    data.map(function(data2){
-                        let id = data2.id;
-                        let title = data2.fields.Title
-                    ddTeam.append($('<option></option>').attr('value', id).text(title));
-                    $(".selectpicker").selectpicker("refresh");
-                });
-            });
-        }
+
+ $(document).ready(function() {
+
+     getTeamsList();
+
+        // function getTeam(){
+        //     $.ajax({
+        //         url: 'https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Team',
+        //         headers: restHeader,
+        //         })
+        //         .then(function(fromAPI){ 
+        //             let data = fromAPI.records;
+        //             console.log("Teams: ", data);
+        //             data.map(function(data2){
+        //                 let id = data2.id;
+        //                 let title = data2.fields.Title
+        //             ddTeam.append($('<option></option>').attr('value', id).text(title));
+        //             $(".selectpicker").selectpicker("refresh");
+        //         });
+        //     });
+        // }
 
  });
  </script>
 
+<!-- Required for multi-select drop down -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>

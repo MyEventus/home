@@ -54,7 +54,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenu{{ post.title | slugify }}">
                   <div class="dropdown-header">Profile</div>
-                  <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Logout</a>
+                  <!-- <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Logout 1</a> -->
+                  <a class="dropdown-item" onclick="mainApp.logOut()">Logout 2</a>
                   <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Login</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Settings</a>

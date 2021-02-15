@@ -41,9 +41,29 @@
               </div>
             </li>
 
+            <!-- <a href="#" ><span><i class="fas fa-user fa-sm fa-fw text-black-400"></i>Login</span></a> -->
+            <!-- <div class="dropdown no-arrow"></div>
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenu{{ post.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user fa-sm fa-fw text-black-400"></i>
+              </a>
+            </div> -->
+
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenu{{ post.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user fa-sm fa-fw text-black-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenu{{ post.title | slugify }}">
+                  <div class="dropdown-header">Profile</div>
+                  <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Logout</a>
+                  <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Login</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </div>
+              </div>
+            
                <!-- <a class="gh-source" data-gh-source="github" href="{{ site.repo }}" title="Go to repository" data-md-state="done"><i class="fab fa-github fa-2x" style="margin-top:8px; float:left"></i>
 		    <span style="margin-left:10px">{{ site.github_user }}/{{ site.github_repo }}</span><br> -->
-		  <em><li style="font-size:0.8rem; margin-left:10px;margin-right:5px;float:left;display:inline-block" id='stars'></li> <li style="font-size:0.8rem;float:left;display:inline-block" id="forks"></li></em></a>
+		  <!-- <em><li style="font-size:0.8rem; margin-left:10px;margin-right:5px;float:left;display:inline-block" id='stars'></li> <li style="font-size:0.8rem;float:left;display:inline-block" id="forks"></li></em></a> -->
 
           </ul>
 

@@ -249,35 +249,35 @@ function eventsList(){
 
 
 
-`<!DOCYTPE html>
-<html>
-<h1> A new EVENT has been created </h1>
-<b>Author: </b>{{13.Alias}}
-<br />
-<p>Next event is.. </p>
-<br />
-<b>Title: </b> {{3.Title}}
-<br />
-<b>Status: </b>  {{3.Status}}
-<br />
-<b>Team: </b> {{3.`Title (from Team)`[]}}
-<br />
-<b>Date / Time:</b> {{3.`Date-Start`}}
-<br />
-<b>Place:</b> {{3.`Title (from Places)`[]}}
-<br />
-<b>Meet at:</b> {{3.`Meeting (from Places)`[]}}
-<br />
-<b>Notes:</b> {{3.`Notes (from Places)`[]}}
-<b>Created:</b> {{13.createdTime}}
-<br />
-<hr>
-<h1>For more info or to unsubscribe..</h1>
-<a href="https://myevents.webflow.com">MyEvents.Webflow.com</a>
-<p>Then go to relevent Events (Calendar)</p>
-<br />
-<p>Sent From: www.MyEvents.Webflow.io</p>
-</html>`
+// `<!DOCYTPE html>
+// <html>
+// <h1> A new EVENT has been created </h1>
+// <b>Author: </b>{{13.Alias}}
+// <br />
+// <p>Next event is.. </p>
+// <br />
+// <b>Title: </b> {{3.Title}}
+// <br />
+// <b>Status: </b>  {{3.Status}}
+// <br />
+// <b>Team: </b> {{3.`Title (from Team)`[]}}
+// <br />
+// <b>Date / Time:</b> {{3.`Date-Start`}}
+// <br />
+// <b>Place:</b> {{3.`Title (from Places)`[]}}
+// <br />
+// <b>Meet at:</b> {{3.`Meeting (from Places)`[]}}
+// <br />
+// <b>Notes:</b> {{3.`Notes (from Places)`[]}}
+// <b>Created:</b> {{13.createdTime}}
+// <br />
+// <hr>
+// <h1>For more info or to unsubscribe..</h1>
+// <a href="https://myevents.webflow.com">MyEvents.Webflow.com</a>
+// <p>Then go to relevent Events (Calendar)</p>
+// <br />
+// <p>Sent From: www.MyEvents.Webflow.io</p>
+// </html>`
 
 
 

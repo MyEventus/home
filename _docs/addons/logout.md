@@ -14,6 +14,10 @@ title: Logout
         <div class="p-5">
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Are you sure you want to log out?</h1>
+            <br>
+            <form>
+                <button id="btnLogout" class="btn btn-danger btn-user btn-block">Log Out</button>
+            </form>
         </div>
         </div>
         </div>
@@ -23,4 +27,17 @@ title: Logout
         </div>
         </div>
 
+<!-- <script>
+    const logout = document.querySelector("#btnLogout");
+    btnLogout.addEventListener('submit', (e) => {
+        console.log("User is now logged OUT!")
+        e.preventDefault();
+        firebase.auth().signOut()
+        .then(() => {
+            console.log("User is now logged OUT!")
+        });
+    });
+</script> -->
+
+<!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->
 

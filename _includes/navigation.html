@@ -48,9 +48,10 @@
               </a>
             </div> -->
 
-            <div id="user">Profile</div>
+            <!-- Display logged in username. -->
+            <div id="user"></div>
 
-            <div id="userProfile">
+            <div id="ifLoggedIn">
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenu{{ post.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user fa-sm fa-fw text-black-400"></i>
@@ -65,13 +66,29 @@
                     </div>
                 </div>
             </div>
+
+
+            <div id="ifLoggedOut">
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenu{{ post.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user fa-sm fa-fw text-black-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenu{{ post.title | slugify }}">
+                    <!-- <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Logout 1</a> -->
+                    <a class="dropdown-item" id="btnLogin" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Log in</a>
+                    <!-- <a href="{{ site.url }}{{ site.baseurl }}/docs/addons/login/" class="btn btn-primary btn-user btn-block"></a> -->
+                    <a class="dropdown-item" id="btnSignup" href="{{ site.url }}{{ site.baseurl }}/docs/addons/register4/">Sign Up</a>
+                    <!-- <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">Login</a> -->
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Settings</a> -->
+                    </div>
+                </div>
+            </div>
             
-               <!-- <a class="gh-source" data-gh-source="github" href="{{ site.repo }}" title="Go to repository" data-md-state="done"><i class="fab fa-github fa-2x" style="margin-top:8px; float:left"></i>
-		    <span style="margin-left:10px">{{ site.github_user }}/{{ site.github_repo }}</span><br> -->
+          <!-- <a class="gh-source" data-gh-source="github" href="{{ site.repo }}" title="Go to repository" data-md-state="done"><i class="fab fa-github fa-2x" style="margin-top:8px; float:left"></i>
+		  <span style="margin-left:10px">{{ site.github_user }}/{{ site.github_repo }}</span><br> -->
 		  <!-- <em><li style="font-size:0.8rem; margin-left:10px;margin-right:5px;float:left;display:inline-block" id='stars'></li> <li style="font-size:0.8rem;float:left;display:inline-block" id="forks"></li></em></a> -->
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
 
@@ -97,20 +114,36 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
             var user = firebaseUser.displayName;
-            $('#userProfile').show();
-            document.getElementById("user").innerHTML = user;
+            $('#ifLoggedOut').hide();
+            $('#ifLoggedIn').show();
+            //document.getElementById("user").innerHTML = user;
             //btnLogout.classList.remove('hide');
             // btnSignUp.classList.remove('hide');
             // btnLogin.classList.add('hide');
         } else {          
-            $('#userProfile').hide();
+            $('#ifLoggedIn').hide();
+            $('#ifLoggedOut').show();
             //$('#user').innerHtml("Log in");
-            document.getElementById("user").innerHTML = '<a href="{{ page.login3 }}">Log In</a>';
+            //document.getElementById("user").innerHTML = '<a href="{{ page.login3 }}">Log In</a>';
             //btnLogout.classList.add('hide');
             // btnSignUp.classList.add('hide');
             // btnLogin.classList.remove('hide');
         }
     });
+
+
+    //Logout
+    const logout = document.querySelector("#btnLogout");
+    logout.addEventListener('click', (e) => {
+        console.log("User is now logged OUT! 1")
+        e.preventDefault();
+        firebase.auth().signOut()
+        .then(() => {
+            console.log("User is now logged OUT! 2")
+        });
+    });
+
+    
 
 });
 

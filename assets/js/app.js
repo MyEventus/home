@@ -18,9 +18,9 @@
     const txtPassword = document.getElementById('txtPassword'); //Login4.md
     const btnLogin = document.getElementById('btnLogin'); //Login4.md
     const btnSignUp = document.getElementById('btnSignUp');
-    const btnLogout = document.getElementById('btnLogout');
+    //const btnLogout = document.getElementById('btnLogout');
 
-    const signupForm = document.getElementById('signmeup'); //Register4.md
+    //const signupForm = document.getElementById('signmeup'); //Register4.md
     
     // btnLogin.addEventListener('click', err => {
     //     const email = txtEmail.value;
@@ -71,39 +71,41 @@
 
     //Sign Up.
     //https://www.youtube.com/watch?v=wkdCpktUfGg
-    //const signupForm = document.querySelector("#signup-form"); //In register4.md
+    const signupForm = document.querySelector("#signup-form"); //In register4.md
 
-    //signupForm.addEventListener('submit', e => {
+    signupForm.addEventListener('submit', e => {
+    //signupForm.addEventListener('click', e => {
+        e.preventDefault();
+        console.log("SIGN UP FORM: ")
+        const first_name = signupForm['first_name'].value;
+        const displayName = signupForm['username'].value;
+        const email = signupForm['email'].value;
+        const password = signupForm['password1'].value; //.todo. Min 6 char.
+        //const email = signupForm[''];
+        console.log("SIGN UP FORM: ", email, displayName, first_name, password) // .todo. password to match
+
+        firebase.auth().createUserWithEmailAndPassword(email, password, displayName, first_name) //async promise.
+        .then(cred => {
+            console.log("CREDENTIAL TOKEN: ", cred.user)
+            sugnupForm.reset();
+        });
+
+    });
+
     // signupForm.addEventListener('click', e => {
     //     e.preventDefault();
     //     console.log("SIGN UP FORM: ")
-    //     const email = signupForm['first_name'].value;
-    //     const displayName = signupForm['username'].value;
-    //     const password = signupForm['password1'].value; //.todo. Min 6 char.
-    //     //const email = signupForm[''];
-
-    //     firebase.auth().createUserWithEmailAndPassword(email, password) //async promise.
-    //     .then(cred => {
-    //         console.log("CREDENTIAL TOKEN: ", cred.user)
-    //         sugnupForm.reset();
-    //     });
-
     // });
 
-    // signupForm.addEventListener('click', e => {
+    // //Logout
+    // const logout = document.querySelector("#btnLogout");
+    // logout.addEventListener('click', (e) => {
+    //     console.log("User is now logged OUT! 1")
     //     e.preventDefault();
-    //     console.log("SIGN UP FORM: ")
-    // });
-
-    //Logout
-    //const logout = document.querySelector("#btnLogout");
-    // btnLogout.addEventListener('submit', (e) => {
-    //     console.log("User is now logged OUT!")
-    //     e.preventDefault();
-    //     firebase.auth().signOut()
-    //     .then(() => {
-    //         console.log("User is now logged OUT!")
-    //     });
+    //     // firebase.auth().signOut()
+    //     // .then(() => {
+    //     //     console.log("User is now logged OUT! 2")
+    //     // });
     // });
         
 

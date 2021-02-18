@@ -59,20 +59,22 @@
 #           url: "docs/utilities/animations"
 #         - title: Other
 #           url: "docs/utilities/other"
-- title: "Addons"
+- title: "Profile"
   links:
-    - title: Pages
+    - title: Log In / Out
       icon: fa-folder
       children:
-        - title: Login 1
-          subtitle: "Login Screens:"
-          url: docs/addons/login
-        - title: Login Okta
-          url: docs/addons/login2
-        - title: Login Firebase
-          url: docs/addons/login3
+        # - title: Login 1
+        #   subtitle: "Login Screens:"
+        #   url: docs/addons/login
+        # - title: Login Okta
+        #   url: docs/addons/login2
+        - title: Login
+          url: docs/addons/login4
+        - title: Logout
+          url: docs/addons/logout
         - title: Register
-          url: docs/addons/register
+          url: docs/addons/register4
         - title: Forgot Password
           url: docs/addons/forgot-password
 #         - title: 404 Page

@@ -47,7 +47,20 @@
   <script src="{{ site.url }}{{ site.baseurl }}/assets/js/jquery.min.js"></script>
   <script src="{{ site.url }}{{ site.baseurl }}/assets/js/bootstrap.bundle.min.js"></script>
 
-  <!-- FireBase -->
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+  <script src="{{ site.url }}{{ site.baseurl }}/assets/js/axios.js"></script>
+
+
+  <!-- FireBase Also -->
+  <!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/login3.js"></script>
+  <script src="{{ site.url }}{{ site.baseurl }}/secret.js"></script>
+   
+  <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->
+  </head>
+
+  <body>
+      <!-- FireBase -->
   <!-- <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" /> -->
 
@@ -55,13 +68,22 @@
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-  <script src="{{ site.url }}{{ site.baseurl }}/assets/js/axios.js"></script>
+  
+  <script>
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+      apiKey: "AIzaSyBY5axbeTN9LMQeX7Qwrl_nPKvNKm2w-T8",
+      authDomain: "me-v1-304822.firebaseapp.com",
+      projectId: "me-v1-304822",
+      storageBucket: "me-v1-304822.appspot.com",
+      messagingSenderId: "509045891695",
+      appId: "1:509045891695:web:713e0c07a095d94abaa39a"
+      // measurementId: "G-TF5FQTEGWD"
+  };
+  firebase.initializeApp(firebaseConfig);
 
-  <!-- FireBase Also -->
-  <!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/login3.js"></script>
-  <script src="{{ site.url }}{{ site.baseurl }}/secret.js"></script>
-  <script src="{{ site.url }}{{ site.baseurl }}/assets/js/fireBase.js"></script> -->
+  //app_fireBase = firebase;
 
-  <!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->
-</head>
+</script>
+
+</body>

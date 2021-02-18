@@ -62,4 +62,25 @@ title: Register4
 </div>
       </div>
     </div>
-<script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script>
+
+<script>
+    signupForm.addEventListener('submit', e => {
+    //signupForm.addEventListener('click', e => {
+        e.preventDefault();
+        console.log("SIGN UP FORM: ")
+        const first_name = signupForm['first_name'].value;
+        const displayName = signupForm['username'].value;
+        const email = signupForm['email'].value;
+        const password = signupForm['password1'].value; //.todo. Min 6 char.
+        //const email = signupForm[''];
+        console.log("SIGN UP FORM: ", email, displayName, first_name, password) // .todo. password to match
+
+        firebase.auth().createUserWithEmailAndPassword(email, password, displayName, first_name) //async promise.
+        .then(cred => {
+            console.log("CREDENTIAL TOKEN: ", cred.user)
+            sugnupForm.reset();
+        });
+
+    });
+</script>
+<!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->

@@ -97,11 +97,25 @@ title: Login4
         auth.signInWithEmailAndPassword(email, pass) //async promise.
             .then(cred => {
             console.log("User is now logged IN!")
-            console.log("CREDENTIAL TOKEN: ", cred.user)
+            console.log("CREDENTIAL TOKEN: ", cred.user);
             loginForm.reset();
             window.location.href="/";
         });
 
     });
+
+    async function membersList(){
+        let ddAuthor = $('#team');
+        ddTeam.empty();
+        ddTeam.prop('selectedIndex', 0);
+
+        const data = await teamsList();
+        data.map(function(data2){
+            let id = data2.id;
+            let title = data2.fields.Title
+            ddTeam.append($('<option></option>').attr('value', id).text(title));
+            $(".selectpicker").selectpicker("refresh");
+        });
+    }
     </script>
 

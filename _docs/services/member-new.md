@@ -19,11 +19,12 @@ title: member-new
                 <h6 class="m-0 font-weight-bold text-primary">Create a new member or user.</h6>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label for="alias">Create a alias / username</label>
+                <!-- <div class="form-group">
+                    <label for="alias">Select an alias / username</label>
                     <input class="form-control" type="text" id="alias" name="alias" required
                     minlength="3" maxlength="50" size="40">
-                </div>
+                </div> -->
+            <!--
                 <div class="form-group">
                     <label for="first_name">Enter real first name only</label>
                     <input class="form-control" type="text" id="first_name" name="first_name" required
@@ -33,7 +34,12 @@ title: member-new
                     <label for="email">Enter working email</label>
                     <input class="form-control" type="email" id="email" name="email" required
                     minlength="4" maxlength="120" size="40">
-                </div>
+                </div> -->
+                <div class="form-group">   
+                    <label for="author">Select a member</label>            
+                    <select name="author[]" id="author" class="selectpicker w-100" multiple>
+                    </select>
+                 </div>
                  <div class="form-group">   
                     <label for="team">Add user to at least one team</label>            
                     <select name="team[]" id="team" class="selectpicker w-100" multiple>
@@ -68,6 +74,21 @@ title: member-new
         //$(".selectpicker").selectpicker("refresh");
      }
 
+    async function getMembersList(){
+        let ddAuthor = $('#author');
+        ddAuthor.empty();
+        ddAuthor.prop('selectedIndex', 0);
+
+        const data = await membersList();
+        data.map(function(data2){
+            let id = data2.id;
+            let title = data2.fields.Alias
+            ddAuthor.append($('<option></option>').attr('value', id).text(title));
+            $(".selectpicker").selectpicker("refresh");
+        });
+    }
+
+
     async function getTeamsList(){
         let ddTeam = $('#team');
         ddTeam.empty();
@@ -85,6 +106,7 @@ title: member-new
 
  $(document).ready(function() {
 
+     getMembersList();
      getTeamsList();
 
         // function getTeam(){

@@ -111,7 +111,7 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
             var userName = firebaseUser.displayName;
-            let alias = userName.split("!");
+            let alias = userName.split("|");
             console.log("USERNAME/ALIAS: ", alias[0])
             //$('#ifLoggedOut').hide();
             $('#ifLoggedIn').show();

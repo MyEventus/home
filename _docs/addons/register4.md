@@ -71,7 +71,7 @@ title: Register4
 
         console.log("SIGN UP FORM: ")
         const first_name = signupForm['first_name'].value;
-        const displayName = signupForm['username'].value;
+        const username = signupForm['username'].value;
         const email = signupForm['email'].value;
         let password1 = signupForm['password1'].value; //.todo. Min 6 char.
         let password2 = signupForm['password2'].value;
@@ -96,16 +96,19 @@ title: Register4
 
 
         //const email = signupForm[''];
-        console.log("SIGN UP FORM: ", email, displayName, first_name, password) // .todo. password to match
+        console.log("SIGN UP FORM: ", email, username, first_name, password) // .todo. password to match
 
         firebase.auth().createUserWithEmailAndPassword(email, password) //async promise.
         .then(cred => {
             console.log("CREDENTIAL TOKEN: ", cred.user)
             const user = firebase.auth().currentUser;
             return user.updateProfile({
-                displayName: displayName + "!" + first_name
+                displayName: username + "|" + first_name
             })
             signupForm.reset();
+        })
+        .then(cred => {
+            memberNewData(username, first_name, email);
         })
         .catch(err => {
             console.log("ERROR: ", err.message);//For user toast / popup.
@@ -114,3 +117,4 @@ title: Register4
     });
 </script>
 <!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->
+<srcript src="{{ site.url }}{{ site.baseurl }}/assets/js/axios.js/"></script>

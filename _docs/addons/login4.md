@@ -13,10 +13,10 @@ title: Login4
         <div class="col-lg-6">
     <div class="p-5">
     <div class="text-center">
-        <h1 class="h4 text-gray-900 mb-4">Log In Here!</h1>
+        <h1 class="h4 text-gray-900 mb-4">Log In!</h1>
     </div>
     <!-- <form class="user"> -->
-    <form id="login-form">
+    <form class="user" id="login-form">
         <div class="form-group">
         <input type="email" class="form-control form-control-user" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
         </div>
@@ -44,7 +44,8 @@ title: Login4
     </form>
     <hr>
     <div class="text-center">
-        <a class="small" href="forgot-password.html">Forgot Password?</a>
+        <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
+        <a class="small" href="{{ site.url }}{{ site.baseurl }}/docs/addons/forgotpassword4/">Forgot Password?</a>
     </div>
     <br>
     <!-- <div class="text-center"> -->
@@ -84,5 +85,23 @@ title: Login4
     </div>
     </div>
 </div> -->
-<script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script>
+<!-- <script src="{{ site.url }}{{ site.baseurl }}/assets/js/app.js"></script> -->
+<script>
+    //Log in
+    const login = document.querySelector("#btnLogin");
+    login.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+        auth.signInWithEmailAndPassword(email, pass) //async promise.
+            .then(cred => {
+            console.log("User is now logged IN!")
+            console.log("CREDENTIAL TOKEN: ", cred.user)
+            loginForm.reset();
+            window.location.href="/";
+        });
+
+    });
+    </script>
 

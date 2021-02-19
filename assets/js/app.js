@@ -18,9 +18,13 @@
     const txtPassword = document.getElementById('txtPassword'); //Login4.md
 
     const loginForm = document.getElementById('login-form');
-    const loggedInDiv = document.getElementById('ifLoggedIn');
-    const loggedOutDiv = document.getElementById('ifLoggedOut');
-    //const btnLogin = document.getElementById('btnLogin'); //Login4.md
+    //const signupForm = document.getElementById('signup-form'); //Register4.md
+
+    const loggedInDiv = document.getElementById('ifLoggedIn'); //Not used.
+    const loggedOutDiv = document.getElementById('ifLoggedOut'); //Not used.
+    
+    const btnLogin = document.getElementById('btnLogin'); //Login4.md
+    const btnResetPass = document.getElementById('btnResetPass'); //Login4.md
     //const btnSignUp = document.getElementById('btnSignUp');
     //const btnLogout = document.getElementById('btnLogout');
 
@@ -38,23 +42,40 @@
     // });
 
 
-    //Log in
-    const login = document.querySelector("#btnLogin");
-    login.addEventListener('click', (e) => {
-        e.preventDefault();
-        const email = txtEmail.value;
-        const pass = txtPassword.value;
-        const auth = firebase.auth();
-        auth.signInWithEmailAndPassword(email, pass) //async promise.
-            .then(cred => {
-            console.log("User is now logged IN!")
-            console.log("CREDENTIAL TOKEN: ", cred.user)
-            loginForm.reset();
-            window.location.href="/";
-        });
+    // //Log in
+    // const login = document.querySelector("#btnLogin");
+    // login.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const email = txtEmail.value;
+    //     const pass = txtPassword.value;
+    //     const auth = firebase.auth();
+    //     auth.signInWithEmailAndPassword(email, pass) //async promise.
+    //         .then(cred => {
+    //         console.log("User is now logged IN!")
+    //         console.log("CREDENTIAL TOKEN: ", cred.user)
+    //         loginForm.reset();
+    //         window.location.href="/";
+    //     });
 
-    });
+    // });
 
+    // //Reset Password
+    // const resetPass = document.querySelector("#btnResetPass");
+    // btnResetPass.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const email = txtEmail.value;
+    //     const auth = firebase.auth();
+    //     auth.sendPasswordResetEmail(email) //async promise.
+    //         .then( () => {
+    //         console.log("Check your email, password reset sent successfully.")
+    //         loginForm.reset();
+    //         window.location.href="/";
+    //     })
+    //     .catch(e => {
+    //         console.error("Error: ", e);
+    //     });
+
+    // });
 
 
     //   btnSignUp.addEventListener('click', err => {
@@ -115,7 +136,7 @@
     //     firebase.auth().createUserWithEmailAndPassword(email, password, displayName, first_name) //async promise.
     //     .then(cred => {
     //         console.log("CREDENTIAL TOKEN: ", cred.user)
-    //         sugnupForm.reset();
+    //         signupForm.reset();
     //     });
 
     // });

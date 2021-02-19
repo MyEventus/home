@@ -52,10 +52,10 @@ title: Register4
         </form>
       <hr>
       <div class="text-center">
-<a class="small" href="{{ site.url }}{{ site.baseurl }}/docs/addons/forgot-password/">Forgot Password?</a>
+<a class="small" href="{{ site.url }}{{ site.baseurl }}/docs/addons/forgotpassword4/">Forgot Password?</a>
       </div>
       <div class="text-center">
-<a class="small" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login/">Already have an account? Login!</a>
+<a class="small" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Already have an account? Login!</a>
       </div>
     </div>
   </div>
@@ -64,22 +64,52 @@ title: Register4
     </div>
 
 <script>
+    const signupForm = document.getElementById('signup-form'); //Register4.md
     signupForm.addEventListener('submit', e => {
     //signupForm.addEventListener('click', e => {
         e.preventDefault();
+
         console.log("SIGN UP FORM: ")
         const first_name = signupForm['first_name'].value;
         const displayName = signupForm['username'].value;
         const email = signupForm['email'].value;
-        const password = signupForm['password1'].value; //.todo. Min 6 char.
+        let password1 = signupForm['password1'].value; //.todo. Min 6 char.
+        let password2 = signupForm['password2'].value;
+        let password = '';
+
+        password1 = password1.toString().trim();
+        password2 = password2.toString().trim();
+
+        if(password1 != password2){
+            console.log("Error: Passwords must match.")
+
+        } else {
+            password = password1
+        }
+
+        if(password.length < 7){
+            console.log("Error: Password needs to be at least 6 characters.", password.length)
+        } else {
+            //OK
+        }
+    
+
+
         //const email = signupForm[''];
         console.log("SIGN UP FORM: ", email, displayName, first_name, password) // .todo. password to match
 
-        firebase.auth().createUserWithEmailAndPassword(email, password, displayName, first_name) //async promise.
+        firebase.auth().createUserWithEmailAndPassword(email, password) //async promise.
         .then(cred => {
             console.log("CREDENTIAL TOKEN: ", cred.user)
-            sugnupForm.reset();
-        });
+            const user = firebase.auth().currentUser;
+            return user.updateProfile({
+                displayName: displayName + "!" + first_name
+            })
+            signupForm.reset();
+        })
+        .catch(err => {
+            console.log("ERROR: ", err.message);//For user toast / popup.
+        })
 
     });
 </script>

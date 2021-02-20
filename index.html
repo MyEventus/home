@@ -8,86 +8,45 @@ subtitle: A Jekyll Template for a beautiful Bootstrap 4 Theme
   <h1 class="h3 mb-0 text-gray-800">Home</h1>
 </div>
 
-{% if site.projects %}{% include project-showcase.html %}{% endif %}
-          {% for post in paginator.posts %}<div class="row">
-            <div class="col-xl-12 col-lg-11">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="m-0 font-weight-bold text-primary">{{ post.title }}</h6></a>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenu{{ post.title | slugify }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenu{{ post.title | slugify }}">
-                      <div class="dropdown-header">More Options:</div>
-                      <a class="dropdown-item" href="{{ post.url | prepend: site.baseurl }}">View Post</a>
-                      <!--<div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Project Home</a>-->
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div>
-                   {% if post.subtitle %}<h3 class="post-subtitle">{{ post.subtitle }}{% endif %}</h3>
-                   <p class="post-meta">
-                     <em>Posted on {{ post.date | date: "%B %-d, %Y" }}</em>
-                   </p>
-                   {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
-                   {% assign excerpt_word_count = post.excerpt | number_of_words %}
-                   {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
-                   <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>{% endif %}
-
-                   {% if post.tags.size > 0 %}<br><div class="blog-tags" style="margin-top:10px">
-                   {% if site.link-tags %}{% for tag in post.tags %}
-                    <a href="{{ site.baseurl }}/tags#{{- tag -}}"><span class="badge badge-primary">{{- tag -}}</span></a>
-                   {% endfor %}{% else %}{{ page.tags | join: ", " }}{% endif %}
-                   </div>{% endif %}
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>{% endfor %}
-
-	{% if paginator.total_pages > 1 %}
-	<ul class="pager main-pager">
-	  {% if paginator.previous_page %}
-            <a style="float:left"  href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-chevron-left fa-sm text-white-50"></i> Newer Posts</a>
-	  {% endif %}
-	  {% if paginator.next_page %}
-            <a style="float:right" href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Older Posts <i class="fas fa-chevron-right fa-sm text-white-50"></i></a>
-	  {% endif %}
-	</ul>
-	{% endif %}
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Welcome to MyEventus</h6>
     </div>
-    <!-- End of Content Wrapper -->
+    
+    <img class="d-block w-100 h-20" src="assets/img/calendar.jpg" alt="calendar.jpg" height="200">
 
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
+    <div class="card-body">
+        <bold>Last Update: 2021Feb19</bold><br><br>
+        <p>This site is not yet open to the public. See <a href="docs/getting-started">Getting Started</a> page.
+        <p><b>Aim:</b> A SIMPLE way to replace the current multiple Emails, SMS and phone calls when organise events such as Mountain Bike Rides, Drinks, Water sports, Parties, gathering etc for a small group of friends.</p>
+        <p>You must sign up first, then be manually authorised before your acount will be activated on this site.</p>
+        <br>
+        <p>We don't all use FBook or other social networking apps!</p>
+        <br>
+        <p>If we don't know you (friends of friends), you probably will get rejected.</p>
+        <p>Having said that, if there is enough demand and financial viable then I may be open to public in future.</p>
+        
+        <br>
+        <p>This sites original intention was to be absolutley free of charge, cost and currently is,</p>
+        <p>But as user limits and threshold raise (number members join, number of entries in database, number of emails sent.</p>
+        <p>It will start encuring costs, at which point will become a financial loss, hence only open to limited group at present.</p>
+        <p>For this reason (and time constraints) this site as linited functionality.</p>
+        <br>
+        <b>Features</b>
+        <ul>
+        <li>Calendar (Read Only at this stage).</li>
+        <li>List of all events (categorised by type).</li>
+        <li>Add members to one or more groups / teams.</li>
+        <li>Notes for directions and meeting place descriptions.</li>
+        <li>Auto email to members apon new, updates and cancellation of events (relagtive to team members).</li>
+        <li>Auto send SMS (Coming soon if users are willing to pay)?</li>
+        <li>Maps (Coming soon)?</li>
+        <li>The sky's the limit given funding and time.</li>
+        </ul>
+        <br>
+        <b>Privacy</b>
+        <p>The only real personal information of members stored in this system is email addresses and first name (optional).</p>
+        <p>Hence this site is more for the privacy advocate. We don't collect user info or sell it to 3rd parties.</p>
+        <p>Your informations is yours!</p>
     </div>
-  </div>
+</div>

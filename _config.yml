@@ -68,7 +68,7 @@ author:
 
 # Select which share links to show in posts
 share-links-active:
-  twitter: true
+  twitter: false
   facebook: false
   google: false
   linkedin: false
@@ -83,11 +83,11 @@ share-links-active:
 excerpt_length: 50
 
 # Output options (more information on Jekyll's site)
-timezone: "America/New_York"
+timezone: "Australia/Sydney"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 5
+paginate: 10
 
 kramdown:
   input: GFM

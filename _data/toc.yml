@@ -73,7 +73,7 @@
           url: docs/addons/login4
         - title: Logout
           url: docs/addons/logout
-        - title: Register
+        - title: Sign Up
           url: docs/addons/register4
         - title: Forgot Password
           url: docs/addons/forgot-password

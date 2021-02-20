@@ -1,31 +1,45 @@
 ---
-layout: page
+layout: default
 title: Getting Started
 ---
 
-## Start Here (about)
+## Getting Started
 
-Last Update: 2021Feb12.
+INSTRUCTIONS:
 
-This is is just a simple way to coordinate Mountain Bike rides, drinks etc between small group of friends.
+Hi Devo (Admin).
 
-To Public:
-If you have stumbled on this page, it is currenlty NOT open to public.
-Stay tuned for more info in a month or so.
+Step 1. (Each person) Must first (register) create an account (new user/member) via [Sign Up]({% link _docs/addons/register4.md %}). The create their own Alias and enter their own "Working" email.
 
-Hi Devo.
+Step 2. (Admin) Make a "Team". (No need if already exists). Select "TEAMS" menu.
 
-Step 1. Make a "Team". (No need if already exists).
-Step 2. Make a new user/member then add to Team. (No need if already exists).
-Step 3. Make a "Place".
-Step 4. Make an .Event".
+Step 3. (Admin) Add the new user / member to one or more teams (groups). Select "MEMBERS"  menu.
+
+Step 4. (Admin) Make a "Place" (If does not already exist). Select "PLACE"  menu.
+
+Step 5. (Any member) Make an .Event". Select "EVENTS" menu.
+
+---
+TIPS:
 
 Use menu on the left.
 
-Do NOT release to the pubic yet.
-Don't share the link with anyone.
-Still a lot of bug testing to do and not finshed yet.
-If too many people start using at once may crash the system.
+Top right (person icon) will show if each user is logged in or not.
+
+---
+RULES:
+
+-Do NOT release link to the pubic yet.
+
+-Don't share the link with anyone (Need just you and me to test first).
+
+-Still a lot of bug testing to do and not finshed yet.
+
+-If too many people (public/strangers) start using at once may crash the system.
+
+-Too many limitations for free service.
+
+-Let me know if want to make any changes (Will do if free and won't take me any / much more time).
 
 <!-- ---
 layout: page

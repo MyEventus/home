@@ -1,10 +1,13 @@
 # - title: Dashboard
 #   icon: fa-tachometer-alt
 #   url: /
+- title: Home
+  icon: fa-home
+  url: /
 - title: Getting Started
   icon: fa-star
   url: docs/getting-started/
-- title: Interface
+- title: Eventus
   links:
     - title: Events
       icon: fa-cog

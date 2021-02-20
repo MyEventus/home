@@ -2,7 +2,8 @@
 
 # url is the full website URL
 # baseurl is the website's URL without the hostname
-url: "https://myeventus.github.io/"
+#WORKING: url: "https://myeventus.github.io/"
+url: "https://myeventus.netlify.app/"
 baseurl: "/"
 
 # Name of website

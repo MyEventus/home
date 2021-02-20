@@ -9,13 +9,15 @@ INSTRUCTIONS:
 
 Hi Devo (Admin).
 
-Step 1. (Each person) Must first (register) create an account (new user/member) via [Sign Up]({% link _docs/addons/register4.md %}). The create their own Alias and enter their own "Working" email.
+Hint: Start from bottom of left menu and build up.
 
-Step 2. (Admin) Make a "Team". (No need if already exists). Select "TEAMS" menu.
+Step 1. (Each person) Must first (register) create an account (new user / member) via [Sign Up]({% link _docs/addons/register4.md %}). They create their own Alias and enter their own "Working" email.
 
-Step 3. (Admin) Add the new user / member to one or more teams (groups). Select "MEMBERS"  menu.
+Step 2. (Admin) Make a "Place" (If does not already exist). Select "PLACE"  menu.
 
-Step 4. (Admin) Make a "Place" (If does not already exist). Select "PLACE"  menu.
+Step 3. (Admin) Make a "Team". (No need if already exists). Select "TEAMS" menu.
+
+Step 4. (Admin) Add the new user / member to one or more teams (groups). Select "MEMBERS"  menu.
 
 Step 5. (Any member) Make an .Event". Select "EVENTS" menu.
 

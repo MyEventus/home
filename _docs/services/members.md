@@ -16,10 +16,10 @@ title: Events
     }
 
     async function getMembersViaFunctions(){
-        console.log("Inside getMembersViaFunctions");
+        console.log("Inside getMembersViaFunctions 1");
 
         const fetchMembers = async () => {
-            await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
+            await (await fetch('/functions/airtable-list-members.js')).json();
             //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
 
             //displayItems(items)
@@ -29,6 +29,7 @@ title: Events
                 console.log("FROM NETLIFY FUNCTION: ", data);
             })
         }
+        console.log("Inside getMembersViaFunctions 2");
     };
 
     async function deleteItem(event){

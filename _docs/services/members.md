@@ -16,8 +16,11 @@ title: Events
     }
 
     async function getMembersViaFunctions(){
+        console.log("Inside getMembersViaFunctions");
+        
         const fetchMembers = async () => {
-            await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
+            //await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
+            await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
 
             fetchMembers()
             .then(data => {

@@ -12,15 +12,17 @@ title: Events
     async function main(){
        const items = await membersList(); //From axios.js. Will return "resoved" section of Promise.
        console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
-       displayItems(items);
+       //displayItems(items);
     }
 
     async function getMembersViaFunctions(){
         console.log("Inside getMembersViaFunctions");
-        
+
         const fetchMembers = async () => {
-            //await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
-            await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
+            await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
+            //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
+
+            //displayItems(items)
 
             fetchMembers()
             .then(data => {

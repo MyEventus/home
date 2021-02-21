@@ -108,6 +108,7 @@ exclude:
   - README.md
   - tests
   - vendor
+  - node_modules/
 
 plugins:
   - jekyll-paginate

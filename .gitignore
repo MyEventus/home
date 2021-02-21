@@ -9,3 +9,7 @@ vendor
 
 /.env
 secret.js
+
+#Only used for Netlify functions to hide API keys.
+node_modules
+functions

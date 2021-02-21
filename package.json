@@ -1,0 +1,24 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "This is a Jekyll version of the beautiful [sb-admin](https://startbootstrap.com/themes/sb-admin-2/)  provided by Startbootrap for Boostrap 4. It's been modified for Jekyll use, meaning that graphs are generated from data, and the main content (with posts) is supported.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "lambda-serve": "netlify-lambda serve functions",
+    "lambda-build": "netlify-lambda build functions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyEventus/home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MyEventus/home/issues"
+  },
+  "homepage": "https://github.com/MyEventus/home#readme",
+  "dependencies": {
+    "netlify-lambda": "^2.0.3"
+  }
+}

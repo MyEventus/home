@@ -19,7 +19,7 @@ title: Events
         console.log("Inside getMembersViaFunctions 1");
 
         const fetchMembers = async () => {
-            await (await fetch('/functions/airtable-list-members.js')).json();
+            await (await fetch('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')).json();
             //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
 
             //displayItems(items)

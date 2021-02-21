@@ -15,6 +15,17 @@ title: Events
        displayItems(items);
     }
 
+    async function getMembersViaFunctions(){
+        const fetchMembers = async () => {
+            await (await fetch('/.netlify/functions/airtable-list-members.js')).json();
+
+            fetchMembers()
+            .then(data => {
+                console.log("FROM NETLIFY FUNCTION: ", data);
+            })
+        }
+    };
+
     async function deleteItem(event){
         console.log("DELETE : ", event);
         const response = await removeItem(event, "Who");
@@ -55,5 +66,6 @@ title: Events
         let html = '';
 
         //Trigger the main decision tree hub.
+        getMembersViaFunctions();
         main(); 
   });

@@ -21,11 +21,12 @@ title: Events
     async function getMembersViaFunctions(){
         console.log("Inside getMembersViaFunctions 1");
 
-        await axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
-            .then(response => {
-                let data = response;
+        axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+            .then(res => {
+                let data = res;
                 console.log("Inside getMembersViaFunctions 2", data);
                 //resolve(data)
+                return data
             })
             .catch(err => {
                 console.log("err", err);

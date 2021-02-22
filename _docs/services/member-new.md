@@ -66,8 +66,13 @@ title: member-new
         // var email = $('#email').val();
         var alias = $('#alias').val();
         let team  = $('#team').val();
-        let alias_id = $('#alias');
-        console.log("ID: ", alias_id);
+
+        var alias_id = $('#alias').val();
+        console.log("ID: ", alias_id)
+
+        console.log($(this).find(':selected').attr('data-id'));
+        console.log($(this).find(':selected').attr('id'));
+        
         //console.log("ID OF USER AND TEAM: ", alias_id);
         //const items = await memberNewData(alias, firstName, email, team);
         

@@ -24,7 +24,7 @@ title: Events
 
         axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
             .then(res => {
-                let data = res;
+                let data = res.data;
                 console.log("Inside getMembersViaFunctions 2", data);
                 //resolve(data)
                 //return data

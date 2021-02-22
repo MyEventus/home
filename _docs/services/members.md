@@ -15,7 +15,8 @@ title: Events
        //displayItems(items);
 
        const items = await getMembersViaFunctions();
-       displayItems(items);
+       console.log("Promise has finished eventsListAll 1", items)
+       //displayItems(items);
     }
 
     async function getMembersViaFunctions(){
@@ -28,6 +29,7 @@ title: Events
                 //resolve(data)
                 return data
             })
+            .then(displayItems(items))
             .catch(err => {
                 console.log("err", err);
             })

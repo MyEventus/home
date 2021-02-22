@@ -61,8 +61,6 @@ title: member-new
         memberNew();
     });
 
-    //blah
-
     async function memberNew(){
         // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
         // var email = $('#email').val();

@@ -10,9 +10,12 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       const items = await membersList(); //From axios.js. Will return "resoved" section of Promise.
-       console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
+       //const items = await membersList(); //From axios.js. Will return "resoved" section of Promise.
+       //console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
        //displayItems(items);
+
+       const items = await getMembersViaFunctions();
+       displayItems(items);
     }
 
     async function getMembersViaFunctions(){
@@ -22,7 +25,7 @@ title: Events
             .then(response => {
                 let data = response;
                 console.log("Inside getMembersViaFunctions 2", data);
-                resolve(data)
+                //resolve(data)
             })
             .catch(err => {
                 console.log("err", err);
@@ -82,6 +85,6 @@ title: Events
         let html = '';
 
         //Trigger the main decision tree hub.
-        getMembersViaFunctions();
+        // getMembersViaFunctions();
         main(); 
   });

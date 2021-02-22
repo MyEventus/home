@@ -73,7 +73,7 @@ title: member-new
             team: team
         }
 
-        axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members' data)
+        axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
         .then(res => {
             let data = res.data;
         })

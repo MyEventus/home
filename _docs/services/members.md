@@ -18,18 +18,28 @@ title: Events
     async function getMembersViaFunctions(){
         console.log("Inside getMembersViaFunctions 1");
 
-        const fetchMembers = async () => {
-            await (await fetch('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')).json();
-            //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
-
-            //displayItems(items)
-
-            fetchMembers()
-            .then(data => {
-                console.log("FROM NETLIFY FUNCTION: ", data);
+        axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+            .then(response => {
+                let data = response;
+                console.log("Inside getMembersViaFunctions 2", data);
+                resolve(data)
             })
-        }
-        console.log("Inside getMembersViaFunctions 2");
+            .catch(err => {
+                console.log("err", err);
+            })
+
+        // const fetchMembers = async () => {
+        //     await (await fetch('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')).json();
+        //     //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
+
+        //     //displayItems(items)
+
+        //     fetchMembers()
+        //     .then(data => {
+        //         console.log("FROM NETLIFY FUNCTION: ", data);
+        //     })
+        // }
+        console.log("Inside getMembersViaFunctions 3");
     };
 
     async function deleteItem(event){

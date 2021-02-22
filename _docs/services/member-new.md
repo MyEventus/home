@@ -73,12 +73,14 @@ title: member-new
         //console.log("ID OF USER AND TEAM: ", alias_id);
         //const items = await memberNewData(alias, firstName, email, team);
         
-        let data = {
-            // first_name: firstName, 
-            // email: email,
-            alias: alias,
-            team: team
-        }
+        // let data = {
+        //     // first_name: firstName, 
+        //     // email: email,
+        //     alias: alias,
+        //     team: team
+        // }
+
+        let data = "Hi there";
 
         axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
         .then(res => {
@@ -179,10 +181,12 @@ $(document).ready(function() {
         //                 let title = data2.fields.Title
         //             ddTeam.append($('<option></option>').attr('value', id).text(title));
         //             $(".selectpicker").selectpicker("refresh");
-        //         });
-        //     });
+        //         }); // let data = {
+        //     // first_name: firstName, 
+        //     // email: email,
+        //     alias: alias,
+        //     team: team
         // }
-
 });
 </script>
 

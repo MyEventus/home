@@ -95,13 +95,30 @@ title: member-new
         ddAuthor.empty();
         ddAuthor.prop('selectedIndex', 0);
 
-        const data = await membersList();
-        data.map(function(data2){
-            let id = data2.id;
-            let title = data2.fields.Alias
-            ddAuthor.append($('<option></option>').attr('value', id).text(title));
-            $(".selectpicker").selectpicker("refresh");
-        });
+        //const data = await membersList();
+        async function getMembersViaFunctions(){
+            axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+            .then(res => {
+                let data = res.data;
+                //displayItems(data)
+                data.map(function(data2){
+                    let id = data2.id;
+                    let title = data2.fields.Alias
+                    ddAuthor.append($('<option></option>').attr('value', id).text(title));
+                    $(".selectpicker").selectpicker("refresh");
+                });
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        };
+
+        // data.map(function(data2){
+        //     let id = data2.id;
+        //     let title = data2.fields.Alias
+        //     ddAuthor.append($('<option></option>').attr('value', id).text(title));
+        //     $(".selectpicker").selectpicker("refresh");
+        // });
     }
 
 
@@ -111,19 +128,36 @@ title: member-new
         ddTeam.prop('selectedIndex', 0);
 
         const data = await teamsList();
-        data.map(function(data2){
-            let id = data2.id;
-            let title = data2.fields.Title
-            ddTeam.append($('<option></option>').attr('value', id).text(title));
-            $(".selectpicker").selectpicker("refresh");
-        });
+
+        async function getMembersViaFunctions(){
+            axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-teams')
+            .then(res => {
+                let data = res.data;
+                data.map(function(data2){
+                    let id = data2.id;
+                    let title = data2.fields.Title
+                    ddTeam.append($('<option></option>').attr('value', id).text(title));
+                    $(".selectpicker").selectpicker("refresh");
+                });
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+        };
+
+        // data.map(function(data2){
+        //     let id = data2.id;
+        //     let title = data2.fields.Title
+        //     ddTeam.append($('<option></option>').attr('value', id).text(title));
+        //     $(".selectpicker").selectpicker("refresh");
+        // });
     }
 
 
- $(document).ready(function() {
-
-     getMembersList();
-     getTeamsList();
+$(document).ready(function() {
+    getMembersList();
+    //const items = await getMembersViaFunctions();
+    getTeamsList();
 
         // function getTeam(){
         //     $.ajax({
@@ -142,8 +176,8 @@ title: member-new
         //     });
         // }
 
- });
- </script>
+});
+</script>
 
 <!-- Required for multi-select drop down -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>

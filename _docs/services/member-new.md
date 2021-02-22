@@ -96,11 +96,11 @@ title: member-new
         ddAuthor.prop('selectedIndex', 0);
 
         //const data = await membersList();
-        async function getMembersViaFunctions(){
+        //async function getMembersViaFunctions(){
             axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
             .then(res => {
                 let data = res.data;
-                //displayItems(data)
+                console.log("MEMBERS: ", data);
                 data.map(function(data2){
                     let id = data2.id;
                     let title = data2.fields.Alias
@@ -111,7 +111,7 @@ title: member-new
             .catch(err => {
                 console.log("err", err);
             })
-        };
+        //};
 
         // data.map(function(data2){
         //     let id = data2.id;
@@ -127,12 +127,13 @@ title: member-new
         ddTeam.empty();
         ddTeam.prop('selectedIndex', 0);
 
-        const data = await teamsList();
+        //const data = await teamsList();
 
-        async function getMembersViaFunctions(){
+        //async function getTeamsViaFunctions(){
             axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-teams')
             .then(res => {
                 let data = res.data;
+                console.log("TEAMS: ", data);
                 data.map(function(data2){
                     let id = data2.id;
                     let title = data2.fields.Title
@@ -143,7 +144,7 @@ title: member-new
             .catch(err => {
                 console.log("err", err);
             })
-        };
+        //};
 
         // data.map(function(data2){
         //     let id = data2.id;
@@ -156,7 +157,6 @@ title: member-new
 
 $(document).ready(function() {
     getMembersList();
-    //const items = await getMembersViaFunctions();
     getTeamsList();
 
         // function getTeam(){

@@ -37,7 +37,7 @@ title: member-new
                 </div> -->
                 <div class="form-group">   
                     <label for="author">Select a member</label>            
-                    <select name="author[]" id="author" class="selectpicker w-100" multiple>
+                    <select name="author[]" id="author" class="selectpicker w-100">
                     </select>
                  </div>
                  <div class="form-group">   
@@ -64,25 +64,20 @@ title: member-new
     async function memberNew(){
         // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
         // var email = $('#email').val();
-        var alias = $('#alias').val();
+        let alias = $('#author').val();
         let team  = $('#team').val();
 
-        var alias_id = $('#alias').val();
-        console.log("ID: ", alias_id)
+        console.log("ALIAS: ", alias);
+        console.log("TEAM: ", team);
 
-        console.log($(this).find(':selected').attr('data-id'));
-        console.log($(this).find(':selected').attr('id'));
-        
         //console.log("ID OF USER AND TEAM: ", alias_id);
         //const items = await memberNewData(alias, firstName, email, team);
         
         let data = {
             // first_name: firstName, 
             // email: email,
-            user_id: alias,
             alias: alias,
-            team: team,
-            team_id: team
+            team: team
         }
 
         axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)

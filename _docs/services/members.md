@@ -28,8 +28,8 @@ title: Events
                 console.log("Inside getMembersViaFunctions 2", data);
                 //resolve(data)
                 //return data
+                displayItems(data)
             })
-            .then(displayItems(data))
             .catch(err => {
                 console.log("err", err);
             })

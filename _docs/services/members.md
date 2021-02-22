@@ -27,9 +27,9 @@ title: Events
                 let data = res;
                 console.log("Inside getMembersViaFunctions 2", data);
                 //resolve(data)
-                return data
+                //return data
             })
-            .then(displayItems(items))
+            .then(displayItems(data))
             .catch(err => {
                 console.log("err", err);
             })

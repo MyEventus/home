@@ -18,7 +18,7 @@ title: Events
     async function getMembersViaFunctions(){
         console.log("Inside getMembersViaFunctions 1");
 
-        axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+        await axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
             .then(response => {
                 let data = response;
                 console.log("Inside getMembersViaFunctions 2", data);

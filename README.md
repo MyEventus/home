@@ -1,5 +1,13 @@
 # SB Admin Jekyll
 
+THIS IS STILL UNDER DEVELOPMENT AS OF 2021 FEB 22.
+NOT READY TO USE, TOO MANY BUGS AND TODO'S
+
+THIS IS MORE OF A SELF TEACHING EXCERCISE, NOOB.
+
+
+TEMPLATE BASED ON..
+
 This is a Jekyll version of the beautiful [sb-admin](https://startbootstrap.com/themes/sb-admin-2/) 
 provided by Startbootrap for Boostrap 4. It's been modified for Jekyll use, meaning that graphs are
 generated from data, and the main content (with posts) is supported.

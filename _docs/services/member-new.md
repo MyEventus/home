@@ -54,23 +54,29 @@ title: member-new
 </div>
 
 <script>
+    //As now using Google firstore for auth, this simply links Airtable user to a team in airtable.
+
     $('form').on('submit', function (event) {
         event.preventDefault()
         memberNew();
     });
 
     async function memberNew(){
-        var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
-        var email = $('#email').val();
+        // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
+        // var email = $('#email').val();
         var alias = $('#alias').val();
         let team  = $('#team').val();
+
+        console.log("ID OF USER AND TEAM: ", alias, alias.id, team, team.id);
         //const items = await memberNewData(alias, firstName, email, team);
         
         let data = {
-            first_name: firstName, 
-            email: email,
+            // first_name: firstName, 
+            // email: email,
+            user_id: alias,
             alias: alias,
-            team: team
+            team: team,
+            team_id: team
         }
 
         axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
@@ -83,8 +89,8 @@ title: member-new
 
 
         //Clear fields in form.
-        $('#first_name').val("");
-        $('#email').val("");
+        // $('#first_name').val("");
+        // $('#email').val("");
         $('#alias').val("");
         $('#team').val("");
         //$(".selectpicker").selectpicker("refresh");

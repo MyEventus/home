@@ -10,42 +10,20 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       //const items = await membersList(); //From axios.js. Will return "resoved" section of Promise.
-       //console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
-       //displayItems(items);
-
        const items = await getMembersViaFunctions();
-       console.log("Promise has finished eventsListAll 1", items)
-       //displayItems(items);
+       
+       //Space here for possible future use.
     }
 
     async function getMembersViaFunctions(){
-        console.log("Inside getMembersViaFunctions 1");
-
         axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
-            .then(res => {
-                let data = res.data;
-                console.log("Inside getMembersViaFunctions 2", data);
-                //resolve(data)
-                //return data
-                displayItems(data)
-            })
-            .catch(err => {
-                console.log("err", err);
-            })
-
-        // const fetchMembers = async () => {
-        //     await (await fetch('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')).json();
-        //     //await (await fetch('http://localhost:9000/functions/airtable-list-members.js')).json();
-
-        //     //displayItems(items)
-
-        //     fetchMembers()
-        //     .then(data => {
-        //         console.log("FROM NETLIFY FUNCTION: ", data);
-        //     })
-        // }
-        console.log("Inside getMembersViaFunctions 3");
+        .then(res => {
+            let data = res.data;
+            displayItems(data)
+        })
+        .catch(err => {
+            console.log("err", err);
+        })
     };
 
     async function deleteItem(event){
@@ -86,8 +64,6 @@ title: Events
 
   $(document).ready(function() {
         let html = '';
-
         //Trigger the main decision tree hub.
-        // getMembersViaFunctions();
         main(); 
   });

@@ -64,7 +64,23 @@ title: member-new
         var email = $('#email').val();
         var alias = $('#alias').val();
         let team  = $('#team').val();
-        const items = await memberNewData(alias, firstName, email, team);
+        //const items = await memberNewData(alias, firstName, email, team);
+        
+        let data = {
+            first_name: firstName, 
+            email: email,
+            alias: alias,
+            team: team
+        }
+
+        axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members' data)
+        .then(res => {
+            let data = res.data;
+        })
+        .catch(err => {
+            console.log("err", err);
+        })
+
 
         //Clear fields in form.
         $('#first_name').val("");

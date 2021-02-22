@@ -40,28 +40,28 @@ function memberNewData(alias, firstname, email, team){
 }
 
 
-
+//MOVED TO NETLIFY FUNCTIONS
 //Get list of all members.
-function membersList(){
-    //console.log("In newUserData");
-    return new Promise((resolve, reject) => {
-        let events = [];
-        //let a = 1 + 1;
-        if (1 == 1) {
-            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
-            .then(response => {
-                data = response.data.records;
-                resolve(data)
-            })
-            .catch(err => {
-                console.log("err", err);
-            })
-        }
-        else {
-            reject("Failed")
-        }
-    });
-}
+// function membersList(){
+//     //console.log("In newUserData");
+//     return new Promise((resolve, reject) => {
+//         let events = [];
+//         //let a = 1 + 1;
+//         if (1 == 1) {
+//             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
+//             .then(response => {
+//                 data = response.data.records;
+//                 resolve(data)
+//             })
+//             .catch(err => {
+//                 console.log("err", err);
+//             })
+//         }
+//         else {
+//             reject("Failed")
+//         }
+//     });
+// }
 
 
 function removeItem(id, table){

@@ -74,10 +74,13 @@ title: member-new
         //const items = await memberNewData(alias, firstName, email, team);
         
         let data = {
-            // first_name: firstName, 
-            // email: email,
-            userId: userId,
-            Team: team
+            fields: 
+            {
+                // first_name: firstName, 
+                // email: email,
+                userId: userId,
+                Team: team
+            }
         }
 
         //let data = "Hi there";

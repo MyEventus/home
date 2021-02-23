@@ -86,6 +86,7 @@ title: member-new
         axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
         .then(res => {
             let data = res.data;
+            console.log("RESPONSE FROM LAMBDA: ", data);
         })
         .catch(err => {
             console.log("err", err);

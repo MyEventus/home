@@ -103,8 +103,8 @@ title: member-new
             }
         };
 
-        const iduser = data.userId;
-        delete data.userId;
+        const iduser = data.fields.userId;
+        delete data.fields.userId;
         console.log("DATA OUT POST: ", data);
 
         axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosAirTableConfig)

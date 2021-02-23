@@ -53,6 +53,16 @@ title: member-new
     </form>
 </div>
 
+
+<div class="toast">
+  <div class="toast-header">
+    Toast Header
+  </div>
+  <div class="toast-body">
+    Some text inside the toast body
+  </div>
+</div>
+
 <script>
     //As now using Google firstore for auth, this simply links Airtable user to a team in airtable.
 
@@ -111,6 +121,7 @@ title: member-new
         .then(res => {
             let data = res.data;
             console.log("RESPONSE FROM LAMBDA: ", data);
+            $('.toast').toast('show');
         })
         .catch(err => {
             console.log("err", err);

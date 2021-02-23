@@ -7,7 +7,7 @@ title: member-new
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 <!-- <a href="/sb-admin-jekyll/docs/services/events/" role="button" class="btn btn-success btn-large">< Back to Events</a> -->
-
+<script src="/functions/airtable-add-members.js"></script>
 </head>
 
 <h1>New Member</h1>
@@ -93,6 +93,7 @@ title: member-new
         //     console.log("err", err);
         // })
 
+    console.log("API", API_KEY_AIRTABLE);
         const axiosAirTableConfig = {
             headers: {
                 'Authorization': `Bearer ${API_KEY_AIRTABLE}`, //Airtable

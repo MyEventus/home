@@ -64,10 +64,10 @@ title: member-new
     async function memberNew(){
         // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
         // var email = $('#email').val();
-        let alias = $('#author').val();
+        let user_id = $('#author').val();
         let team  = $('#team').val();
 
-        console.log("ALIAS: ", alias);
+        console.log("ALIAS /USER ID: ", user_id);
         console.log("TEAM: ", team);
 
         //console.log("ID OF USER AND TEAM: ", alias_id);
@@ -76,7 +76,7 @@ title: member-new
         let data = {
             // first_name: firstName, 
             // email: email,
-            alias: alias,
+            user_id: user_id,
             team: team
         }
 

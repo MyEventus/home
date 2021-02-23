@@ -81,7 +81,7 @@ title: member-new
         }
 
         //let data = "Hi there";
-        console.log("DATA OUT: ", data);
+        console.log("DATA OUT PRE: ", data);
 
         //FAILED. TO HARD AS FUNCTIONS DEBUG IS DOWN ON NETLIFY.
         // axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
@@ -93,15 +93,18 @@ title: member-new
         //     console.log("err", err);
         // })
 
-    console.log("API", API_KEY_AIRTABLE);
         const axiosAirTableConfig = {
             headers: {
-                'Authorization': `Bearer ${API_KEY_AIRTABLE}`, //Airtable
+                'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
                 'Content-Type': 'application/json'
             }
         };
 
-        axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${userId}`, data, axiosAirTableConfig)
+        const iduser = data.userId;
+        delete data.userId;
+        console.log("DATA OUT POST: ", data);
+
+        axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosAirTableConfig)
         .then(res => {
             let data = res.data;
             console.log("RESPONSE FROM LAMBDA: ", data);

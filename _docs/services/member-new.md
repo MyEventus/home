@@ -83,7 +83,24 @@ title: member-new
         //let data = "Hi there";
         console.log("DATA OUT: ", data);
 
-        axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
+        //FAILED. TO HARD AS FUNCTIONS DEBUG IS DOWN ON NETLIFY.
+        // axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
+        // .then(res => {
+        //     let data = res.data;
+        //     console.log("RESPONSE FROM LAMBDA: ", data);
+        // })
+        // .catch(err => {
+        //     console.log("err", err);
+        // })
+
+        const axiosAirTableConfig = {
+            headers: {
+                'Authorization': `Bearer ${API_KEY_AIRTABLE}`, //Airtable
+                'Content-Type': 'application/json'
+            }
+        };
+
+        axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${userId}`, data, axiosAirTableConfig)
         .then(res => {
             let data = res.data;
             console.log("RESPONSE FROM LAMBDA: ", data);

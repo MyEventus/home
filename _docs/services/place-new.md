@@ -2,6 +2,18 @@
 layout: default
 title: New Place
 ---
+<div class="toast" data-autohide="false"  aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: absolute; top: 1rem; right: 1rem;">
+  <div class="toast-header">
+    <strong class="mr-auto text-primary">OK. Completed</strong>
+    <!-- <small>OK</small> -->
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+  </div>
+  <div class="toast-body">
+    Updated database successfully. Now go to the "list view" to see the updates.
+
+  </div>
+</div>
+
 
 <h1>New Place</h1>
 
@@ -47,6 +59,8 @@ title: New Place
         var notes = $('#notes').val();
         const items = await placeNewData(title, meeting_place, notes);
 
+         $('.toast').toast('show');
+         
         //Clear fields in form.
         $('#title').val("");
         $('#meeting_place').val("");

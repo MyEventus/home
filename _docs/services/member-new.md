@@ -10,15 +10,29 @@ title: member-new
 <script src="/functions/airtable-add-members.js"></script>
 </head>
 
-<div class="toast" data-autohide="false">
+<div class="toast" data-autohide="false"  aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: absolute; top: 1rem; right: 1rem;">
   <div class="toast-header">
-    <strong class="mr-auto text-primary">Toast Header</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">Close &times;</button>
+    <strong class="mr-auto text-primary">OK. Completed</strong>
+    <!-- <small>OK</small> -->
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
   </div>
   <div class="toast-body">
-    Some text inside the toast body
+    Updated database successfully. Now go to the "list view" to see the updates.
+
   </div>
 </div>
+
+
+<!-- <div class="toast" data-autohide="false"  aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: absolute; top: 1rem; right: 1rem;">
+  <div class="toast-header">
+    <strong class="mr-auto text-primary">ERROR. Failed</strong>
+    <small>OK</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+  </div>
+  <div class="toast-body">
+    Try again or try later.
+  </div>
+</div> -->
 
 
 <h1>New Member</h1>
@@ -152,11 +166,33 @@ title: member-new
                 Team: team
             }
         }
-        const resp = memberRelateData(data)
+        const resp = await memberRelateData(data);
         console.log("RESP MEMBER RELATE AXIOS: ", resp);
 
+        // toastr.options = {
+        //     "closeButton": true, // true/false
+        //     "debug": false, // true/false
+        //     "newestOnTop": false, // true/false
+        //     "progressBar": false, // true/false
+        //     "positionClass": "md-toast-top-right", // md-toast-top-right / md-toast-top-left / md-toast-bottom-right
+        //     "preventDuplicates": false,
+        //     "onclick": null,
+        //     "showDuration": "300", // in milliseconds
+        //     "hideDuration": "1000", // in milliseconds
+        //     "timeOut": "5000", // in milliseconds
+        //     "extendedTimeOut": "1000", // in milliseconds
+        //     "showEasing": "swing",
+        //     "hideEasing": "linear",
+        //     "showMethod": "fadeIn",
+        //     "hideMethod": "fadeOut"
+        //     }
+            $('.toast').toast('show');
+        // Display a success toast, with a title
+        //toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+
+
         $('#author').val("");
-        $('#team').val("");
+        //$('#team').val("");
     }
 
 

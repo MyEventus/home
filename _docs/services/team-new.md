@@ -4,6 +4,19 @@ title: Events
 ---
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<div class="toast" data-autohide="false"  aria-live="assertive" aria-atomic="true" data-delay="4000" style="position: absolute; top: 1rem; right: 1rem;">
+  <div class="toast-header">
+    <strong class="mr-auto text-primary">OK. Completed</strong>
+    <!-- <small>OK</small> -->
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+  </div>
+  <div class="toast-body">
+    Updated database successfully. Now go to the list view to see the updates.
+
+  </div>
+</div>
+
 </head>
 
 <h1>New Team</h1>
@@ -12,8 +25,9 @@ title: Events
     <form id="makeNewTeam">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create a new team / group.</h6>
-                <p>Make sure the "Members" / "Users" exist before trying to assign them to a new team.</p>
+                <h6 class="m-0 font-weight-bold text-primary">Create a new unique team / group.</h6>
+                <br><p>Do not create duplicates team names</p>
+                <br><p>Check in "Teams" > "List Teams" to see if already exists first.</p>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -22,6 +36,7 @@ title: Events
                     minlength="3" maxlength="50" size="40">
                 </div>
                 <div>
+                    <label for="title">Add one or more members</label>
                     <select name="author[]" id="author" class="selectpicker w-100" multiple>
                     </select>
                 </div>
@@ -46,6 +61,8 @@ title: Events
         var title = $('#title').val();
         let author  = $('#author').val();       
         teamNewData(title, author);
+
+        $('.toast').toast('show');
 
         //Clear fields in form.
         $('#title').val("");
@@ -73,7 +90,7 @@ title: Events
 
 
     $(document).ready(function() {
-        getAuthorList();
+       getAuthorList();
     });
 
     //  function teamNew(){

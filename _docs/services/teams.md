@@ -29,7 +29,10 @@ title: Teams
         let html = '';
         console.log("ITEMS: ", items);
         items.forEach(item => {
-            // 
+            //
+            if(item.fields.Team_Members_Text_FO == undefined){
+                item.fields.Team_Members_Text_FO = "";
+            }
             html +=
             `<br>
             <div class="card shadow mb-4">

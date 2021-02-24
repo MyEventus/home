@@ -7,6 +7,7 @@ let axiosConfig = {
   };
 
 /////////////////// MEMBERS - NEW //////////////////////
+//Only used when Google firestore accepts new user OK. Duplicates in Airtable. May move all data to firestore later date .todo.
 function memberNewData(alias, firstname, email, team){
     data = {
         fields: {
@@ -37,6 +38,24 @@ function memberNewData(alias, firstname, email, team){
             reject("Failed")
         }
     });
+}
+
+//Link single existing user/member to one or more Teams.
+function memberRelateData(data){
+    const iduser = data.fields.userId;
+    delete data.fields.userId;
+    console.log("axios.js memberRelateData: ", data);
+
+    axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosConfig)
+    .then(res => {
+        let data = res.data;
+        console.log("RESPONSE FROM LAMBDA: ", data);
+        //$('.toast').toast('show');
+        return data
+    })
+    .catch(err => {
+        console.log("err", err);
+    })
 }
 
 

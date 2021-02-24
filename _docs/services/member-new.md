@@ -10,6 +10,17 @@ title: member-new
 <script src="/functions/airtable-add-members.js"></script>
 </head>
 
+<div class="toast" data-autohide="false">
+  <div class="toast-header">
+    <strong class="mr-auto text-primary">Toast Header</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">Close &times;</button>
+  </div>
+  <div class="toast-body">
+    Some text inside the toast body
+  </div>
+</div>
+
+
 <h1>New Member</h1>
 
 <div>
@@ -41,7 +52,7 @@ title: member-new
                     </select>
                  </div>
                  <div class="form-group">   
-                    <label for="team">Add user to at least one team</label>            
+                  <label for="team">Add user to one or more teams. <br>Select nothing to remove member from all teams.</label>            
                     <select name="team[]" id="team" class="selectpicker w-100" multiple>
                     </select>
                  </div>
@@ -54,14 +65,7 @@ title: member-new
 </div>
 
 
-<div class="toast">
-  <div class="toast-header">
-    Toast Header
-  </div>
-  <div class="toast-body">
-    Some text inside the toast body
-  </div>
-</div>
+
 
 <script>
     //As now using Google firstore for auth, this simply links Airtable user to a team in airtable.
@@ -71,70 +75,90 @@ title: member-new
         memberNew();
     });
 
-    async function memberNew(){
-        // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
-        // var email = $('#email').val();
-        let userId = $('#author').val();
-        let team  = $('#team').val();
+    // async function memberNew(){
+    //     // var firstName = $('#first_name').val(); //document.getElementById("first_name").value;
+    //     // var email = $('#email').val();
+    //     let userId = $('#author').val();
+    //     let team  = $('#team').val();
 
-        console.log("ALIAS /USER ID: ", userId);
-        console.log("TEAM: ", team);
+    //     console.log("ALIAS /USER ID: ", userId);
+    //     console.log("TEAM: ", team);
 
-        //console.log("ID OF USER AND TEAM: ", alias_id);
-        //const items = await memberNewData(alias, firstName, email, team);
+    //     //console.log("ID OF USER AND TEAM: ", alias_id);
+    //     //const items = await memberNewData(alias, firstName, email, team);
         
+    //     let data = {
+    //         fields: 
+    //         {
+    //             // first_name: firstName, 
+    //             // email: email,
+    //             userId: userId,
+    //             Team: team
+    //         }
+    //     }
+
+    //     //let data = "Hi there";
+    //     console.log("DATA OUT PRE: ", data);
+
+    //     //FAILED. TO HARD AS FUNCTIONS DEBUG IS DOWN ON NETLIFY.
+    //     // axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
+    //     // .then(res => {
+    //     //     let data = res.data;
+    //     //     console.log("RESPONSE FROM LAMBDA: ", data);
+    //     // })
+    //     // .catch(err => {
+    //     //     console.log("err", err);
+    //     // })
+
+    //     const axiosAirTableConfig = {
+    //         headers: {
+    //             'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
+    //             'Content-Type': 'application/json'
+    //         }
+    //     };
+
+    //     const iduser = data.fields.userId;
+    //     delete data.fields.userId;
+    //     console.log("DATA OUT POST: ", data);
+
+    //     axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosAirTableConfig)
+    //     .then(res => {
+    //         let data = res.data;
+    //         console.log("RESPONSE FROM LAMBDA: ", data);
+    //         $('.toast').toast('show');
+    //     })
+    //     .catch(err => {
+    //         console.log("err", err);
+    //     })
+
+
+    //     //Clear fields in form.
+    //     // $('#first_name').val("");
+    //     // $('#email').val("");
+    //     $('#alias').val("");
+    //     $('#team').val("");
+    //     //$(".selectpicker").selectpicker("refresh");
+    //  }
+
+    //VERSION 2 - TO BYPASS NETLIFY.
+    async function memberNew(){
+        const userId = $('#author').val();
+        const team  = $('#team').val();
+
         let data = {
             fields: 
             {
-                // first_name: firstName, 
-                // email: email,
                 userId: userId,
                 Team: team
             }
         }
+        const resp = memberRelateData(data)
+        console.log("RESP MEMBER RELATE AXIOS: ", resp);
 
-        //let data = "Hi there";
-        console.log("DATA OUT PRE: ", data);
-
-        //FAILED. TO HARD AS FUNCTIONS DEBUG IS DOWN ON NETLIFY.
-        // axios.post('https://myeventus.netlify.app/.netlify/functions/airtable-add-members', data)
-        // .then(res => {
-        //     let data = res.data;
-        //     console.log("RESPONSE FROM LAMBDA: ", data);
-        // })
-        // .catch(err => {
-        //     console.log("err", err);
-        // })
-
-        const axiosAirTableConfig = {
-            headers: {
-                'Authorization': 'Bearer keysXtWsXZz4g68dA', //Airtable
-                'Content-Type': 'application/json'
-            }
-        };
-
-        const iduser = data.fields.userId;
-        delete data.fields.userId;
-        console.log("DATA OUT POST: ", data);
-
-        axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosAirTableConfig)
-        .then(res => {
-            let data = res.data;
-            console.log("RESPONSE FROM LAMBDA: ", data);
-            $('.toast').toast('show');
-        })
-        .catch(err => {
-            console.log("err", err);
-        })
-
-
-        //Clear fields in form.
-        // $('#first_name').val("");
-        // $('#email').val("");
-        $('#alias').val("");
+        $('#author').val("");
         $('#team').val("");
-        //$(".selectpicker").selectpicker("refresh");
-     }
+    }
+
 
     async function getMembersList(){
         let ddAuthor = $('#author');
@@ -175,7 +199,7 @@ title: member-new
 
         //const data = await teamsList();
 
-        //async function getTeamsViaFunctions(){
+        ////async function getTeamsViaFunctions(){
             axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-teams')
             .then(res => {
                 let data = res.data;
@@ -190,7 +214,32 @@ title: member-new
             .catch(err => {
                 console.log("err", err);
             })
-        //};
+        ////};
+
+        //---------WITHOUT NETLIFY-------------
+        // const restHeader = {
+        //     //'Authorization':'Bearer keysXtWsXZz4g68dA',
+        //     'Content-Type':'application/json'
+        // }
+
+        // $.ajax({
+        //     url: 'https://myeventus.netlify.app/.netlify/functions/airtable-list-teams',
+        //     headers: restHeader
+        //     })
+        //     .then(res => { 
+        //         let data = res.data;
+                
+        //         data.map(function(data2){
+        //             let id = data2.id;
+        //             let title = data2.fields.Title;
+        //             ddTeam.append($('<option></option>').attr('value', id).text(title));
+        //             $(".selectpicker").selectpicker("refresh");
+        //         })
+        //     })
+        //     .catch(err => {
+        //         console.log("ERROR: ", err);
+        //     })
+        //----------------------------------------
 
         // data.map(function(data2){
         //     let id = data2.id;
@@ -202,6 +251,7 @@ title: member-new
 
 
 $(document).ready(function() {
+   
     getMembersList();
     getTeamsList();
 
@@ -226,6 +276,7 @@ $(document).ready(function() {
         // }
 });
 </script>
+
 
 <!-- Required for multi-select drop down -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>

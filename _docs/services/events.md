@@ -71,7 +71,9 @@ title: Events
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";
                 console.log("CONFIRMED: ", item.fields.Confirmed_Text_LU);
-            }        // p.then((events) => {
+            } 
+            let start_date = new Date(item.fields.Date_Start)
+            // p.then((events) => {
         //     console.log("FROM PROMISE: ", events);
         //     events.forEach(event => {
         //         if(event.fields.Confirmed_Text_LU == undefined){
@@ -142,10 +144,11 @@ title: Events
                         <tbody>
                             <tr><td>Status<td>${item.fields.Title}</td></tr>
                             <tr><td>Status<td><strong>${item.fields.Status}</strong></td></tr>
-                            <tr><td>Date / Time<td>${item.fields.Date_Start}</td></tr>
+                            <tr><td>Date / Time<td>${start_date}</td></tr>
                             <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
                             <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
                             <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
+                            <tr><td>Author</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
                             <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
                             <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
                             <tr><td>Confirmed Attending</td><td>${item.fields.Confirmed_Text_LU}</td></tr>

@@ -227,7 +227,7 @@ function eventNewData(title, date_start, teamId, authorId, placeId){
         if (1 == 1) {
             axios.post('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', data, axiosConfig)
                 .then(resp => {
-                    alert(resp.statusText +". Completed successfully. New Event: " + resp.data.fields.Title)
+                    //alert(resp.statusText +". Completed successfully. New Event: " + resp.data.fields.Title)
                     resolve()
              })
                 .catch(err => {

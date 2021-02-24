@@ -249,7 +249,7 @@ function eventsList(){
         let data = [];
         //let a = 1 + 1;
         if (1 == 1) {
-            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event', axiosConfig)
+            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Event?sort%5B0%5D%5Bfield%5D=Date_Start&sort%5B0%5D%5Bdirection%5D=desc', axiosConfig)
             .then(resp => {
                 let data = resp.data.records;
                 resolve(data)

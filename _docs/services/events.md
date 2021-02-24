@@ -2,6 +2,10 @@
 layout: default
 title: Events
 ---
+<head>
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+</head>
+
 <!-- <div>
      <button class="btn btn-primary" type="button" id="btn1" onclick='getEventsAll()'>List view</button>
 
@@ -17,6 +21,7 @@ title: Events
 
 
 <div class="container">
+<small>Newest at top.</small>
     <div id="results"><div>
     <!-- <h1> NEW LIST</h1>-->
     <!-- {% for event in message %}
@@ -65,14 +70,53 @@ title: Events
     //Team_Members_Invited_Text_FO
 
 
-    function displayEvents(events){
+    function displayEvents(tempEvents){
         let html = '';
-        events.forEach(item => {
+    
+        tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";
-                console.log("CONFIRMED: ", item.fields.Confirmed_Text_LU);
             } 
-            let start_date = new Date(item.fields.Date_Start)
+
+            const start_date = new Date(item.fields.Date_Start);
+            const start_date_moment = new moment(item.fields.Date_Start).fromNow();
+
+            // const events = tempEvents.sort((a,b) =*V* new moment(a.item.fields.Date_Start).format('YYYYMMDD') - new moment(b.item.fields.Date_Start).format('YYYYMMDD'));
+            html +=
+                `<br>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">${item.fields.Title}</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+                            <thead><th>Title</th><th>Details</th></thead>
+                            <tbody>
+                                <tr><td>Status<td>${item.fields.Status}</td></tr>
+                                <tr><td>Date / Time<td>${start_date}</td></tr>
+                                <tr><td>Starting<td>${start_date_moment}</td></tr>
+                                <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
+                                <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
+                                <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
+                                <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Text_LU}</td></tr>
+                                <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
+                                <tr><td>Confrimed Attending</td><td>${item.fields.Author_Text_LU}</td></tr>
+                            </tbody>
+                            </table>
+                ` 
+
+
+        });
+
+        document.getElementById('results').innerHTML = html; 
+
+            // const events = tempEvents.sort((a,b) =*V* new moment(a.start_date_temp).format('YYYYMMDD') - new moment(b.start_date-temp).format('YYYYMMDD'));
+
+            //console.log("SORTED: ", events);
+
+            //let start_date = new Date(item.fields.Date_Start)
+
             // p.then((events) => {
         //     console.log("FROM PROMISE: ", events);
         //     events.forEach(event => {
@@ -105,6 +149,15 @@ title: Events
         //                     </tbody>
         //                     </table>
         //         ` 
+        
+      
+
+
+
+
+
+
+
 
         //         // html +=
         //         //  `<button class="btn btn-primary btn-block btn-large" onclick="goToEdit(${event.id})">Edit</button></div></div></div>`
@@ -131,36 +184,38 @@ title: Events
 
         
         
-            html +=
-            `<br>
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">${item.fields.Title}</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-                        <thead><th>Title</th><th>Details</th></thead>
-                        <tbody>
-                            <tr><td>Status<td>${item.fields.Title}</td></tr>
-                            <tr><td>Status<td><strong>${item.fields.Status}</strong></td></tr>
-                            <tr><td>Date / Time<td>${start_date}</td></tr>
-                            <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
-                            <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
-                            <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
-                            <tr><td>Author</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
-                            <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
-                            <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
-                            <tr><td>Confirmed Attending</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
-                        </tbody>
-                        </table>
-                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
-                    </div>
-                </div>
-            </div>
-            ` 
-        });
-        document.getElementById('results').innerHTML = html; 
+            // html +=
+            // `<br>
+            // <div class="card shadow mb-4">
+            //     <div class="card-header py-3">
+            //         <h6 class="m-0 font-weight-bold text-primary">${item.fields.Title}</h6>
+            //     </div>
+            //     <div class="card-body">
+            //         <div class="table-responsive">
+            //             <table class="table table-bordered" id="22" width="100%" cellspacing="0">
+            //             <thead><th>Title</th><th>Details</th></thead>
+            //             <tbody>
+            //                 <tr><td>Status<td>${item.fields.Title}</td></tr>
+            //                 <tr><td>Status<td><strong>${item.fields.Status}</strong></td></tr>
+            //                 <tr><td>Date / Time<td>${start_date}</td></tr>
+            //                 <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
+            //                 <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
+            //                 <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
+            //                 <tr><td>Author</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
+            //                 <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
+            //                 <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
+            //                 <tr><td>Confirmed Attending</td><td>Not working yet. On my to do list</td></tr>
+            //             </tbody>
+            //             </table>
+            //             <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
+            //         </div>
+            //     </div>
+            // </div>
+            // ` 
+        //});
+        //<tr><td>Confirmed Attending</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
+
+        // document.getElementById('results').innerHTML = html; 
     }
 
 

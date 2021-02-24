@@ -99,15 +99,16 @@ title: Events
                                 <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
                                 <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
                                 <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
-                                <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Text_LU}</td></tr>
+                                <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
                                 <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
-                                <tr><td>Confrimed Attending</td><td>${item.fields.Author_Text_LU}</td></tr>
+                                <tr><td>Confrimed Attending</td><td>Not working yet.</td></tr>
                             </tbody>
                             </table>
                 ` 
 
 
         });
+        //Backup <tr><td>Confrimed Attending</td><td>${item.fields.Author_Text_LU}</td></tr>
 
         document.getElementById('results').innerHTML = html; 
 

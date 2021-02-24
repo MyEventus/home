@@ -101,9 +101,13 @@ title: Events
                                 <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
                                 <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
                                 <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
-                                <tr><td>Confrimed Attending</td><td>Not working yet.</td></tr>
+                                <tr><td>Confirmed Attending</td><td>Not working yet.</td></tr>
                             </tbody>
                             </table>
+                         <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
+                     </div>
+                 </div>
+             </div>
                 ` 
 
 

@@ -49,25 +49,8 @@ title: Events
 
  <!-- <script> var exports = {}; </script>
  <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script> -->
-
-
+ 
 <script>
-    $(document).ready(function() {
-     
-        //For Place drop down / select.
-        let ddConfirm = $('#confirm');
-        ddConfirm.empty();
-        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
-        ddConfirm.prop('selectedIndex', 0);
-
-        let html = '';
-
-        //Trigger the main decision tree hub.
-        main();
-      
-
-   
-
     //Main decision hub sync / await in order.
     async function main(){
         //const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
@@ -85,12 +68,8 @@ title: Events
             console.log("ERROR", err);
         })
         
-
-
        //////console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
        //////displayEvents(events);
-       //const getAliass = await getAliasList(); //Above
-       //console.log("Promise has finished aliasListAll")
     }
 
 
@@ -163,13 +142,24 @@ title: Events
                 data.map(function(data2){
                     let id = data2.id;
                     let title = data2.fields.Alias;
-                    ddConfirm.append($('<option></option>').attr('value', id).text(title));
-                
-                })
+                    ddConfirm.append($('<option></option>').attr('value', id).text(title));           
+            })
         });
     }
-
-
  });
-    
 </script>
+
+<script>
+    $(document).ready(function() {
+     
+        //For Place drop down / select.
+        let ddConfirm = $('#confirm');
+        ddConfirm.empty();
+        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
+        ddConfirm.prop('selectedIndex', 0);
+
+        let html = '';
+
+        //Trigger the main decision tree hub.
+        main();
+</script>    

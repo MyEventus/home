@@ -121,7 +121,7 @@ title: Event New
                 Status: "ON (Going Ahead)"
             }
         }
-        const items = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-new.js', data)
+        const items = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-new', data)
         .then(res => {
                 let data = res.data;
                 console.log("NEW EVENT: ", res);

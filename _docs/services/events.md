@@ -49,15 +49,15 @@ title: Events
 
  <!-- <script> var exports = {}; </script>
  <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script> -->
- 
+
 <script>
     //Main decision hub sync / await in order.
     async function main(){
         //const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
         
-        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/events-list.js')
+        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
         .then(res => {
-            const data = res.data;
+            let data = res.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
         })
@@ -68,14 +68,18 @@ title: Events
             console.log("ERROR", err);
         })
         
+
+
        //////console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
        //////displayEvents(events);
+       //const getAliass = await getAliasList(); //Above
+       //console.log("Promise has finished aliasListAll")
     }
 
 
-    function displayEvents(data){
+    function displayEvents(tempEvents){
         let html = '';
-        const tempEvents = data.data;
+    
         tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";
@@ -96,7 +100,7 @@ title: Events
                             <table class="table table-bordered" id="22" width="100%" cellspacing="0">
                             <thead><th>Title</th><th>Details</th></thead>
                             <tbody>
-                                <tr><td>Status<td>${item.fieldsairtable-add-members.Status}</td></tr>
+                                <tr><td>Status<td>${item.fields.Status}</td></tr>
                                 <tr><td>Date / Time<td>${start_date}</td></tr>
                                 <tr><td>Starting<td>${start_date_moment}</td></tr>
                                 <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
@@ -142,12 +146,14 @@ title: Events
                 data.map(function(data2){
                     let id = data2.id;
                     let title = data2.fields.Alias;
-                    ddConfirm.append($('<option></option>').attr('value', id).text(title));           
-            })
+                    ddConfirm.append($('<option></option>').attr('value', id).text(title));
+                
+                })
         });
     }
-
+    
     $(document).ready(function() {
+     
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
         ddConfirm.empty();
@@ -158,5 +164,7 @@ title: Events
 
         //Trigger the main decision tree hub.
         main();
+       
+
     });
-</script>    
+</script>

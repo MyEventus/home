@@ -7,7 +7,7 @@ let axiosConfig = {
   };
 
   async function getAPIKeys(){ 
-    axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+    await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
         .then(res => {
             let data = res.data;
             console.log("API KEYS FROM LAMBDA: ", data);
@@ -259,7 +259,7 @@ function eventNewData(title, date_start, teamId, authorId, placeId){
 function eventsList(){
     const api = getAPIKeys();
     console.log("API KEY RESPONSE : ", api);
-    
+
     console.log("In newUserData");
     return new Promise((resolve, reject) => {
         let data = [];

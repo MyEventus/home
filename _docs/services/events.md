@@ -53,9 +53,22 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
-       console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
-       displayEvents(events);
+       //////const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
+        
+        axios.post('https://myeventus.netlify.app/.netlify/functions/my-func-get-api', data)
+            .then(res => {
+                let data = res.data;
+                console.log("RESPONSE FROM LAMBDA: ", data);
+                displayEvents(data);
+            })
+            .catch(err => {
+                console.log("err", err);
+            });
+        
+
+
+       //////console.log("Promise has finished eventsListAll", events); //Once above line is completed this is then run.
+       //////displayEvents(events);
        //const getAliass = await getAliasList(); //Above
        //console.log("Promise has finished aliasListAll")
     }
@@ -63,10 +76,7 @@ title: Events
 
     function displayEvents(tempEvents){
         let html = '';
-        
-        //console.log("API2::: ", exports.API_KEY_AIRTABLE);
-        //console.log("API3::: ", API_KEY_AIRTABLE);
-
+    
         tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";

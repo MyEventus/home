@@ -6,17 +6,17 @@ let axiosConfig = {
     }
   };
 
-  async function getAPIKeys(){ 
-    await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
-        .then(res => {
-            let data = res.data;
-            console.log("API KEYS FROM LAMBDA: ", data);
-            return data
-        })
-        .catch(err => {
-            console.log("ERROR", err);
-        })
-  }
+//   async function getAPIKeys(){ 
+//     await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+//         .then(res => {
+//             let data = res.data;
+//             console.log("API KEYS FROM LAMBDA: ", data.data);
+//             return data
+//         })
+//         .catch(err => {
+//             console.log("ERROR", err);
+//         })
+//   }
 
 /////////////////// MEMBERS - NEW //////////////////////
 //Only used when Google firestore accepts new user OK. Duplicates in Airtable. May move all data to firestore later date .todo.

@@ -59,44 +59,108 @@ title: Event New
         eventNew();
     });
 
-    async function getPlaceList(){
+    // async function getPlaceList(){
+    //     let ddPlace = $('#place');
+    //     ddPlace.empty();
+    //     ddPlace.prop('selectedIndex', 0);
+
+    //     const data = await placesList();
+    //     data.map(function(data2){
+    //         let id = data2.id;
+    //         let title = data2.fields.Title
+    //         let place = title + "-" + data2.fields.Meeting_Place
+    //         ddPlace.append($('<option></option>').attr('value', id).text(place));
+    //     });
+    // }
+    async function getPlacesList(){
         let ddPlace = $('#place');
         ddPlace.empty();
-        ddPlace.prop('selectedIndex', 0);
+        ddPlace.prop('selectedIndex', 0)
 
-        const data = await placesList();
-        data.map(function(data2){
-            let id = data2.id;
-            let title = data2.fields.Title
-            let place = title + "-" + data2.fields.Meeting_Place
-            ddPlace.append($('<option></option>').attr('value', id).text(place));
+        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/places-list')
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            data.map(function(data2){
+                let id = data2.id;
+                let title = data2.fields.Title
+                let place = title + "-" + data2.fields.Meeting_Place
+                ddPlace.append($('<option></option>').attr('value', id).text(place));
+            });
+            return data
+        })
+        .catch(err => {
+            console.log("ERROR", err);
         });
     }
+
+    // async function getTeamsList(){
+    //     let ddTeam = $('#team');
+    //     ddTeam.empty();
+    //     ddTeam.prop('selectedIndex', 0);
+
+    //     const data = await teamsList();
+    //     data.map(function(data2){
+    //         let id = data2.id;
+    //         let title = data2.fields.Title
+    //         ddTeam.append($('<option></option>').attr('value', id).text(title));
+    //     });
+    // }
 
     async function getTeamsList(){
         let ddTeam = $('#team');
         ddTeam.empty();
         ddTeam.prop('selectedIndex', 0);
 
-        const data = await teamsList();
-        data.map(function(data2){
+        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/teams-list')
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            data.map(function(data2){
             let id = data2.id;
             let title = data2.fields.Title
             ddTeam.append($('<option></option>').attr('value', id).text(title));
         });
+            return data
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        });
     }
 
-    async function getMemberList(){
+    // async function getMemberList(){
+    //     let ddAuthor = $('#author');
+    //     ddAuthor.empty();
+    //     ddAuthor.prop('selectedIndex', 0);
+
+    //     const data = await membersList();
+    //     data.map(function(data2){
+    //         let id = data2.id;
+    //         let title = data2.fields.Alias
+    //         ddAuthor.append($('<option></option>').attr('value', id).text(title));
+    //     });
+    // }
+
+    async function getUsersList(){
         let ddAuthor = $('#author');
         ddAuthor.empty();
         ddAuthor.prop('selectedIndex', 0);
 
-        const data = await membersList();
-        data.map(function(data2){
-            let id = data2.id;
-            let title = data2.fields.Alias
-            ddAuthor.append($('<option></option>').attr('value', id).text(title));
+        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/users-list')
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            data.map(function(data2){
+                let id = data2.id;
+                let title = data2.fields.Alias
+                ddAuthor.append($('<option></option>').attr('value', id).text(title));
+            });
+            return data
+        })
+        .catch(err => {
+            console.log("ERROR", err);
         });
+
     }
 
     async function eventNew(){
@@ -143,7 +207,7 @@ title: Event New
 
     $(document).ready(function() {
         getTeamsList();
-        getPlaceList();
-        getMemberList();
+        getPlacesList();
+        getUsersList();
     });
 </script>

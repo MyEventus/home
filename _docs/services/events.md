@@ -63,7 +63,7 @@ title: Events
 
         })
         .then(
-            display.Events(events);
+            displayEvents(events);
         )
         .catch(err => {
             console.log("ERROR", err);

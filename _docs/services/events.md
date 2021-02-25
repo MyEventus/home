@@ -57,7 +57,7 @@ title: Events
         
         const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
         .then(res => {
-            let data = res.data;
+            let data = res.data.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
         })

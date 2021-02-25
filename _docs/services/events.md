@@ -4,6 +4,10 @@ title: Events
 ---
 <head>
 <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+ <script> var exports = {}; </script>
+ <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script>
+
 </head>
 
 <!-- <div>

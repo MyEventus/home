@@ -55,47 +55,47 @@ function memberNewData(alias, firstname, email, team){
 }
 
 //Link single existing user/member to one or more Teams.
-async function memberRelateData(data){
-    const iduser = data.fields.userId;
-    delete data.fields.userId;
-    console.log("axios.js memberRelateData: ", data);
+// async function memberRelateData(data){
+//     const iduser = data.fields.userId;
+//     delete data.fields.userId;
+//     console.log("axios.js memberRelateData: ", data);
 
-    let resp = await axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosConfig)
-    .then(res => {
-        const resp1 = res.data;
-        console.log("RESPONSE FROM LAMBDA: ", data);
-        return resp1
-    })
-    .catch(err => {
-        console.log("err", err);
-    })
-    return resp
-}
+//     let resp = await axios.patch(`https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who/${iduser}`, data, axiosConfig)
+//     .then(res => {
+//         const resp1 = res.data;
+//         console.log("RESPONSE FROM LAMBDA: ", data);
+//         return resp1
+//     })
+//     .catch(err => {
+//         console.log("err", err);
+//     })
+//     return resp
+// }
 
 
 //MOVED TO NETLIFY FUNCTIONS. MOVED BACK AGAIN.
 //Get list of all members.
-function membersList(){
-    const api = getAPIKeys();
-    console.log("API KEY RESPONSE : ", api);
-    return new Promise((resolve, reject) => {
-        let events = [];
-        //let a = 1 + 1;
-        if (1 == 1) {
-            axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
-            .then(response => {
-                data = response.data.records;
-                resolve(data)
-            })
-            .catch(err => {
-                console.log("err", err);
-            })
-        }
-        else {
-            reject("Failed")
-        }
-    });
-}
+// function membersList(){
+//     // const api = getAPIKeys();
+//     // console.log("API KEY RESPONSE : ", api);
+//     return new Promise((resolve, reject) => {
+//         let events = [];
+//         //let a = 1 + 1;
+//         if (1 == 1) {
+//             axios.get('https://api.airtable.com/v0/appNBMp3C4tRCcJFy/Who', axiosConfig)
+//             .then(response => {
+//                 data = response.data.records;
+//                 resolve(data)
+//             })
+//             .catch(err => {
+//                 console.log("err", err);
+//             })
+//         }
+//         else {
+//             reject("Failed")
+//         }
+//     });
+// }
 
 
 function removeItem(id, table){

@@ -174,21 +174,36 @@ title: Event New
         
         //eventNewData(title, realdate, team, author, place);
 
+        // const data = {
+        //     fields: {
+        //         Title: title, //From user form.
+        //         Date_Start: realdate, //From user form.
+        //         Team_Invited_Id_LI: [team], //From user form.
+        //         Place: [place], //From user form.
+        //         Author_LI: [author], //From user form.
+        //         Confirmed: [author], //Auto assigned.
+        //         Status: "ON (Going Ahead)"
+        //     }
+        // }
+
         const data = {
-            fields: {
-                Title: title, //From user form.
-                Date_Start: realdate, //From user form.
-                Team_Invited_Id_LI: [team], //From user form.
-                Place: [place], //From user form.
-                Author_LI: [author], //From user form.
-                Confirmed: [author], //Auto assigned.
-                Status: "ON (Going Ahead)"
+            "fields": {
+                "Title": title, //From user form.
+                "Date_Start": realdate, //From user form.
+                "Team_Invited_Id_LI": [team], //From user form.
+                "Place": [place], //From user form.
+                "Author_LI": [author], //From user form.
+                "Confirmed": [author], //Auto assigned.
+                "Status": "ON (Going Ahead)"
             }
         }
+
+        console.log("READ TO CREATE NEW EVENT: ", data);
+
         const items = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-new', data)
         .then(res => {
                 let data = res.data;
-                console.log("NEW EVENT: ", res);
+                console.log("NEW EVENT RESPONSE: ", res);
                 $('.toast').toast('show');
                 //Clear fields in form.
                 $('#title').val("");

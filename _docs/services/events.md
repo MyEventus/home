@@ -55,15 +55,15 @@ title: Events
     async function main(){
        const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
         
-        axios.post('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
-            .then(res => {
-                //const data = res.data;
-                console.log("RESPONSE FROM LAMBDA: ", res);
-                //displayEvents(data);
-            })
-            .catch(err => {
-                console.log("err", err);
-            });
+         axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+        .then(res => {
+            let data = res.data;
+            console.log("FROM LAMBDA: ", data);
+            return data
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
         
 
 

@@ -57,7 +57,7 @@ title: Events
         
         const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/events-list.js')
         .then(res => {
-            let data = res.data;
+            const data = res.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
         })
@@ -96,7 +96,7 @@ title: Events
                             <table class="table table-bordered" id="22" width="100%" cellspacing="0">
                             <thead><th>Title</th><th>Details</th></thead>
                             <tbody>
-                                <tr><td>Status<td>${item.fields.Status}</td></tr>
+                                <tr><td>Status<td>${item.fieldsairtable-add-members.Status}</td></tr>
                                 <tr><td>Date / Time<td>${start_date}</td></tr>
                                 <tr><td>Starting<td>${start_date_moment}</td></tr>
                                 <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
@@ -148,7 +148,6 @@ title: Events
     }
 
     $(document).ready(function() {
-     
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
         ddConfirm.empty();
@@ -158,6 +157,6 @@ title: Events
         let html = '';
 
         //Trigger the main decision tree hub.
-        main()
+        main();
     });
 </script>    

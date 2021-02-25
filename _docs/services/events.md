@@ -57,22 +57,11 @@ title: Events
     }
 
 
-    // function goToEdit(event){
-    //     // $('form').on('submit', function (event) {
-    //     console.log("IEDDDDD: ", event);
-    //     // event.preventDefault();    
-    // } 
-
-    //Service_From_Team
-    //Team_invited (Team)
-    //Team_Invited_Text_LU
-    //Team_Members_Invited_LU
-    //Team_Members_Invited_Text_FO
-
-
     function displayEvents(tempEvents){
         let html = '';
-    
+        
+        console.log("API2::: ", exports.API_KEY_AIRTABLE);
+
         tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";
@@ -108,119 +97,10 @@ title: Events
                      </div>
                  </div>
              </div>
-                ` 
-
-
+                `
         });
         //Backup <tr><td>Confrimed Attending</td><td>${item.fields.Author_Text_LU}</td></tr>
-
         document.getElementById('results').innerHTML = html; 
-
-            // const events = tempEvents.sort((a,b) =*V* new moment(a.start_date_temp).format('YYYYMMDD') - new moment(b.start_date-temp).format('YYYYMMDD'));
-
-            //console.log("SORTED: ", events);
-
-            //let start_date = new Date(item.fields.Date_Start)
-
-            // p.then((events) => {
-        //     console.log("FROM PROMISE: ", events);
-        //     events.forEach(event => {
-        //         if(event.fields.Confirmed_Text_LU == undefined){
-        //             event.fields.Confirmed_Text_LU = "";
-        //             console.log("CONFIRMED: ", event.fields.Confirmed_Text_LU);
-        //         }
-
-               
-    
-        //         html +=
-        //         `<br>
-        //         <div class="card shadow mb-4">
-        //             <div class="card-header py-3">
-        //                 <h6 class="m-0 font-weight-bold text-primary">${event.fields.Title}</h6>
-        //             </div>
-        //             <div class="card-body">
-        //                 <div class="table-responsive">
-        //                     <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-        //                     <thead><th>Title</th><th>Details</th></thead>
-        //                     <tbody>
-        //                         <tr><td>Status<td>${event.fields.Status}</td></tr>
-        //                         <tr><td>Date / Time<td>${event.fields.Date_Start}</td></tr>
-        //                         <tr><td>Place</td><td>${event.fields.Title_From_Places_LU}</td></tr>
-        //                         <tr><td>Meet At</td><td>${event.fields.Meeting_From_Places_LU}</td></tr>
-        //                         <tr><td>Place (Info)</td><td>${event.fields.Notes_From_Places_LU}</td></tr>
-        //                         <tr><td>Team Invited</td><td>${event.fields.Team_Invited_Text_LU}</td></tr>
-        //                         <tr><td>Team members Invited</td><td>${event.fields.Team_Members_Invited_Text_FO}</td></tr>
-        //                         <tr><td>Confrimed Attending</td><td>${event.fields.Author_Text_LU}</td></tr>
-        //                     </tbody>
-        //                     </table>
-        //         ` 
-        
-      
-
-
-
-
-
-
-
-
-        //         // html +=
-        //         //  `<button class="btn btn-primary btn-block btn-large" onclick="goToEdit(${event.id})">Edit</button></div></div></div>`
-
-        //         html += 
-        //         `<form><input type="hidden" id="eventId" name="eventId" value="${event.id}">
-        //                  <button class="btn btn-primary btn-block" type="submit" id="form1">Confirm / Edit / Delete</button></form></div></div></div>`
-
-
-        //     }); //End of forEach;
-
-        //     document.getElementById('results').innerHTML = html; 
-        //     //getAliasList();
-        // })
-        // .catch((message) => {
-        //     console.log("FROM PROMISE: ", message);
-        // });
-        // // console.log("RESULTSS: ", results);
-
-        //------------------------
-
-        //  <input type="hidden" id="eventId" name="eventId" value="${event.id}">
-        //                         <button class="btn btn-primary btn-block" type="submit" id="submitForm">Confirm / Edit / //Delete</button>
-
-        
-        
-            // html +=
-            // `<br>
-            // <div class="card shadow mb-4">
-            //     <div class="card-header py-3">
-            //         <h6 class="m-0 font-weight-bold text-primary">${item.fields.Title}</h6>
-            //     </div>
-            //     <div class="card-body">
-            //         <div class="table-responsive">
-            //             <table class="table table-bordered" id="22" width="100%" cellspacing="0">
-            //             <thead><th>Title</th><th>Details</th></thead>
-            //             <tbody>
-            //                 <tr><td>Status<td>${item.fields.Title}</td></tr>
-            //                 <tr><td>Status<td><strong>${item.fields.Status}</strong></td></tr>
-            //                 <tr><td>Date / Time<td>${start_date}</td></tr>
-            //                 <tr><td>Place</td><td>${item.fields.Title_From_Places_LU}</td></tr>
-            //                 <tr><td>Meet At</td><td>${item.fields.Meeting_From_Places_LU}</td></tr>
-            //                 <tr><td>Place (Info)</td><td>${item.fields.Notes_From_Places_LU}</td></tr>
-            //                 <tr><td>Author</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
-            //                 <tr><td>Team Invited</td><td>${item.fields.Team_Invited_Title_Text_LU}</td></tr>
-            //                 <tr><td>Team members Invited</td><td>${item.fields.Team_Members_Invited_Text_FO}</td></tr>
-            //                 <tr><td>Confirmed Attending</td><td>Not working yet. On my to do list</td></tr>
-            //             </tbody>
-            //             </table>
-            //             <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
-            //         </div>
-            //     </div>
-            // </div>
-            // ` 
-        //});
-        //<tr><td>Confirmed Attending</td><td>${item.fields.Confirmed_Text_LU}</td></tr>
-
-        // document.getElementById('results').innerHTML = html; 
     }
 
 

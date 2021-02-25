@@ -257,6 +257,9 @@ function eventNewData(title, date_start, teamId, authorId, placeId){
 
 //Get list of all events.
 function eventsList(){
+    const api = getAPIKeys();
+    console.log("API KEY RESPONSE : ", api);
+    
     console.log("In newUserData");
     return new Promise((resolve, reject) => {
         let data = [];

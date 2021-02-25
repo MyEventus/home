@@ -53,12 +53,12 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       //////const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
+       const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
         
-        await axios.post('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+        axios.post('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
             .then(res => {
-                const data = res.data;
-                console.log("RESPONSE FROM LAMBDA: ", data);
+                //const data = res.data;
+                console.log("RESPONSE FROM LAMBDA: ", res);
                 //displayEvents(data);
             })
             .catch(err => {

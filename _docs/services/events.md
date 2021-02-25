@@ -146,9 +146,7 @@ title: Events
             })
         });
     }
-</script>
 
-<script>
     $(document).ready(function() {
      
         //For Place drop down / select.

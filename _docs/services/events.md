@@ -47,8 +47,8 @@ title: Events
     <button id="post-btn">POST Data</button>
 </section> -->
 
- <script> var exports = {}; </script>
- <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script>
+ <!-- <script> var exports = {}; </script>
+ <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script> -->
 
 <script>
     //Main decision hub sync / await in order.
@@ -64,8 +64,8 @@ title: Events
     function displayEvents(tempEvents){
         let html = '';
         
-        console.log("API2::: ", exports.API_KEY_AIRTABLE);
-        console.log("API3::: ", API_KEY_AIRTABLE);
+        //console.log("API2::: ", exports.API_KEY_AIRTABLE);
+        //console.log("API3::: ", API_KEY_AIRTABLE);
 
         tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){

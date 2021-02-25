@@ -6,6 +6,18 @@ let axiosConfig = {
     }
   };
 
+  async function getAPIKeys(){ 
+    axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+        .then(res => {
+            let data = res.data;
+            console.log("API KEYS FROM LAMBDA: ", data);
+            return data
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
+  }
+
 /////////////////// MEMBERS - NEW //////////////////////
 //Only used when Google firestore accepts new user OK. Duplicates in Airtable. May move all data to firestore later date .todo.
 function memberNewData(alias, firstname, email, team){
@@ -62,7 +74,8 @@ async function memberRelateData(data){
 //MOVED TO NETLIFY FUNCTIONS. MOVED BACK AGAIN.
 //Get list of all members.
 function membersList(){
-    //console.log("In newUserData");
+    const api = getAPIKeys();
+    console.log("API KEY RESPONSE : ", api);
     return new Promise((resolve, reject) => {
         let events = [];
         //let a = 1 + 1;

@@ -89,6 +89,7 @@ title: Register4
 
         if(password.length < 7){
             console.log("Error: Password needs to be at least 6 characters.", password.length)
+            alert("Error: Password needs to be at least 6 characters not ", password.length)
         } else {
             //OK
         }
@@ -102,14 +103,38 @@ title: Register4
         .then(cred => {
             console.log("CREDENTIAL TOKEN: ", cred.user)
             const user = firebase.auth().currentUser;
+            //The 0 is poor mans authorisation to read / write access manually approved by Administrator. 0 = No access. 1 = Read. 2 = Create.
             return user.updateProfile({
-                displayName: username + "|" + first_name
+                displayName: username + "|" + first_name + "|" + 0;
             })
             signupForm.reset();
         })
         .then(cred => {
             memberNewData(username, first_name, email);
+            data = {
+                "fields": {
+                    "Alias": alias, //From user form.
+                    "First_Name": firstname,
+                    "Email_Main": email,
+                    "Team": team, //From user form.
+                    "Permissions": 0
+                }
+            }
+
+            const items = await axios.post('https://myeventus.netlify.app/.netlify/functions/user-new', data)
+            .then(res => {
+                    let data = res.data;
+                    console.log("NEW USER RESPONSE: ", res);
+                    //$('.toast').toast('show');
+                    return data
+            })
+            .catch(err => {
+                console.log("ERROR", err);
+            });
         })
+        .then(
+            alert("You now need to wait for the Admin to manually accept and allow you access. You will receive an email once approved.");
+        )
         .catch(err => {
             console.log("ERROR: ", err.message);//For user toast / popup.
         })

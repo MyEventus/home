@@ -98,6 +98,19 @@ title: Login4
             .then(cred => {
             console.log("User is now logged IN!")
             console.log("CREDENTIAL TOKEN: ", cred.user);
+
+            // Realtime Auth listener.
+            firebase.auth().onAuthStateChanged(firebaseUser => {
+                if(firebaseUser){
+                    const userName = firebaseUser.displayName;
+                    const alias = userName.split("|");
+                    const user = alias[0]);
+                    if(alias[2] < 3) {
+                        alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+                    }
+                }
+            });
+
             loginForm.reset();
             window.location.href="/";
         });

@@ -207,20 +207,30 @@ title: Event New
                 $('.toast').toast('show');
                 //Clear fields in form.
                 $('#title').val("");
+                $('#team').val("");
                 $('#date').val("");
                 $('#place').val("");
                 $('#author').val("");
                 return data
         })
-        // .then(e => {
-        //     //displayEvents(e);
-        // })
         .catch(err => {
             console.log("ERROR", err);
-        })
+        });
      }
 
     $(document).ready(function() {
+        // Realtime Auth listener.
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if(firebaseUser){
+                const userName = firebaseUser.displayName;
+                const alias = userName.split("|");
+                const user = alias[0]);
+                if(alias[2] < 3) {
+                    alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+                }
+            }
+        }
+
         getTeamsList();
         getPlacesList();
         getUsersList();

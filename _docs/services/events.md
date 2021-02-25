@@ -146,7 +146,6 @@ title: Events
             })
         });
     }
- });
 </script>
 
 <script>
@@ -161,5 +160,6 @@ title: Events
         let html = '';
 
         //Trigger the main decision tree hub.
-        main();
+        main()
+    });
 </script>    

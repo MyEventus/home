@@ -60,11 +60,10 @@ title: Events
             let data = res.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
-
         })
-        .then(
-            displayEvents(events);
-        )
+        .then(e => {
+            displayEvents(e);
+        })
         .catch(err => {
             console.log("ERROR", err);
         })

@@ -50,12 +50,29 @@ title: Events
  <!-- <script> var exports = {}; </script>
  <script src="{{ site.url }}{{ site.baseurl }}/functions/my-func-get-api.js"></script> -->
 
+
 <script>
+    $(document).ready(function() {
+     
+        //For Place drop down / select.
+        let ddConfirm = $('#confirm');
+        ddConfirm.empty();
+        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
+        ddConfirm.prop('selectedIndex', 0);
+
+        let html = '';
+
+        //Trigger the main decision tree hub.
+        main();
+      
+
+   
+
     //Main decision hub sync / await in order.
     async function main(){
         //const events = await eventsList(); //From axios.js. Will return "resoved" section of Promise.
         
-        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/my-func-get-api')
+        const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/events-list.js')
         .then(res => {
             let data = res.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
@@ -77,9 +94,9 @@ title: Events
     }
 
 
-    function displayEvents(tempEvents){
+    function displayEvents(data){
         let html = '';
-    
+        const tempEvents = data.data;
         tempEvents.forEach(item => {
             if(item.fields.Confirmed_Text_LU == undefined){
                 item.fields.Confirmed_Text_LU = "";
@@ -151,20 +168,8 @@ title: Events
                 })
         });
     }
+
+
+ });
     
-    $(document).ready(function() {
-     
-        //For Place drop down / select.
-        let ddConfirm = $('#confirm');
-        ddConfirm.empty();
-        ddConfirm.append('<option selected="true" disabled>Select your alias to confirm..</option>');
-        ddConfirm.prop('selectedIndex', 0);
-
-        let html = '';
-
-        //Trigger the main decision tree hub.
-        main();
-       
-
-    });
 </script>

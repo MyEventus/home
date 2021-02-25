@@ -108,15 +108,37 @@ title: Event New
 
         let realdate = new Date(date)//Was auto adding +11 hours (Due to Sydney/Australia time zone) before this correction.
         
-        eventNewData(title, realdate, team, author, place);
+        //eventNewData(title, realdate, team, author, place);
 
-        $('.toast').toast('show');
-
-        //Clear fields in form.
-        $('#title').val("");
-        $('#date').val("");
-        $('#place').val("");
-        $('#author').val("");
+        const data = {
+            fields: {
+                Title: title, //From user form.
+                Date_Start: realdate, //From user form.
+                Team_Invited_Id_LI: [team], //From user form.
+                Place: [place], //From user form.
+                Author_LI: [author], //From user form.
+                Confirmed: [author], //Auto assigned.
+                Status: "ON (Going Ahead)"
+            }
+        }
+        const items = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-new.js', data)
+        .then(res => {
+                let data = res.data;
+                console.log("NEW EVENT: ", res);
+                $('.toast').toast('show');
+                //Clear fields in form.
+                $('#title').val("");
+                $('#date').val("");
+                $('#place').val("");
+                $('#author').val("");
+                return data
+        })
+        // .then(e => {
+        //     //displayEvents(e);
+        // })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
      }
 
     $(document).ready(function() {

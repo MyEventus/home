@@ -129,7 +129,19 @@ title: Events
     });
 
     async function deleteItem(item){
-        const response = await removeItem(item, "Event");
+       // const response = await removeItem(item, "Event");
+        const events = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-delete', item)
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            return data
+        })
+        .then(e => {
+            displayEvents(e);
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
     };
 
     function getAliasList(){
@@ -154,6 +166,22 @@ title: Events
     }
     
     $(document).ready(function() {
+        // Realtime Auth listener.
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if(firebaseUser){
+                const userName = firebaseUser.displayName;
+                const alias = userName.split("|");
+                const user = alias[0];
+                console.log("This users permissions: ", alias[2]);
+                if(alias[2] < 3) {
+                    alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+                    //$('#submitForm').show();
+                }
+                else {
+                    //$('#submitForm').show();
+                }
+            }
+        });
      
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
@@ -165,7 +193,6 @@ title: Events
 
         //Trigger the main decision tree hub.
         main();
-       
 
     });
 </script>

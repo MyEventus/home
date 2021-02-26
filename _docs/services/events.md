@@ -136,9 +136,6 @@ title: Events
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
         })
-        .then(e => {
-            displayEvents(e);
-        })
         .catch(err => {
             console.log("ERROR", err);
         })

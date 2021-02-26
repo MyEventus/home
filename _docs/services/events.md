@@ -130,10 +130,11 @@ title: Events
 
     async function deleteItem(item){
        // const response = await removeItem(item, "Event");
+       console.log("DELETE ME ", item);
         const events = await axios.post('https://myeventus.netlify.app/.netlify/functions/events-delete', item)
         .then(res => {
-            let data = res.data.data;
-            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            const data = res.data;
+            console.log("RESP DELETE: ", res);
             return data
         })
         .catch(err => {

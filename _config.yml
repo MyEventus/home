@@ -1,4 +1,5 @@
 # --- General options --- #
+# THIS IS THE SITE VARIABLES E.G. {{ site.description }}
 
 # url is the full website URL
 # baseurl is the website's URL without the hostname

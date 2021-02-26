@@ -225,11 +225,17 @@ title: Event New
                 const userName = firebaseUser.displayName;
                 const alias = userName.split("|");
                 const user = alias[0]);
+                console.log("   this users permissions: ", alias[2]);
                 if(alias[2] < 3) {
+
                     alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+                    $('#submitForm').show();
+                }
+                else {
+                    $('#submitForm').show();
                 }
             }
-        }
+        });
 
         getTeamsList();
         getPlacesList();

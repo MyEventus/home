@@ -112,7 +112,7 @@ title: Events
                                 <tr><td>Confirmed Attending</td><td>Not working yet.</td></tr>
                             </tbody>
                             </table>
-                         <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
+                         <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete (Not working yet)</button>
                      </div>
                  </div>
              </div>

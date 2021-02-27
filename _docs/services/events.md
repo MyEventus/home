@@ -116,7 +116,7 @@ title: Events
                      </div>
                  </div>
              </div>
-                `
+            `
         });
         //Backup <tr><td>Confrimed Attending</td><td>${item.fields.Author_Text_LU}</td></tr>
         document.getElementById('results').innerHTML = html; 
@@ -130,15 +130,17 @@ title: Events
 
 
     async function deleteItem(item){
-       // const response = await removeItem(item, "Event");
-       console.log("DELETE ME ", item);
-       const data = {"data":{"id":item}};
-
+        //const response = await removeItem(item, "Event");
+        //console.log("DELETE ME ", typeof(item));
+        //const datastring = item.toString();
+        //console.log("DELETE ME 2 ", typeof(datastring));
+        const data = {data:{id:item}};
+        console.log("DELETE ME 3 ", data);
         const events = await axios.delete(`https://myeventus.netlify.app/.netlify/functions/events-delete`, data)
         .then(res => {
-            const data = res.data;
+            //const data = res.data;
             console.log("RESP DELETE: ", res);
-            return data
+            //return data
         })
         .catch(err => {
             console.log("ERROR", err);

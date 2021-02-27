@@ -123,10 +123,10 @@ title: Events
     }
 
 
-    $('form').on('submit', function (item) {
-         item.preventDefault();
+    // $('form').on('submit', function (item) {
+    //      item.preventDefault();
        
-    });
+    // });
 
 
     async function deleteItem(item){

@@ -12,14 +12,14 @@ title: Events
     async function main(){
        //const items = await getMembersViaFunctions();
        //Space here for possible future use.
-       const items = await axios.get('https://myeventus.netlify.app/.netlify/functions/events-list')
+       const items = await axios.get('https://myeventus.netlify.app/.netlify/functions/users-list')
         .then(res => {
             let data = res.data.data;
             console.log("EVENTS.MD FROM LAMBDA: ", res);
             return data
         })
         .then(e => {
-            displayEvents(e);
+            displayItems(e);
         })
         .catch(err => {
             console.log("ERROR", err);
@@ -36,16 +36,16 @@ title: Events
     //         console.log("err", err);
     //     })
     // };
-    async function getMembersViaFunctions(){
-        axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
-        .then(res => {
-            let data = res.data;
-            displayItems(data)
-        })
-        .catch(err => {
-            console.log("err", err);
-        })
-    };
+    // async function getMembersViaFunctions(){
+    //     axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+    //     .then(res => {
+    //         let data = res.data;
+    //         displayItems(data)
+    //     })
+    //     .catch(err => {
+    //         console.log("err", err);
+    //     })
+    // };
 
     async function deleteItem(event){
         console.log("DELETE : ", event);

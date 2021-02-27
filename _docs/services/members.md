@@ -8,6 +8,11 @@ title: Events
 
 
 <script>
+ $(document).ready(function() {
+        let html = '';
+        //Trigger the main decision tree hub.
+        main(); 
+
     //Main decision hub sync / await in order.
     async function main(){
        const items = await getMembersViaFunctions();
@@ -61,9 +66,24 @@ title: Events
         document.getElementById('results').innerHTML = html; 
     }
 
-
-  $(document).ready(function() {
-        let html = '';
-        //Trigger the main decision tree hub.
-        main(); 
+        async function deleteItem(item){
+            //const response = await removeItem(item, "Event");
+            //console.log("DELETE ME ", typeof(item));
+            //const datastring = item.toString();
+            //console.log("DELETE ME 2 ", typeof(datastring));
+            const data = {data:{id:item}};
+            console.log("DELETE ME 3 ", data);
+            const events = await axios.delete(`https://myeventus.netlify.app/.netlify/functions/user-delete`, data)
+            .then(res => {
+                //const data = res.data;
+                console.log("RESP DELETE: ", res);
+                //return data
+            })
+            .catch(err => {
+                console.log("ERROR", err);
+            })
+        };
   });
+
+</script>
+

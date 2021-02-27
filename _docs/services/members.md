@@ -10,11 +10,32 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       const items = await getMembersViaFunctions();
-       
+       //const items = await getMembersViaFunctions();
        //Space here for possible future use.
+       const items = await axios.get('https://myeventus.netlify.app/.netlify/functions/events-list')
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            return data
+        })
+        .then(e => {
+            displayEvents(e);
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
     }
 
+    // async function getMembersViaFunctions(){
+    //     axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
+    //     .then(res => {
+    //         let data = res.data;
+    //         displayItems(data)
+    //     })
+    //     .catch(err => {
+    //         console.log("err", err);
+    //     })
+    // };
     async function getMembersViaFunctions(){
         axios.get('https://myeventus.netlify.app/.netlify/functions/airtable-list-members')
         .then(res => {

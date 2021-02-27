@@ -14,9 +14,22 @@ title: Events
 <script>
     //Main decision hub sync / await in order.
     async function main(){
-       const items = await placesList(); //From axios.js. Will return "resoved" section of Promise.
+       //const items = await placesList(); //From axios.js. Will return "resoved" section of Promise.
        //console.log("Promise has finished eventsListAll", items); //Once above line is completed this is then run.
-       displayItems(items);
+       const events = await axios.get('https://myeventus.netlify.app/.netlify/functions/places-list')
+        .then(res => {
+            let data = res.data.data;
+            console.log("EVENTS.MD FROM LAMBDA: ", res);
+            return data
+        })
+        .then(e => {
+            displayItems(e);
+        })
+        .catch(err => {
+            console.log("ERROR", err);
+        })
+
+    //    displayItems(items);
     }
 
      async function deleteItem(item){

@@ -170,23 +170,40 @@ title: Events
     }
     
     $(document).ready(function() {
+        let authority = false;
         // Realtime Auth listener.
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if(firebaseUser){
                 const userName = firebaseUser.displayName;
-                const alias = userName.split("|");
-                const user = alias[0];
-                console.log("This users permissions: ", alias[2]);
-                if(alias[2] < 3) {
-                    alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
-                    //$('#submitForm').show();
+                // const alias = userName.split("|");
+                // const user = alias[0];
+                console.log("userName : ", userName );
+                if(alias) {
+                    const alias = userName.split("|");
+                    const user = alias[0];
+                    console.log("This users permissions: ", alias[2]);
+                    if (alias[2] < 3){
+                        alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+                        //$('#submitForm').show();
+                        authority = false;
+                    }
+                    else {
+                        authority = true;
+                        console.log("AUTHORITY: ", authority);
+                        //$('#submitForm').show();
+                    }
                 }
                 else {
-                    //$('#submitForm').show();
+                    const authority = false;
                 }
             }
+        //console.log("AUTHORITY: ", authority, alias[2]);
+        //authority = true;
+        //const authority = false;
         });
-     
+        authority = true;
+        console.log("AUTHORITY: ", authority);
+
         //For Place drop down / select.
         let ddConfirm = $('#confirm');
         ddConfirm.empty();

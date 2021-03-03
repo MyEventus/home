@@ -8,6 +8,8 @@ title: Events
 
 
 <script>
+    let myItems = [];
+
     //Main decision hub sync / await in order.
     async function main(){
        //const items = await getMembersViaFunctions();
@@ -56,10 +58,12 @@ title: Events
 
     function displayItems(items){
         let html = '';
+        let myItems = [];
         console.log("ITEMS: ", items);
         items.forEach(item => {
-            // 
-            html +=
+            //myItems.push(`<h1>${item.fields.Alias}</h1>`);
+            myItems.push(
+            //html +=
             `<br>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -73,21 +77,22 @@ title: Events
                             <tr><td>Alias</td><td>${item.fields.Alias}</td></tr>
                         </tbody>
                         </table>
-                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item.id}')">Delete</button>
+                        <button class="btn btn-danger" type="button" id="delete" onclick="deleteItem('${item}')">Delete</button>
                     </div>
                 </div>
             </div>
-            ` 
+            ` )
         });
-        document.getElementById('results').innerHTML = html; 
+        //document.getElementById('results').innerHTML = html; 
+        document.getElementById('results').innerHTML = myItems;
     }
 
     async function deleteItem(item){
-        //const response = await removeItem(item, "Event");
-        //console.log("DELETE ME ", typeof(item));
-        //const datastring = item.toString();
-        //console.log("DELETE ME 2 ", typeof(datastring));
-        const data = {data:{id:item}};
+        let idx = myItems.findIndex(i => i.id===item.id)
+        console.log("RESP DELETE: ", idx);
+
+
+        const data = {data:{id:item.id}};
         console.log("DELETE ME 3 ", data);
         const events = await axios.delete(`https://myeventus.netlify.app/.netlify/functions/user-delete`, data)
         .then(res => {
@@ -103,6 +108,7 @@ title: Events
 
 
  $(document).ready(function() {
+        // let myItems = [];
         let html = '';
         //Trigger the main decision tree hub.
         main(); 

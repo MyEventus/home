@@ -7,6 +7,9 @@ THIS IS MORE OF A SELF TEACHING EXCERCISE, NOOB.
 
 
 TEMPLATE BASED ON..
+https://dev.to/codeply/build-a-simple-crud-app-with-airtable-api-vue-vuetify-5565
+
+AND
 
 This is a Jekyll version of the beautiful [sb-admin](https://startbootstrap.com/themes/sb-admin-2/) 
 provided by Startbootrap for Boostrap 4. It's been modified for Jekyll use, meaning that graphs are

@@ -34,7 +34,7 @@ title: Login5
   var oktaSignIn = new OktaSignIn({
     baseUrl: "https://dev-49983875.okta.com",
     clientId: "0oa5ym6myKNCpFR7D5d6",
-    redirectUri: 'https://myeventus.netlify.app/services/members-welcome',
+    redirectUri: 'https://myeventus.netlify.app/docs/services/members-welcome',
     authParams: {
       issuer: "default",
       responseType: ['token', 'id_token'],
@@ -79,8 +79,25 @@ title: Login5
   }
 
     function logout() {
-        oktaSignIn.authClient.signOut();
-        location.reload();
+        //oktaSignIn.authClient.signOut();
+
+        // oktaSignIn.session.close((err) => {
+        //     if (err) {
+        //         return alert(`Error ${err}`);
+        //     }
+        // });
+
+        //oktaSignIn.session.logout((err) => {
+        // oktaSignIn.logout((err) => {
+            //oktaSignIn.closeSession((err) => {
+            oktaSignIn.signOut((err) => {
+            if (err) {
+                return alert(`Error ${err}`);
+            }
+        });
+
+        //oktaSignIn.session.signOut();
+        //////location.reload();
     }
 
 

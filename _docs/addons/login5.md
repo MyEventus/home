@@ -3,6 +3,12 @@ layout: default
 title: Login5
 ---
 
+<div class="container">
+    <h1 class="text-center">Message</h1>
+    <div id="messageBox" class="jumbotron">
+    You are not logged in. Log in first to access all features.
+    </div>
+</div>
 
 <div id="okta-login-container"></div>
 
@@ -28,7 +34,7 @@ title: Login5
         oktaSignIn.tokenManager.add('idToken', idToken);
 
         window.location.hash='';
-        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + ". OK: You just logged in! :)";
       },
       function error(err) {
         console.error(err);
@@ -38,7 +44,7 @@ title: Login5
     oktaSignIn.session.get(function (res) {
       // If we get here, the user is already signed in.
       if (res.status === 'ACTIVE') {
-        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
+        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + ". OK: You are *still* logged in! :)";
         return;
       }
       oktaSignIn.renderEl(

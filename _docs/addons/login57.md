@@ -1,6 +1,6 @@
 <!-- ---
 layout: default
-title: Login5OK
+title: Login5
 ---
 <div class="container">
     <h1 class="text-center">Message</h1>

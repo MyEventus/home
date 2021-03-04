@@ -73,9 +73,9 @@
         # - title: Login Okta
         #   url: docs/addons/login2
         - title: Login
-          url: docs/addons/login4
+          url: docs/addons/login5
         - title: Logout
-          url: docs/addons/logout
+          url: docs/addons/logout5
         - title: Sign Up
           url: docs/addons/register4
         - title: Forgot Password

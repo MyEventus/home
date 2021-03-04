@@ -91,28 +91,28 @@ title: Login4
     const login = document.querySelector("#btnLogin");
     login.addEventListener('click', (e) => {
         e.preventDefault();
-        const email = txtEmail.value;
-        const pass = txtPassword.value;
-        const auth = firebase.auth();
-        auth.signInWithEmailAndPassword(email, pass) //async promise.
-            .then(cred => {
-            console.log("User is now logged IN!")
-            console.log("CREDENTIAL TOKEN: ", cred.user);
+        // const email = txtEmail.value;
+        // const pass = txtPassword.value;
+        // const auth = firebase.auth();
+        // auth.signInWithEmailAndPassword(email, pass) //async promise.
+        //     .then(cred => {
+        //     console.log("User is now logged IN!")
+        //     console.log("CREDENTIAL TOKEN: ", cred.user);
 
-            // Realtime Auth listener.
-            firebase.auth().onAuthStateChanged(firebaseUser => {
-                if(firebaseUser){
-                    const userName = firebaseUser.displayName;
-                    const alias = userName.split("|");
-                    const user = alias[0]);
-                    if(alias[2] < 3) {
-                        alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
-                    }
-                }
-            });
+        //     // Realtime Auth listener.
+        //     firebase.auth().onAuthStateChanged(firebaseUser => {
+        //         if(firebaseUser){
+        //             const userName = firebaseUser.displayName;
+        //             const alias = userName.split("|");
+        //             const user = alias[0]);
+        //             if(alias[2] < 3) {
+        //                 alert("You are NOT authorised yet to CREATE any entries, Wait for Admin to manually allow you!");
+        //             }
+        //         }
+        //     });
 
-            loginForm.reset();
-            window.location.href="/";
+            // loginForm.reset();
+            // window.location.href="/";
         });
 
     });

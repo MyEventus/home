@@ -91,32 +91,32 @@
 
 
     // Realtime Auth listener.
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        var user = null;
-        if(firebaseUser){
-            user = firebaseUser;
-            console.log("Now logged in. OK: ", firebaseUser);
-            $("#btnLogout").show();
-            $("#btnSignUp").hide();
-            $("#btnLogin2").hide();
-            loggedInDiv.hide();
-            loggedOutDiv.show();
-            //btnLogout.classList.remove('hide');
-            // btnSignUp.classList.remove('hide');
-            // btnLogin.classList.add('hide');
-        } else {
-            user = null;
-            console.log('Now logged out!');
-            $("#btnLogout").hide();
-            $("#btnSignUp").show();
-            $("#btnLogin2").show();
-            loggedInDiv.show();
-            loggedOutDiv.hide();
-            //btnLogout.classList.add('hide');
-            // btnSignUp.classList.add('hide');
-            // btnLogin.classList.remove('hide');
-        }
-    });
+    // firebase.auth().onAuthStateChanged(firebaseUser => {
+    //     var user = null;
+    //     if(firebaseUser){
+    //         user = firebaseUser;
+    //         console.log("Now logged in. OK: ", firebaseUser);
+    //         $("#btnLogout").show();
+    //         $("#btnSignUp").hide();
+    //         $("#btnLogin2").hide();
+    //         loggedInDiv.hide();
+    //         loggedOutDiv.show();
+    //         //btnLogout.classList.remove('hide');
+    //         // btnSignUp.classList.remove('hide');
+    //         // btnLogin.classList.add('hide');
+    //     } else {
+    //         user = null;
+    //         console.log('Now logged out!');
+    //         $("#btnLogout").hide();
+    //         $("#btnSignUp").show();
+    //         $("#btnLogin2").show();
+    //         loggedInDiv.show();
+    //         loggedOutDiv.hide();
+    //         //btnLogout.classList.add('hide');
+    //         // btnSignUp.classList.add('hide');
+    //         // btnLogin.classList.remove('hide');
+    //     }
+    // });
 
     //Sign Up.
     //https://www.youtube.com/watch?v=wkdCpktUfGg

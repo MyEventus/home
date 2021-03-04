@@ -46,17 +46,17 @@ title: ForgotPassword4
     const resetPass = document.querySelector("#btnResetPass");  
     btnResetPass.addEventListener('click', (e) => {
         e.preventDefault();
-        const email = txtEmail.value;
-        const auth = firebase.auth();
-        auth.sendPasswordResetEmail(email) //async promise.
-            .then( () => {
-            console.log("Check your email, password reset sent successfully.")
-            resetPass.reset();
-            window.location.href="/";
-        })
-        .catch(e => {
-            console.error("Error: ", e);
-        });
+        // const email = txtEmail.value;
+        // const auth = firebase.auth();
+        // auth.sendPasswordResetEmail(email) //async promise.
+        //     .then( () => {
+        //     console.log("Check your email, password reset sent successfully.")
+        //     resetPass.reset();
+        //     window.location.href="/";
+        // })
+        // .catch(e => {
+        //     console.error("Error: ", e);
+        // });
 
     });
 </script>

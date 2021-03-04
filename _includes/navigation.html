@@ -108,43 +108,43 @@ $(document).ready(function() {
   });
 
   // Realtime Auth listener.
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser){
-            var userName = firebaseUser.displayName;
-            let alias = userName.split("|");
-            console.log("USERNAME/ALIAS: ", alias[0])
-            //$('#ifLoggedOut').hide();
-            $('#ifLoggedIn').show();
-            document.getElementById("logIn").innerHTML = alias[0];
-            //btnLogout.classList.remove('hide');
-            // btnSignUp.classList.remove('hide');
-            // btnLogin.classList.add('hide');
-        } else {          
-            $('#ifLoggedIn').hide();
-            //$('#ifLoggedOut').show();
-            //$('#user').innerHtml("Log in");
-            //document.getElementById("user").innerHTML = '<a href="{{ page.login3 }}">Log In</a>';
-            //document.getElementById("user").innerHTML = '<a class="dropdown-item" id="btnLogin" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Log in</a>';
-            document.getElementById("logIn").innerHTML = '<a  class="btn btn-primary btn-user btn-block" id="btnLogin2" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Log in</a>';
-            document.getElementById("signUp").innerHTML = '<a  class="btn btn-secondary btn-user btn-block" id="btnSignup" href="{{ site.url }}{{ site.baseurl }}/docs/addons/register4/">Sign up</a>';
-            //<button id="signmeup" class="btn btn-secondary btn-user btn-block hide">Sign Up (Free)</button>
-            //btnLogout.classList.add('hide');
-            // btnSignUp.classList.add('hide');
-            // btnLogin.classList.remove('hide');
-        }
-    });
+    // firebase.auth().onAuthStateChanged(firebaseUser => {
+    //     if(firebaseUser){
+    //         var userName = firebaseUser.displayName;
+    //         let alias = userName.split("|");
+    //         console.log("USERNAME/ALIAS: ", alias[0])
+    //         //$('#ifLoggedOut').hide();
+    //         $('#ifLoggedIn').show();
+    //         document.getElementById("logIn").innerHTML = alias[0];
+    //         //btnLogout.classList.remove('hide');
+    //         // btnSignUp.classList.remove('hide');
+    //         // btnLogin.classList.add('hide');
+    //     } else {          
+    //         $('#ifLoggedIn').hide();
+    //         //$('#ifLoggedOut').show();
+    //         //$('#user').innerHtml("Log in");
+    //         //document.getElementById("user").innerHTML = '<a href="{{ page.login3 }}">Log In</a>';
+    //         //document.getElementById("user").innerHTML = '<a class="dropdown-item" id="btnLogin" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Log in</a>';
+    //         document.getElementById("logIn").innerHTML = '<a  class="btn btn-primary btn-user btn-block" id="btnLogin2" href="{{ site.url }}{{ site.baseurl }}/docs/addons/login4/">Log in</a>';
+    //         document.getElementById("signUp").innerHTML = '<a  class="btn btn-secondary btn-user btn-block" id="btnSignup" href="{{ site.url }}{{ site.baseurl }}/docs/addons/register4/">Sign up</a>';
+    //         //<button id="signmeup" class="btn btn-secondary btn-user btn-block hide">Sign Up (Free)</button>
+    //         //btnLogout.classList.add('hide');
+    //         // btnSignUp.classList.add('hide');
+    //         // btnLogin.classList.remove('hide');
+    //     }
+    // });
 
 
    //Logout
-    const logout = document.querySelector("#btnLogout");
-    logout.addEventListener('click', (e) => {
-        e.preventDefault();
-        firebase.auth().signOut()
-        .then(() => {
-            console.log("User is now logged OUT!")
-            window.location.href="/";
-        });
-    });
+    // const logout = document.querySelector("#btnLogout");
+    // logout.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     firebase.auth().signOut()
+    //     .then(() => {
+    //         console.log("User is now logged OUT!")
+    //         window.location.href="/";
+    //     });
+    // });
 
     
 

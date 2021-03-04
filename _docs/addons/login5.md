@@ -34,6 +34,7 @@ title: Login5
   var oktaSignIn = new OktaSignIn({
     baseUrl: "https://dev-49983875.okta.com",
     clientId: "0oa5ym6myKNCpFR7D5d6",
+    redirectUri: 'https://myeventus.netlify.app/',
     authParams: {
       issuer: "default",
       responseType: ['token', 'id_token'],

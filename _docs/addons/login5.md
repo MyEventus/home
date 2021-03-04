@@ -30,7 +30,6 @@ title: Login5
     </div>
 
 
-    <!-- use the Okta widget to power authentication! -->
 <script type="text/javascript">
   var oktaSignIn = new OktaSignIn({
     baseUrl: "https://dev-49983875.okta.com",
@@ -43,29 +42,72 @@ title: Login5
     }
   });
 
-   oktaSignIn.authClient.token.getUserInfo().then(function(user) {
-        document.getElementById("messageBox").innerHTML = "Hello, " + user.email + "! You are *still* logged in! :)";
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    oktaSignIn.token.parseTokensFromUrl(
+      // If we get here, the user just logged in.
+      function success(res) {
+        var accessToken = res[0];
+        var idToken = res[1];
+
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
+
+        window.location.hash='';
+        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+         document.getElementById("logout").style.display = 'block';      
+      },
+      function error(err) {
+        console.error(err);
+      }
+    );
+  } else {
+    oktaSignIn.session.get(function (res) {
+      // If we get here, the user is already signed in.
+      if (res.status === 'ACTIVE') {
+        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are still logged in! :)";
         document.getElementById("logout").style.display = 'block';
-      }, function(error) {
-        oktaSignIn.showSignInToGetTokens({
-          el: '#okta-login-container'
-        }).then(function(tokens) {
-          oktaSignIn.authClient.tokenManager.setTokens(tokens);
-          oktaSignIn.remove();
-
-          const idToken = tokens.idToken;
-          document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
-          document.getElementById("logout").style.display = 'block';
-
-        }).catch(function(err) {
+        return;
+      }
+      oktaSignIn.renderEl(
+        { el: '#okta-login-container' },
+        function success(res) {},
+        function error(err) {
           console.error(err);
-        });
-      });
+        }
+      );
+    });
+  }
 
-      function logout() {
+    function logout() {
         oktaSignIn.authClient.signOut();
         location.reload();
-      }
+    }
+
+
+
+//    oktaSignIn.authClient.token.getUserInfo().then(function(user) {
+//         document.getElementById("messageBox").innerHTML = "Hello, " + user.email + "! You are *still* logged in! :)";
+//         document.getElementById("logout").style.display = 'block';
+//       }, function(error) {
+//         oktaSignIn.showSignInToGetTokens({
+//           el: '#okta-login-container'
+//         }).then(function(tokens) {
+//           oktaSignIn.authClient.tokenManager.setTokens(tokens);
+//           oktaSignIn.remove();
+
+//           const idToken = tokens.idToken;
+//           document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+//           document.getElementById("logout").style.display = 'block';
+
+//         }).catch(function(err) {
+//           console.error(err);
+//         });
+//       });
+
+//       function logout() {
+//         oktaSignIn.authClient.signOut();
+//         location.reload();
+//       }
 </script>
 
 
